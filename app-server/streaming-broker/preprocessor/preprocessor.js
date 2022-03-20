@@ -90,25 +90,37 @@ streaming_broker_mqttclient.on('message', streaming_broker_message_handler);
 //handle incoming connect
 function streaming_broker_connect_handler(connack)
 {
-    console.log(`streaming broker connected? ${streaming_broker_mqttclient.connected}`);
-    if (connack.sessionPresent == false) {
-        sub_topics.forEach((topic) => {
-            streaming_broker_mqttclient.subscribe(topic['topic'], topic['options']);
-        });
+    try {
+        console.log(`streaming broker connected? ${streaming_broker_mqttclient.connected}`);
+        if (connack.sessionPresent == false) {
+            sub_topics.forEach((topic) => {
+                streaming_broker_mqttclient.subscribe(topic['topic'], topic['options']);
+            });
+        }
+    } catch (err) {
+         console.log(err);
     }
 }
 
 function streaming_broker_message_handler(topic, message, packet)
-{
+{   
+    try {
     let topic_levels = topic.split('/');
 
     //EXTRACT UPLINK
     if (topic == `devices/${topic_levels[1]}/up/raw`) {
         //parse msg
         let parsed_message = JSON.parse(message);
+
+        if (parsed_message["uplink_message"]["decoded_payload"]["meta"]["dev_type"] == 'LT-22222-L'
+            && parsed_message["uplink_message"]["decoded_payload"]["meta"]["Work_mode"] == 'Exit mode'
+        ) {
+            return;
+        }
+
         //extract
         let dev_data = extract_dev_data(parsed_message);
-    
+        
         let pub_topics = [
             {
                 //for db cache
@@ -180,11 +192,19 @@ function streaming_broker_message_handler(topic, message, packet)
             }
         }
     }
+
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 // handle error
 function streaming_broker_error_handler(error)
 {
-    console.log("Can't connect to streaming broker" + error);
-    process.exit(1);
+    try {
+        console.log("Can't connect to streaming broker" + error);
+        process.exit(1);
+    } catch (err) {
+        console.log(err);
+    }
 }
