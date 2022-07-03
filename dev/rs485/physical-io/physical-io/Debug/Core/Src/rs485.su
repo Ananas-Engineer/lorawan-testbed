@@ -1,0 +1,3 @@
+rs485.c:15:6:rs485_init	16	static
+rs485.c:31:12:rs485_compose	48	static
+rs485.c:46:6:rs485_send	40	static
