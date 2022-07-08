@@ -14,6 +14,6 @@
 
 void rs485_init(UART_HandleTypeDef *huart_ptr);
 cmd_byte_t rs485_compose(cmd_t *cmd);
-void rs485_send(cmd_t *cmd);
+void rs485_send(cmd_byte_t *buffer);
 
 #endif

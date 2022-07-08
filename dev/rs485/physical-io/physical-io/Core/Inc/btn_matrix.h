@@ -15,16 +15,16 @@
 #define COL_LEN		4
 #define ROW_LEN		2
 
-#define OUT_PIN_0	GPIO_PIN_4
-#define OUT_PIN_1	GPIO_PIN_5
-#define OUT_PIN_2	GPIO_PIN_6
-#define OUT_PIN_3	GPIO_PIN_7
+#define OUT_PIN_0	GPIO_PIN_12
+#define OUT_PIN_1	GPIO_PIN_13
+#define OUT_PIN_2	GPIO_PIN_14
+#define OUT_PIN_3	GPIO_PIN_15
 
-#define IN_PIN_0	GPIO_PIN_4
-#define IN_PIN_1	GPIO_PIN_5
+#define IN_PIN_0	GPIO_PIN_11
+#define IN_PIN_1	GPIO_PIN_12
 
-#define COL_PORT	GPIOA
-#define ROW_PORT	GPIOB
+#define COL_PORT	GPIOB
+#define ROW_PORT	GPIOA
 
 #define DEBOUNCE_INTERVAL   1
 #define BUTTON_PRESSED      1   //value when reading

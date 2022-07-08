@@ -43,8 +43,7 @@ cmd_byte_t rs485_compose(cmd_t *cmd) {
 	return buffer;
 }
 
-void rs485_send(cmd_t *cmd) {
-	cmd_byte_t buffer = rs485_compose(cmd);
-	HAL_UART_Transmit(huart, buffer.data, buffer.size, 10);
+void rs485_send(cmd_byte_t *buffer) {
+	HAL_UART_Transmit(huart, buffer->data, buffer->size, 10);
 }
 
