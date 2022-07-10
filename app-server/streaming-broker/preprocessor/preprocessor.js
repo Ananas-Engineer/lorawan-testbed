@@ -105,84 +105,43 @@ function streaming_broker_connect_handler(connack)
 function streaming_broker_message_handler(topic, message, packet)
 {   
     try {
-    let topic_levels = topic.split('/');
+        let topic_levels = topic.split('/');
 
-    //EXTRACT UPLINK
-    if (topic == `devices/${topic_levels[1]}/up/raw`) {
-        //parse msg
-        let parsed_message = JSON.parse(message);
+        //EXTRACT UPLINK
+        if (topic == `devices/${topic_levels[1]}/up/raw`) {
+            //parse msg
+            let parsed_message = JSON.parse(message);
+            
+            if (!parsed_message.uplink_message.hasOwnProperty("decoded_payload")) return;
 
-        if (parsed_message["uplink_message"]["decoded_payload"]["meta"]["dev_type"] == 'LT-22222-L'
-            && parsed_message["uplink_message"]["decoded_payload"]["meta"]["Work_mode"] == 'Exit mode'
-        ) {
-            return;
-        }
-
-        //extract
-        let dev_data = extract_dev_data(parsed_message);
-        
-        let pub_topics = [
-            {
-                //for db cache
-                'topic': `devices/${topic_levels[1]}/up/mixed`,
-                'msg': JSON.stringify(dev_data),
-                'options': {
-                    qos: 0,
-                    dup: false,
-                    retain: false
-                }
-            },
-    
-            {
-                //for customer
-                'topic': `devices/${topic_levels[1]}/up/payload`,
-                'msg': JSON.stringify(dev_data["payload"]),
-                'options': {
-                    qos: 0,
-                    dup: false,
-                    retain: true
-                }
-            }
-        ];
-    
-        //publish extracted data to 2 different topics
-        try {
-            pub_topics.forEach((topic) => {
-                streaming_broker_mqttclient.publish(topic['topic'], topic['msg'], topic['options']);
-            });
-        } catch (err) {
-            console.log(err);
-        }
-    }
-
-    //INITIAL CONFIG DEV VIA DOWNLINK WHEN DEV JOINING
-    else if (topic == `devices/${topic_levels[1]}/join`) {
-        let join_msg = JSON.parse(message);
-        if (topic_levels[1] == "eui-a8404111e1832b1c") {
-            let downlink_payload = 
-            {
-                "downlinks": [
-                    {
-                        "f_port": 1,
-                        "frm_payload": "AwEA",
-                        "priority": "HIGHEST",
-                        "confirmed": true
-                    }
-                ]
-            };
-        
+            //extract
+            let dev_data = extract_dev_data(parsed_message);
+            
             let pub_topics = [
                 {
-                    'topic': `devices/${topic_levels[1]}/down/push`,
-                    'msg': JSON.stringify(downlink_payload),
+                    //for db cache
+                    'topic': `devices/${topic_levels[1]}/up/mixed`,
+                    'msg': JSON.stringify(dev_data),
                     'options': {
                         qos: 0,
                         dup: false,
                         retain: false
                     }
+                },
+        
+                {
+                    //for customer
+                    'topic': `devices/${topic_levels[1]}/up/payload`,
+                    'msg': JSON.stringify(dev_data["payload"]),
+                    'options': {
+                        qos: 0,
+                        dup: false,
+                        retain: true
+                    }
                 }
             ];
         
+            //publish extracted data to 2 different topics
             try {
                 pub_topics.forEach((topic) => {
                     streaming_broker_mqttclient.publish(topic['topic'], topic['msg'], topic['options']);
@@ -191,7 +150,44 @@ function streaming_broker_message_handler(topic, message, packet)
                 console.log(err);
             }
         }
-    }
+
+        //INITIAL CONFIG DEV VIA DOWNLINK WHEN DEV JOINING
+        else if (topic == `devices/${topic_levels[1]}/join`) {
+            let join_msg = JSON.parse(message);
+            if (topic_levels[1] == "eui-a8404111e1832b1c") {
+                let downlink_payload = 
+                {
+                    "downlinks": [
+                        {
+                            "f_port": 1,
+                            "frm_payload": "AwEA",
+                            "priority": "HIGHEST",
+                            "confirmed": true
+                        }
+                    ]
+                };
+            
+                let pub_topics = [
+                    {
+                        'topic': `devices/${topic_levels[1]}/down/push`,
+                        'msg': JSON.stringify(downlink_payload),
+                        'options': {
+                            qos: 0,
+                            dup: false,
+                            retain: false
+                        }
+                    }
+                ];
+            
+                try {
+                    pub_topics.forEach((topic) => {
+                        streaming_broker_mqttclient.publish(topic['topic'], topic['msg'], topic['options']);
+                    });
+                } catch (err) {
+                    console.log(err);
+                }
+            }
+        }
 
     } catch (err) {
         console.log(err);
