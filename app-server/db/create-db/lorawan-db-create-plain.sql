@@ -5,7 +5,7 @@
 -- Dumped from database version 12.10
 -- Dumped by pg_dump version 12.9
 
--- Started on 2022-06-18 11:26:57 UTC
+-- Started on 2022-07-10 15:27:01 UTC
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -19,58 +19,26 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 4 (class 3079 OID 16988)
--- Name: timescaledb; Type: EXTENSION; Schema: -; Owner: -
+-- TOC entry 6 (class 2615 OID 2200)
+-- Name: public; Type: SCHEMA; Schema: -; Owner: root
 --
 
-CREATE EXTENSION IF NOT EXISTS timescaledb WITH SCHEMA public;
+CREATE SCHEMA public;
 
 
---
--- TOC entry 3795 (class 0 OID 0)
--- Dependencies: 4
--- Name: EXTENSION timescaledb; Type: COMMENT; Schema: -; Owner: 
---
-
-COMMENT ON EXTENSION timescaledb IS 'Enables scalable inserts and complex queries for time-series data';
-
+ALTER SCHEMA public OWNER TO root;
 
 --
--- TOC entry 2 (class 3079 OID 18530)
--- Name: citext; Type: EXTENSION; Schema: -; Owner: -
+-- TOC entry 3629 (class 0 OID 0)
+-- Dependencies: 6
+-- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: root
 --
 
-CREATE EXTENSION IF NOT EXISTS citext WITH SCHEMA public;
+COMMENT ON SCHEMA public IS 'standard public schema';
 
 
 --
--- TOC entry 3796 (class 0 OID 0)
--- Dependencies: 2
--- Name: EXTENSION citext; Type: COMMENT; Schema: -; Owner: 
---
-
-COMMENT ON EXTENSION citext IS 'data type for case-insensitive character strings';
-
-
---
--- TOC entry 3 (class 3079 OID 18685)
--- Name: pgcrypto; Type: EXTENSION; Schema: -; Owner: -
---
-
-CREATE EXTENSION IF NOT EXISTS pgcrypto WITH SCHEMA public;
-
-
---
--- TOC entry 3797 (class 0 OID 0)
--- Dependencies: 3
--- Name: EXTENSION pgcrypto; Type: COMMENT; Schema: -; Owner: 
---
-
-COMMENT ON EXTENSION pgcrypto IS 'cryptographic functions';
-
-
---
--- TOC entry 1179 (class 1247 OID 18636)
+-- TOC entry 1141 (class 1247 OID 18636)
 -- Name: email; Type: DOMAIN; Schema: public; Owner: root
 --
 
@@ -81,7 +49,7 @@ CREATE DOMAIN public.email AS public.citext
 ALTER DOMAIN public.email OWNER TO root;
 
 --
--- TOC entry 1183 (class 1247 OID 18639)
+-- TOC entry 1145 (class 1247 OID 18639)
 -- Name: phone; Type: DOMAIN; Schema: public; Owner: root
 --
 
@@ -410,7 +378,7 @@ CREATE SEQUENCE public."BOARD__id_seq"
 ALTER TABLE public."BOARD__id_seq" OWNER TO root;
 
 --
--- TOC entry 3798 (class 0 OID 0)
+-- TOC entry 3630 (class 0 OID 0)
 -- Dependencies: 260
 -- Name: BOARD__id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
@@ -461,7 +429,7 @@ CREATE SEQUENCE public."DEVTYPE__id_seq"
 ALTER TABLE public."DEVTYPE__id_seq" OWNER TO root;
 
 --
--- TOC entry 3799 (class 0 OID 0)
+-- TOC entry 3631 (class 0 OID 0)
 -- Dependencies: 263
 -- Name: DEVTYPE__id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
@@ -499,7 +467,7 @@ CREATE SEQUENCE public."DOWNLINK_TESTING__id_seq"
 ALTER TABLE public."DOWNLINK_TESTING__id_seq" OWNER TO root;
 
 --
--- TOC entry 3800 (class 0 OID 0)
+-- TOC entry 3632 (class 0 OID 0)
 -- Dependencies: 265
 -- Name: DOWNLINK_TESTING__id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
@@ -559,7 +527,7 @@ CREATE SEQUENCE public."ENDDEV__id_seq"
 ALTER TABLE public."ENDDEV__id_seq" OWNER TO root;
 
 --
--- TOC entry 3801 (class 0 OID 0)
+-- TOC entry 3633 (class 0 OID 0)
 -- Dependencies: 267
 -- Name: ENDDEV__id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
@@ -599,7 +567,7 @@ CREATE SEQUENCE public."NOTIFICATION__id_seq"
 ALTER TABLE public."NOTIFICATION__id_seq" OWNER TO root;
 
 --
--- TOC entry 3802 (class 0 OID 0)
+-- TOC entry 3634 (class 0 OID 0)
 -- Dependencies: 269
 -- Name: NOTIFICATION__id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
@@ -667,7 +635,7 @@ CREATE SEQUENCE public."PROFILE__id_seq"
 ALTER TABLE public."PROFILE__id_seq" OWNER TO root;
 
 --
--- TOC entry 3803 (class 0 OID 0)
+-- TOC entry 3635 (class 0 OID 0)
 -- Dependencies: 272
 -- Name: PROFILE__id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
@@ -708,7 +676,7 @@ CREATE SEQUENCE public."SENSOR__id_seq"
 ALTER TABLE public."SENSOR__id_seq" OWNER TO root;
 
 --
--- TOC entry 3804 (class 0 OID 0)
+-- TOC entry 3636 (class 0 OID 0)
 -- Dependencies: 274
 -- Name: SENSOR__id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
@@ -746,7 +714,7 @@ CREATE SEQUENCE public."UPLINK_TESTING__id_seq"
 ALTER TABLE public."UPLINK_TESTING__id_seq" OWNER TO root;
 
 --
--- TOC entry 3805 (class 0 OID 0)
+-- TOC entry 3637 (class 0 OID 0)
 -- Dependencies: 276
 -- Name: UPLINK_TESTING__id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
@@ -801,7 +769,7 @@ CREATE SEQUENCE public."WIDGET_TYPE__id_seq"
 ALTER TABLE public."WIDGET_TYPE__id_seq" OWNER TO root;
 
 --
--- TOC entry 3806 (class 0 OID 0)
+-- TOC entry 3638 (class 0 OID 0)
 -- Dependencies: 279
 -- Name: WIDGET_TYPE__id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
@@ -826,7 +794,7 @@ CREATE SEQUENCE public."WIDGET__id_seq"
 ALTER TABLE public."WIDGET__id_seq" OWNER TO root;
 
 --
--- TOC entry 3807 (class 0 OID 0)
+-- TOC entry 3639 (class 0 OID 0)
 -- Dependencies: 280
 -- Name: WIDGET__id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
@@ -835,7 +803,7 @@ ALTER SEQUENCE public."WIDGET__id_seq" OWNED BY public."WIDGET"._id;
 
 
 --
--- TOC entry 3493 (class 2604 OID 18515)
+-- TOC entry 3402 (class 2604 OID 18515)
 -- Name: BOARD _id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -843,7 +811,7 @@ ALTER TABLE ONLY public."BOARD" ALTER COLUMN _id SET DEFAULT nextval('public."BO
 
 
 --
--- TOC entry 3494 (class 2604 OID 18516)
+-- TOC entry 3403 (class 2604 OID 18516)
 -- Name: DEV_TYPE _id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -851,7 +819,7 @@ ALTER TABLE ONLY public."DEV_TYPE" ALTER COLUMN _id SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 3495 (class 2604 OID 18501)
+-- TOC entry 3404 (class 2604 OID 18501)
 -- Name: DOWNLINK_TESTING _id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -859,7 +827,7 @@ ALTER TABLE ONLY public."DOWNLINK_TESTING" ALTER COLUMN _id SET DEFAULT nextval(
 
 
 --
--- TOC entry 3496 (class 2604 OID 18517)
+-- TOC entry 3405 (class 2604 OID 18517)
 -- Name: ENDDEV _id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -867,7 +835,7 @@ ALTER TABLE ONLY public."ENDDEV" ALTER COLUMN _id SET DEFAULT nextval('public."E
 
 
 --
--- TOC entry 3497 (class 2604 OID 18518)
+-- TOC entry 3406 (class 2604 OID 18518)
 -- Name: NOTIFICATION _id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -875,7 +843,7 @@ ALTER TABLE ONLY public."NOTIFICATION" ALTER COLUMN _id SET DEFAULT nextval('pub
 
 
 --
--- TOC entry 3502 (class 2604 OID 18662)
+-- TOC entry 3411 (class 2604 OID 18662)
 -- Name: PROFILE _id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -883,7 +851,7 @@ ALTER TABLE ONLY public."PROFILE" ALTER COLUMN _id SET DEFAULT nextval('public."
 
 
 --
--- TOC entry 3498 (class 2604 OID 18519)
+-- TOC entry 3407 (class 2604 OID 18519)
 -- Name: SENSOR _id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -891,7 +859,7 @@ ALTER TABLE ONLY public."SENSOR" ALTER COLUMN _id SET DEFAULT nextval('public."S
 
 
 --
--- TOC entry 3499 (class 2604 OID 18520)
+-- TOC entry 3408 (class 2604 OID 18520)
 -- Name: UPLINK_TESTING _id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -899,7 +867,7 @@ ALTER TABLE ONLY public."UPLINK_TESTING" ALTER COLUMN _id SET DEFAULT nextval('p
 
 
 --
--- TOC entry 3500 (class 2604 OID 18521)
+-- TOC entry 3409 (class 2604 OID 18521)
 -- Name: WIDGET _id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -907,7 +875,7 @@ ALTER TABLE ONLY public."WIDGET" ALTER COLUMN _id SET DEFAULT nextval('public."W
 
 
 --
--- TOC entry 3501 (class 2604 OID 18522)
+-- TOC entry 3410 (class 2604 OID 18522)
 -- Name: WIDGET_TYPE _id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -915,228 +883,7 @@ ALTER TABLE ONLY public."WIDGET_TYPE" ALTER COLUMN _id SET DEFAULT nextval('publ
 
 
 --
--- TOC entry 3467 (class 0 OID 17338)
--- Dependencies: 243
--- Data for Name: cache_inval_bgw_job; Type: TABLE DATA; Schema: _timescaledb_cache; Owner: root
---
-
-COPY _timescaledb_cache.cache_inval_bgw_job  FROM stdin;
-\.
-
-
---
--- TOC entry 3466 (class 0 OID 17341)
--- Dependencies: 244
--- Data for Name: cache_inval_extension; Type: TABLE DATA; Schema: _timescaledb_cache; Owner: root
---
-
-COPY _timescaledb_cache.cache_inval_extension  FROM stdin;
-\.
-
-
---
--- TOC entry 3465 (class 0 OID 17335)
--- Dependencies: 242
--- Data for Name: cache_inval_hypertable; Type: TABLE DATA; Schema: _timescaledb_cache; Owner: root
---
-
-COPY _timescaledb_cache.cache_inval_hypertable  FROM stdin;
-\.
-
-
---
--- TOC entry 3441 (class 0 OID 17007)
--- Dependencies: 212
--- Data for Name: hypertable; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
---
-
-COPY _timescaledb_catalog.hypertable (id, schema_name, table_name, associated_schema_name, associated_table_prefix, num_dimensions, chunk_sizing_func_schema, chunk_sizing_func_name, chunk_target_size, compression_state, compressed_hypertable_id, replication_factor) FROM stdin;
-\.
-
-
---
--- TOC entry 3448 (class 0 OID 17092)
--- Dependencies: 221
--- Data for Name: chunk; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
---
-
-COPY _timescaledb_catalog.chunk (id, hypertable_id, schema_name, table_name, compressed_chunk_id, dropped, status) FROM stdin;
-\.
-
-
---
--- TOC entry 3444 (class 0 OID 17057)
--- Dependencies: 217
--- Data for Name: dimension; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
---
-
-COPY _timescaledb_catalog.dimension (id, hypertable_id, column_name, column_type, aligned, num_slices, partitioning_func_schema, partitioning_func, interval_length, integer_now_func_schema, integer_now_func) FROM stdin;
-\.
-
-
---
--- TOC entry 3446 (class 0 OID 17076)
--- Dependencies: 219
--- Data for Name: dimension_slice; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
---
-
-COPY _timescaledb_catalog.dimension_slice (id, dimension_id, range_start, range_end) FROM stdin;
-\.
-
-
---
--- TOC entry 3450 (class 0 OID 17114)
--- Dependencies: 222
--- Data for Name: chunk_constraint; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
---
-
-COPY _timescaledb_catalog.chunk_constraint (chunk_id, dimension_slice_id, constraint_name, hypertable_constraint_name) FROM stdin;
-\.
-
-
---
--- TOC entry 3453 (class 0 OID 17148)
--- Dependencies: 225
--- Data for Name: chunk_data_node; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
---
-
-COPY _timescaledb_catalog.chunk_data_node (chunk_id, node_chunk_id, node_name) FROM stdin;
-\.
-
-
---
--- TOC entry 3452 (class 0 OID 17132)
--- Dependencies: 224
--- Data for Name: chunk_index; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
---
-
-COPY _timescaledb_catalog.chunk_index (chunk_id, index_name, hypertable_id, hypertable_index_name) FROM stdin;
-\.
-
-
---
--- TOC entry 3463 (class 0 OID 17297)
--- Dependencies: 238
--- Data for Name: compression_chunk_size; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
---
-
-COPY _timescaledb_catalog.compression_chunk_size (chunk_id, compressed_chunk_id, uncompressed_heap_size, uncompressed_toast_size, uncompressed_index_size, compressed_heap_size, compressed_toast_size, compressed_index_size, numrows_pre_compression, numrows_post_compression) FROM stdin;
-\.
-
-
---
--- TOC entry 3457 (class 0 OID 17213)
--- Dependencies: 231
--- Data for Name: continuous_agg; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
---
-
-COPY _timescaledb_catalog.continuous_agg (mat_hypertable_id, raw_hypertable_id, user_view_schema, user_view_name, partial_view_schema, partial_view_name, bucket_width, direct_view_schema, direct_view_name, materialized_only) FROM stdin;
-\.
-
-
---
--- TOC entry 3458 (class 0 OID 17234)
--- Dependencies: 232
--- Data for Name: continuous_aggs_bucket_function; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
---
-
-COPY _timescaledb_catalog.continuous_aggs_bucket_function (mat_hypertable_id, experimental, name, bucket_width, origin, timezone) FROM stdin;
-\.
-
-
---
--- TOC entry 3460 (class 0 OID 17257)
--- Dependencies: 234
--- Data for Name: continuous_aggs_hypertable_invalidation_log; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
---
-
-COPY _timescaledb_catalog.continuous_aggs_hypertable_invalidation_log (hypertable_id, lowest_modified_value, greatest_modified_value) FROM stdin;
-\.
-
-
---
--- TOC entry 3459 (class 0 OID 17247)
--- Dependencies: 233
--- Data for Name: continuous_aggs_invalidation_threshold; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
---
-
-COPY _timescaledb_catalog.continuous_aggs_invalidation_threshold (hypertable_id, watermark) FROM stdin;
-\.
-
-
---
--- TOC entry 3461 (class 0 OID 17261)
--- Dependencies: 235
--- Data for Name: continuous_aggs_materialization_invalidation_log; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
---
-
-COPY _timescaledb_catalog.continuous_aggs_materialization_invalidation_log (materialization_id, lowest_modified_value, greatest_modified_value) FROM stdin;
-\.
-
-
---
--- TOC entry 3462 (class 0 OID 17278)
--- Dependencies: 237
--- Data for Name: hypertable_compression; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
---
-
-COPY _timescaledb_catalog.hypertable_compression (hypertable_id, attname, compression_algorithm_id, segmentby_column_index, orderby_column_index, orderby_asc, orderby_nullsfirst) FROM stdin;
-\.
-
-
---
--- TOC entry 3442 (class 0 OID 17028)
--- Dependencies: 213
--- Data for Name: hypertable_data_node; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
---
-
-COPY _timescaledb_catalog.hypertable_data_node (hypertable_id, node_hypertable_id, node_name, block_chunks) FROM stdin;
-\.
-
-
---
--- TOC entry 3456 (class 0 OID 17205)
--- Dependencies: 230
--- Data for Name: metadata; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
---
-
-COPY _timescaledb_catalog.metadata (key, value, include_in_telemetry) FROM stdin;
-exported_uuid	8db77446-db7b-4909-a70a-46fa8a7454e0	t
-\.
-
-
---
--- TOC entry 3464 (class 0 OID 17312)
--- Dependencies: 239
--- Data for Name: remote_txn; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
---
-
-COPY _timescaledb_catalog.remote_txn (data_node_name, remote_transaction_id) FROM stdin;
-\.
-
-
---
--- TOC entry 3443 (class 0 OID 17042)
--- Dependencies: 215
--- Data for Name: tablespace; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
---
-
-COPY _timescaledb_catalog.tablespace (id, hypertable_id, tablespace_name) FROM stdin;
-\.
-
-
---
--- TOC entry 3455 (class 0 OID 17162)
--- Dependencies: 227
--- Data for Name: bgw_job; Type: TABLE DATA; Schema: _timescaledb_config; Owner: root
---
-
-COPY _timescaledb_config.bgw_job (id, application_name, schedule_interval, max_runtime, max_retries, retry_period, proc_schema, proc_name, owner, scheduled, hypertable_id, config) FROM stdin;
-\.
-
-
---
--- TOC entry 3765 (class 0 OID 18229)
+-- TOC entry 3599 (class 0 OID 18229)
 -- Dependencies: 257
 -- Data for Name: ADMIN; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -1146,7 +893,7 @@ COPY public."ADMIN" (profile_id) FROM stdin;
 
 
 --
--- TOC entry 3766 (class 0 OID 18232)
+-- TOC entry 3600 (class 0 OID 18232)
 -- Dependencies: 258
 -- Data for Name: BELONG_TO; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -1185,7 +932,7 @@ COPY public."BELONG_TO" (widget_id, sensor_id) FROM stdin;
 
 
 --
--- TOC entry 3767 (class 0 OID 18235)
+-- TOC entry 3601 (class 0 OID 18235)
 -- Dependencies: 259
 -- Data for Name: BOARD; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -1202,7 +949,7 @@ COPY public."BOARD" (_id, display_name, profile_id) FROM stdin;
 
 
 --
--- TOC entry 3769 (class 0 OID 18243)
+-- TOC entry 3603 (class 0 OID 18243)
 -- Dependencies: 261
 -- Data for Name: CUSTOMER; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -1215,7 +962,7 @@ COPY public."CUSTOMER" (profile_id) FROM stdin;
 
 
 --
--- TOC entry 3770 (class 0 OID 18246)
+-- TOC entry 3604 (class 0 OID 18246)
 -- Dependencies: 262
 -- Data for Name: DEV_TYPE; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -1226,11 +973,12 @@ COPY public."DEV_TYPE" (_id, dev_type, dev_type_config) FROM stdin;
 2	BH17DS18	{"sensor_list": [{"key": "BatV", "unit": "V", "domain": "number", "widget_type": null}, {"key": "AirTemp", "unit": "°C", "domain": "number", "widget_type": null}, {"key": "Illumi", "unit": "Lux", "domain": "number", "widget_type": null}], "controller_list": []}
 3	LSE01	{"sensor_list": [{"key": "BatV", "unit": "V", "domain": "number", "widget_type": null}, {"key": "SoilTemp", "unit": "°C", "domain": "number", "widget_type": null}, {"key": "SoilHumid", "unit": "%", "domain": "number", "widget_type": null}, {"key": "SoilEC", "unit": "uS/cm", "domain": "number", "widget_type": null}], "controller_list": []}
 4	LT-22222-L	{"sensor_list": [{"key": "ACI1_status", "unit": "mA", "domain": "number", "widget_type": null}, {"key": "ACI2_status", "unit": "mA", "domain": "number", "widget_type": null}, {"key": "AVI1_status", "unit": "V", "domain": "number", "widget_type": null}, {"key": "AVI2_status", "unit": "V", "domain": "number", "widget_type": null}, {"key": "DI1_status", "unit": null, "domain": ["H", "L"], "widget_type": null}, {"key": "DI2_status", "unit": null, "domain": ["H", "L"], "widget_type": null}, {"key": "DO1_status", "unit": null, "domain": ["H", "L"], "widget_type": null}, {"key": "DO2_status", "unit": null, "domain": ["H", "L"], "widget_type": null}, {"key": "RO1_status", "unit": null, "domain": ["ON", "OFF"], "widget_type": null}, {"key": "RO2_status", "unit": null, "domain": ["ON", "OFF"], "widget_type": null}], "controller_list": [{"cmd": {"H": {"downlinks": [{"f_port": 1, "priority": "HIGHEST", "confirmed": true, "frm_payload": "AgAREQ=="}]}, "L": {"downlinks": [{"f_port": 1, "priority": "HIGHEST", "confirmed": true, "frm_payload": "AgEREQ=="}]}}, "key": "DO1_ctrl", "status_key": "DO1_status", "widget_type": "Toggle button"}, {"cmd": {"H": {"downlinks": [{"f_port": 1, "priority": "HIGHEST", "confirmed": true, "frm_payload": "AhEAEQ=="}]}, "L": {"downlinks": [{"f_port": 1, "priority": "HIGHEST", "confirmed": true, "frm_payload": "AhEBEQ=="}]}}, "key": "DO2_ctrl", "status_key": "DO2_status", "widget_type": "Toggle button"}, {"cmd": {"ON": {"downlinks": [{"f_port": 1, "priority": "HIGHEST", "confirmed": true, "frm_payload": "AwER"}]}, "OFF": {"downlinks": [{"f_port": 1, "priority": "HIGHEST", "confirmed": true, "frm_payload": "AwAR"}]}}, "key": "RO1_ctrl", "status_key": "RO1_status", "widget_type": "Toggle button"}, {"cmd": {"ON": {"downlinks": [{"f_port": 1, "priority": "HIGHEST", "confirmed": true, "frm_payload": "AxEB"}]}, "OFF": {"downlinks": [{"f_port": 1, "priority": "HIGHEST", "confirmed": true, "frm_payload": "AxEA"}]}}, "key": "RO2_ctrl", "status_key": "RO2_status", "widget_type": "Toggle button"}, {"key": "DO1_tctrl", "widget_type": "Button"}, {"key": "DO2_tctrl", "widget_type": "Button"}, {"key": "RO1_tctrl", "widget_type": "Button"}, {"key": "RO2_tctrl", "widget_type": "Button"}, {"cmd": {"STATE1": {"downlinks": [{"f_port": 1, "priority": "HIGHEST", "confirmed": true, "frm_payload": "AwAB"}]}, "STATE2": {"downlinks": [{"f_port": 1, "priority": "HIGHEST", "confirmed": true, "frm_payload": "AwEA"}]}}, "key": "RO_toggle", "status_key": ["RO1_status", "RO2_status"], "status_val": [{"val": ["OFF", "ON"], "state": "STATE1"}, {"val": ["ON", "OFF"], "state": "STATE2"}], "widget_type": "3-way toggle switch", "uplink_timeout": 70}]}
+5	RS485-LN-TESTBED	\N
 \.
 
 
 --
--- TOC entry 3772 (class 0 OID 18254)
+-- TOC entry 3606 (class 0 OID 18254)
 -- Dependencies: 264
 -- Data for Name: DOWNLINK_TESTING; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -1472,7 +1220,7 @@ COPY public."DOWNLINK_TESTING" (_id, message) FROM stdin;
 
 
 --
--- TOC entry 3774 (class 0 OID 18262)
+-- TOC entry 3608 (class 0 OID 18262)
 -- Dependencies: 266
 -- Data for Name: ENDDEV; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -1484,11 +1232,12 @@ COPY public."ENDDEV" (_id, display_name, dev_id, dev_addr, join_eui, dev_eui, de
 75	eui-a840414c21832b19	eui-a840414c21832b19	260DE8CD	A000000000000101	A840414C21832B19	dragino	lsn50v2-s31	AS_923	0
 76	eui-a8404194d1832e4b	eui-a8404194d1832e4b	260D84AD	A000000000000101	A8404194D1832E4B	dragino	lse01	AS_923	3
 77	eui-a84041576183519d	eui-a84041576183519d	260D4BE4	A000000000000100	A84041576183519D	dragino	lht65	AS_923	1
+78	eui-a84041681182a79a	eui-a84041681182a79a	260D3816	A000000000000101	A84041681182A79A	dragino	rs485-ln	AS_923	5
 \.
 
 
 --
--- TOC entry 3764 (class 0 OID 18223)
+-- TOC entry 3598 (class 0 OID 18223)
 -- Dependencies: 256
 -- Data for Name: ENDDEV_PAYLOAD; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -1498,7 +1247,7 @@ COPY public."ENDDEV_PAYLOAD" (recv_timestamp, payload_data, enddev_id) FROM stdi
 
 
 --
--- TOC entry 3776 (class 0 OID 18270)
+-- TOC entry 3610 (class 0 OID 18270)
 -- Dependencies: 268
 -- Data for Name: NOTIFICATION; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -1508,7 +1257,7 @@ COPY public."NOTIFICATION" (_id, title, content, updated_timestamp) FROM stdin;
 
 
 --
--- TOC entry 3778 (class 0 OID 18278)
+-- TOC entry 3612 (class 0 OID 18278)
 -- Dependencies: 270
 -- Data for Name: NOTIFY; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -1518,7 +1267,7 @@ COPY public."NOTIFY" (profile_id, noti_id) FROM stdin;
 
 
 --
--- TOC entry 3779 (class 0 OID 18281)
+-- TOC entry 3613 (class 0 OID 18281)
 -- Dependencies: 271
 -- Data for Name: OWN; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -1534,7 +1283,7 @@ COPY public."OWN" (profile_id, enddev_id) FROM stdin;
 
 
 --
--- TOC entry 3789 (class 0 OID 18653)
+-- TOC entry 3623 (class 0 OID 18653)
 -- Dependencies: 281
 -- Data for Name: PROFILE; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -1546,7 +1295,7 @@ $2a$06$H5pv.bSicDiHOTpuQgiN9eCqrgtmj1MAcqQ/B9X1ZnPeVEnSK95O.	CUSTOMER	9	Customer
 
 
 --
--- TOC entry 3781 (class 0 OID 18286)
+-- TOC entry 3615 (class 0 OID 18286)
 -- Dependencies: 273
 -- Data for Name: SENSOR; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -1592,7 +1341,7 @@ COPY public."SENSOR" (enddev_id, _id, sensor_key, sensor_type, sensor_config) FR
 
 
 --
--- TOC entry 3783 (class 0 OID 18294)
+-- TOC entry 3617 (class 0 OID 18294)
 -- Dependencies: 275
 -- Data for Name: UPLINK_TESTING; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -1991,7 +1740,7 @@ COPY public."UPLINK_TESTING" (_id, message) FROM stdin;
 
 
 --
--- TOC entry 3785 (class 0 OID 18302)
+-- TOC entry 3619 (class 0 OID 18302)
 -- Dependencies: 277
 -- Data for Name: WIDGET; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -2049,7 +1798,7 @@ COPY public."WIDGET" (_id, display_name, config_dict, board_id, widget_type_id) 
 
 
 --
--- TOC entry 3786 (class 0 OID 18308)
+-- TOC entry 3620 (class 0 OID 18308)
 -- Dependencies: 278
 -- Data for Name: WIDGET_TYPE; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -2066,61 +1815,7 @@ COPY public."WIDGET_TYPE" (_id, ui_config, category) FROM stdin;
 
 
 --
--- TOC entry 3808 (class 0 OID 0)
--- Dependencies: 223
--- Name: chunk_constraint_name; Type: SEQUENCE SET; Schema: _timescaledb_catalog; Owner: root
---
-
-SELECT pg_catalog.setval('_timescaledb_catalog.chunk_constraint_name', 1, false);
-
-
---
--- TOC entry 3809 (class 0 OID 0)
--- Dependencies: 220
--- Name: chunk_id_seq; Type: SEQUENCE SET; Schema: _timescaledb_catalog; Owner: root
---
-
-SELECT pg_catalog.setval('_timescaledb_catalog.chunk_id_seq', 1, false);
-
-
---
--- TOC entry 3810 (class 0 OID 0)
--- Dependencies: 216
--- Name: dimension_id_seq; Type: SEQUENCE SET; Schema: _timescaledb_catalog; Owner: root
---
-
-SELECT pg_catalog.setval('_timescaledb_catalog.dimension_id_seq', 1, false);
-
-
---
--- TOC entry 3811 (class 0 OID 0)
--- Dependencies: 218
--- Name: dimension_slice_id_seq; Type: SEQUENCE SET; Schema: _timescaledb_catalog; Owner: root
---
-
-SELECT pg_catalog.setval('_timescaledb_catalog.dimension_slice_id_seq', 1, false);
-
-
---
--- TOC entry 3812 (class 0 OID 0)
--- Dependencies: 211
--- Name: hypertable_id_seq; Type: SEQUENCE SET; Schema: _timescaledb_catalog; Owner: root
---
-
-SELECT pg_catalog.setval('_timescaledb_catalog.hypertable_id_seq', 1, false);
-
-
---
--- TOC entry 3813 (class 0 OID 0)
--- Dependencies: 226
--- Name: bgw_job_id_seq; Type: SEQUENCE SET; Schema: _timescaledb_config; Owner: root
---
-
-SELECT pg_catalog.setval('_timescaledb_config.bgw_job_id_seq', 1000, false);
-
-
---
--- TOC entry 3814 (class 0 OID 0)
+-- TOC entry 3640 (class 0 OID 0)
 -- Dependencies: 260
 -- Name: BOARD__id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
@@ -2129,16 +1824,16 @@ SELECT pg_catalog.setval('public."BOARD__id_seq"', 71, true);
 
 
 --
--- TOC entry 3815 (class 0 OID 0)
+-- TOC entry 3641 (class 0 OID 0)
 -- Dependencies: 263
 -- Name: DEVTYPE__id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('public."DEVTYPE__id_seq"', 5, true);
+SELECT pg_catalog.setval('public."DEVTYPE__id_seq"', 6, true);
 
 
 --
--- TOC entry 3816 (class 0 OID 0)
+-- TOC entry 3642 (class 0 OID 0)
 -- Dependencies: 265
 -- Name: DOWNLINK_TESTING__id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
@@ -2147,7 +1842,7 @@ SELECT pg_catalog.setval('public."DOWNLINK_TESTING__id_seq"', 232, true);
 
 
 --
--- TOC entry 3817 (class 0 OID 0)
+-- TOC entry 3643 (class 0 OID 0)
 -- Dependencies: 267
 -- Name: ENDDEV__id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
@@ -2156,7 +1851,7 @@ SELECT pg_catalog.setval('public."ENDDEV__id_seq"', 75, true);
 
 
 --
--- TOC entry 3818 (class 0 OID 0)
+-- TOC entry 3644 (class 0 OID 0)
 -- Dependencies: 269
 -- Name: NOTIFICATION__id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
@@ -2165,7 +1860,7 @@ SELECT pg_catalog.setval('public."NOTIFICATION__id_seq"', 1, false);
 
 
 --
--- TOC entry 3819 (class 0 OID 0)
+-- TOC entry 3645 (class 0 OID 0)
 -- Dependencies: 272
 -- Name: PROFILE__id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
@@ -2174,7 +1869,7 @@ SELECT pg_catalog.setval('public."PROFILE__id_seq"', 9, true);
 
 
 --
--- TOC entry 3820 (class 0 OID 0)
+-- TOC entry 3646 (class 0 OID 0)
 -- Dependencies: 274
 -- Name: SENSOR__id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
@@ -2183,7 +1878,7 @@ SELECT pg_catalog.setval('public."SENSOR__id_seq"', 218, true);
 
 
 --
--- TOC entry 3821 (class 0 OID 0)
+-- TOC entry 3647 (class 0 OID 0)
 -- Dependencies: 276
 -- Name: UPLINK_TESTING__id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
@@ -2192,7 +1887,7 @@ SELECT pg_catalog.setval('public."UPLINK_TESTING__id_seq"', 445, true);
 
 
 --
--- TOC entry 3822 (class 0 OID 0)
+-- TOC entry 3648 (class 0 OID 0)
 -- Dependencies: 279
 -- Name: WIDGET_TYPE__id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
@@ -2201,7 +1896,7 @@ SELECT pg_catalog.setval('public."WIDGET_TYPE__id_seq"', 9, true);
 
 
 --
--- TOC entry 3823 (class 0 OID 0)
+-- TOC entry 3649 (class 0 OID 0)
 -- Dependencies: 280
 -- Name: WIDGET__id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
@@ -2210,7 +1905,7 @@ SELECT pg_catalog.setval('public."WIDGET__id_seq"', 349, true);
 
 
 --
--- TOC entry 3580 (class 2606 OID 18416)
+-- TOC entry 3414 (class 2606 OID 18416)
 -- Name: ADMIN ADMIN_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2219,7 +1914,7 @@ ALTER TABLE ONLY public."ADMIN"
 
 
 --
--- TOC entry 3582 (class 2606 OID 18418)
+-- TOC entry 3416 (class 2606 OID 18418)
 -- Name: BELONG_TO BELONG_TO_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2228,7 +1923,7 @@ ALTER TABLE ONLY public."BELONG_TO"
 
 
 --
--- TOC entry 3584 (class 2606 OID 18420)
+-- TOC entry 3418 (class 2606 OID 18420)
 -- Name: BOARD BOARD_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2237,7 +1932,7 @@ ALTER TABLE ONLY public."BOARD"
 
 
 --
--- TOC entry 3586 (class 2606 OID 18422)
+-- TOC entry 3420 (class 2606 OID 18422)
 -- Name: CUSTOMER CUSTOMER_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2246,7 +1941,7 @@ ALTER TABLE ONLY public."CUSTOMER"
 
 
 --
--- TOC entry 3588 (class 2606 OID 18424)
+-- TOC entry 3422 (class 2606 OID 18424)
 -- Name: DEV_TYPE DEVTYPE_dev_type_key; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2255,7 +1950,7 @@ ALTER TABLE ONLY public."DEV_TYPE"
 
 
 --
--- TOC entry 3590 (class 2606 OID 18426)
+-- TOC entry 3424 (class 2606 OID 18426)
 -- Name: DEV_TYPE DEVTYPE_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2264,7 +1959,7 @@ ALTER TABLE ONLY public."DEV_TYPE"
 
 
 --
--- TOC entry 3592 (class 2606 OID 18428)
+-- TOC entry 3426 (class 2606 OID 18428)
 -- Name: DOWNLINK_TESTING DOWNLINK_TESTING_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2273,7 +1968,7 @@ ALTER TABLE ONLY public."DOWNLINK_TESTING"
 
 
 --
--- TOC entry 3594 (class 2606 OID 18430)
+-- TOC entry 3428 (class 2606 OID 18430)
 -- Name: ENDDEV ENDDEV_dev_id_key; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2282,7 +1977,7 @@ ALTER TABLE ONLY public."ENDDEV"
 
 
 --
--- TOC entry 3596 (class 2606 OID 18432)
+-- TOC entry 3430 (class 2606 OID 18432)
 -- Name: ENDDEV ENDDEV_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2291,7 +1986,7 @@ ALTER TABLE ONLY public."ENDDEV"
 
 
 --
--- TOC entry 3598 (class 2606 OID 18434)
+-- TOC entry 3432 (class 2606 OID 18434)
 -- Name: NOTIFICATION NOTIFICATION_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2300,7 +1995,7 @@ ALTER TABLE ONLY public."NOTIFICATION"
 
 
 --
--- TOC entry 3600 (class 2606 OID 18436)
+-- TOC entry 3434 (class 2606 OID 18436)
 -- Name: NOTIFY NOTIFY_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2309,7 +2004,7 @@ ALTER TABLE ONLY public."NOTIFY"
 
 
 --
--- TOC entry 3602 (class 2606 OID 18438)
+-- TOC entry 3436 (class 2606 OID 18438)
 -- Name: OWN OWN_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2318,7 +2013,7 @@ ALTER TABLE ONLY public."OWN"
 
 
 --
--- TOC entry 3612 (class 2606 OID 18664)
+-- TOC entry 3446 (class 2606 OID 18664)
 -- Name: PROFILE PROFILE_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2327,7 +2022,7 @@ ALTER TABLE ONLY public."PROFILE"
 
 
 --
--- TOC entry 3604 (class 2606 OID 18440)
+-- TOC entry 3438 (class 2606 OID 18440)
 -- Name: SENSOR SENSOR_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2336,7 +2031,7 @@ ALTER TABLE ONLY public."SENSOR"
 
 
 --
--- TOC entry 3606 (class 2606 OID 18442)
+-- TOC entry 3440 (class 2606 OID 18442)
 -- Name: UPLINK_TESTING UPLINK_TESTING_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2345,7 +2040,7 @@ ALTER TABLE ONLY public."UPLINK_TESTING"
 
 
 --
--- TOC entry 3610 (class 2606 OID 18444)
+-- TOC entry 3444 (class 2606 OID 18444)
 -- Name: WIDGET_TYPE WIDGET_TYPE_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2354,7 +2049,7 @@ ALTER TABLE ONLY public."WIDGET_TYPE"
 
 
 --
--- TOC entry 3608 (class 2606 OID 18446)
+-- TOC entry 3442 (class 2606 OID 18446)
 -- Name: WIDGET WIDGET_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2363,7 +2058,7 @@ ALTER TABLE ONLY public."WIDGET"
 
 
 --
--- TOC entry 3578 (class 1259 OID 18447)
+-- TOC entry 3412 (class 1259 OID 18447)
 -- Name: ENDDEV_PAYLOAD_recv_timestamp_idx; Type: INDEX; Schema: public; Owner: root
 --
 
@@ -2371,7 +2066,7 @@ CREATE INDEX "ENDDEV_PAYLOAD_recv_timestamp_idx" ON public."ENDDEV_PAYLOAD" USIN
 
 
 --
--- TOC entry 3626 (class 2620 OID 18448)
+-- TOC entry 3460 (class 2620 OID 18448)
 -- Name: OWN generate_dashboard; Type: TRIGGER; Schema: public; Owner: root
 --
 
@@ -2379,7 +2074,7 @@ CREATE TRIGGER generate_dashboard AFTER INSERT ON public."OWN" FOR EACH ROW EXEC
 
 
 --
--- TOC entry 3613 (class 2606 OID 18670)
+-- TOC entry 3447 (class 2606 OID 18670)
 -- Name: ADMIN ADMIN_profile_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2388,7 +2083,7 @@ ALTER TABLE ONLY public."ADMIN"
 
 
 --
--- TOC entry 3614 (class 2606 OID 18449)
+-- TOC entry 3448 (class 2606 OID 18449)
 -- Name: BELONG_TO BELONG_TO_sensor_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2397,7 +2092,7 @@ ALTER TABLE ONLY public."BELONG_TO"
 
 
 --
--- TOC entry 3615 (class 2606 OID 18454)
+-- TOC entry 3449 (class 2606 OID 18454)
 -- Name: BELONG_TO BELONG_TO_widget_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2406,7 +2101,7 @@ ALTER TABLE ONLY public."BELONG_TO"
 
 
 --
--- TOC entry 3616 (class 2606 OID 18459)
+-- TOC entry 3450 (class 2606 OID 18459)
 -- Name: BOARD BOARD_profile_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2415,7 +2110,7 @@ ALTER TABLE ONLY public."BOARD"
 
 
 --
--- TOC entry 3617 (class 2606 OID 18675)
+-- TOC entry 3451 (class 2606 OID 18675)
 -- Name: CUSTOMER CUSTOMER_profile_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2424,7 +2119,7 @@ ALTER TABLE ONLY public."CUSTOMER"
 
 
 --
--- TOC entry 3618 (class 2606 OID 18464)
+-- TOC entry 3452 (class 2606 OID 18464)
 -- Name: ENDDEV ENDDEV_dev_type_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2433,7 +2128,7 @@ ALTER TABLE ONLY public."ENDDEV"
 
 
 --
--- TOC entry 3619 (class 2606 OID 18469)
+-- TOC entry 3453 (class 2606 OID 18469)
 -- Name: NOTIFY NOTIFY_noti_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2442,7 +2137,7 @@ ALTER TABLE ONLY public."NOTIFY"
 
 
 --
--- TOC entry 3620 (class 2606 OID 18680)
+-- TOC entry 3454 (class 2606 OID 18680)
 -- Name: NOTIFY NOTIFY_profile_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2451,7 +2146,7 @@ ALTER TABLE ONLY public."NOTIFY"
 
 
 --
--- TOC entry 3621 (class 2606 OID 18474)
+-- TOC entry 3455 (class 2606 OID 18474)
 -- Name: OWN OWN_enddev_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2460,7 +2155,7 @@ ALTER TABLE ONLY public."OWN"
 
 
 --
--- TOC entry 3622 (class 2606 OID 18479)
+-- TOC entry 3456 (class 2606 OID 18479)
 -- Name: OWN OWN_profile_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2469,7 +2164,7 @@ ALTER TABLE ONLY public."OWN"
 
 
 --
--- TOC entry 3623 (class 2606 OID 18484)
+-- TOC entry 3457 (class 2606 OID 18484)
 -- Name: SENSOR SENSOR_enddev_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2478,7 +2173,7 @@ ALTER TABLE ONLY public."SENSOR"
 
 
 --
--- TOC entry 3624 (class 2606 OID 18489)
+-- TOC entry 3458 (class 2606 OID 18489)
 -- Name: WIDGET WIDGET_board_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2487,7 +2182,7 @@ ALTER TABLE ONLY public."WIDGET"
 
 
 --
--- TOC entry 3625 (class 2606 OID 18494)
+-- TOC entry 3459 (class 2606 OID 18494)
 -- Name: WIDGET WIDGET_widget_type_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2495,7 +2190,7 @@ ALTER TABLE ONLY public."WIDGET"
     ADD CONSTRAINT "WIDGET_widget_type_id_fkey" FOREIGN KEY (widget_type_id) REFERENCES public."WIDGET_TYPE"(_id) NOT VALID;
 
 
--- Completed on 2022-06-18 11:27:24 UTC
+-- Completed on 2022-07-10 15:27:11 UTC
 
 --
 -- PostgreSQL database dump complete
