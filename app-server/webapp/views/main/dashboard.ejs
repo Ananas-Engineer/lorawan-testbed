@@ -565,9 +565,11 @@
                                                             <%=boardWidget[j].w_display_name%></div>
                                                         <!-- <hr class="sidebar-divider"> -->
                                                         <div class="mt-2">
-                                                            <a class="btn btn-lg btn-<%=config.view['Color of button']%> shadow-sm controller" role="button">
-                                                                <span class="text text-lg"><%= __('Trigger') %></span>
-                                                            </a>
+                                                            <button class="btn btn-lg btn-<%=config.view['Color of button']%> shadow-sm controller"
+                                                                id="button-payload-data-<%=boardWidget[j].w_id%>"
+                                                                role="button" aria-describedby="button_toggle" name="button_toggle" onclick="">
+                                                                <span class="text text-med"><%= __('Trigger') %></span>
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -635,14 +637,14 @@
 
 
                                     <div class="col-xl-3 col-md-6 mb-4 dashboard-card">
-                                        <div class="card border-left-<%=config.view['Color of button state 1']%> shadow h-100 py-2">
-                                            <div class="card-body">
-                                                <div class="row no-gutters align-items-center">
-                                                    <div class="col mr-2">
-                                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        <div class="card border-left-<%=config.view['Color of button state 1']%> shadow">
+                                            <div class="card-body d-flex align-item-center">
+                                                <div class="d-flex flex-row no-gutters align-items-center justify-content-between">
+                                                    <div class="col-auto mr-4">
+                                                        <div class="text-med font-weight-bold text-primary text-uppercase mb-1">
                                                             <%=boardWidget[j].w_display_name%></div>
     
-                                                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="buttonstate-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].sensor_config[0].status_key%>-<%=boardWidget[j].w_id%>"><%= __('State')%>: ___</div>
+                                                        <div class="h5 mb-0 font-weight-bold text-med text-gray-800" id="buttonstate-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].sensor_config[0].status_key%>-<%=boardWidget[j].w_id%>"><%= __('State')%>: ___</div>
                                                         <div class="p mb-0 text-xs text-black-50" id="buttontime-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].sensor_config[0].status_key%>-<%=boardWidget[j].w_id%>">UPDATED</div>
                                                     </div>
 
@@ -653,12 +655,12 @@
                                                                 role="button" aria-describedby="button_toggle" name="button_toggle" onclick="toggleButtonManager('<%=boardWidget[j].e_dev_id[0]%>',
                                                                                                                                                             '<%=JSON.stringify(boardWidget[j].sensor_config)%>',
                                                                                                                                                             '<%=boardWidget[j].w_id%>')">
-                                                                <span class="text"><%= __('Toggle') %></span>
+                                                                <span class="text-med"><%= __('Toggle') %></span>
                                                             </button>
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-auto">
+                                                    <div class="col-auto ml-4">
                                                         <div class="dropdown no-arrow">
                                                             <a class="dropdown-toggle" href="#" role="button" id="<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].s_sensor_key[0]%>-<%=boardWidget[j].w_id%>-configure"
                                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -693,10 +695,10 @@
                                     </div>
                                     <%}else if(config.type == '3-way toggle button'){%> 
                                     <div class="col-xl-3 col-md-6 mb-4 dashboard-card">
-                                        <div class="card border-left-<%=config.view['Color of button state 1']%> shadow h-100 py-2">
-                                            <div class="card-body">
-                                                <div class="row no-gutters align-items-center">
-                                                    <div class="col mr-2">
+                                        <div class="card border-left-<%=config.view['Color of button state 1']%> shadow">
+                                            <div class="card-body d-flex align-item-center">
+                                                <div class="d-flex flex-row no-gutters align-items-center justify-content-between">
+                                                    <div class="col-auto mr-4">
                                                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                             <%=boardWidget[j].w_display_name%></div>
     
@@ -705,7 +707,7 @@
                                                         <div class="p mb-0 text-xs text-black-50" id="buttontime-payload-data-<%=boardWidget[j].w_id%>">UPDATED</div>
                                                     </div>
 
-                                                    <div class="col-auto">
+                                                    <div class="d-flex flex-row align-items-center col-auto">
                                                         <div class="text-center">
                                                             <button class="btn btn-lg btn-<%=config.view['Color of button state 1']%> shadow-sm controller"
                                                                 id="button-payload-data-<%=boardWidget[j].w_id%>"
@@ -717,7 +719,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-auto">
+                                                    <div class="col-auto ml-4">
                                                         <div class="dropdown no-arrow">
                                                             <a class="dropdown-toggle" href="#" role="button" id="<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].s_sensor_key[0]%>-<%=boardWidget[j].w_id%>-configure"
                                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -756,7 +758,7 @@
                                             <div class="card-body d-flex align-item-center">
                                                 <div class="d-flex flex-row no-gutters align-items-center justify-content-between">
                                                     <div class="col-auto mr-4">
-                                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                        <div class="text-med font-weight-bold text-primary text-uppercase mb-1">
                                                             <%=boardWidget[j].w_display_name%></div>
                                                             <!-- style="display: none;" -->
                                                         <div style="display: none;" class="h5 mb-0 font-weight-bold text-gray-800" id="triplewaybuttonstate-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].sensor_config[0].status_key[0]%>-<%=boardWidget[j].w_id%>"></div>
