@@ -563,11 +563,16 @@
                                                     <div class="col mr-2">
                                                         <div class="text-xs font-weight-bold text-primary text-uppercase text-center">
                                                             <%=boardWidget[j].w_display_name%></div>
+                                                            <div class="p mb-0 text-xs text-black-50" id="buttontime-payload-data-<%=boardWidget[j].w_id%>">UPDATED</div>
                                                         <!-- <hr class="sidebar-divider"> -->
                                                         <div class="mt-2">
-                                                            <a class="btn btn-lg btn-<%=config.view['Color of button']%> shadow-sm controller" role="button">
+                                                            <button  id="btn-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"
+                                                                class="btn btn-lg btn-<%=config.view['Color of button']%> shadow-sm controller" role="button"
+                                                                onclick="buttonManager('<%=boardWidget[j].e_dev_id[0]%>',
+                                                                '<%=JSON.stringify(boardWidget[j].sensor_config)%>',
+                                                                '<%=boardWidget[j].w_id%>')">
                                                                 <span class="text text-lg"><%= __('Trigger') %></span>
-                                                            </a>
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1483,6 +1488,40 @@
                         
                     });
 
+                    document.querySelectorAll(`[id^=btn-payload-data-${dev_id}]`).forEach((item)=>{
+                        try {
+                                var data = $(`#${item.id}`).data('id');
+                                var path = item.id.split('-').pop();
+                                
+                                if(data) {
+    
+                                    
+
+                                    clearInterval(data.interval);
+                                    
+                                    document.getElementById(`buttontime-payload-data-${path}`).innerHTML = 'UPDATED';
+                                    item["disabled"] = false;
+
+                                }
+                                // item.innerHTML = `${parsed_message.payload_data[i]}`;
+
+                                // let sensor_config = $(`#button-payload-data-${path}`).data('id');
+                                    
+
+                
+                                
+                                
+                                // console.log(path);
+                                
+                                
+                        }
+                        catch (err) {
+                            console.log(err)
+                        }
+                                                        
+                        
+                    });
+
                     //GRAPH
                     document.querySelectorAll(`[id^=timestamp-payload-data-${dev_id}-${i}]`).forEach((item)=>{
                                                         item.innerHTML = `<%= __('Last updated') %>: ${parsed_message.recv_timestamp}`;                                  
@@ -1701,6 +1740,74 @@
         });
     }
 
+    function buttonManager(dev_id, sensor_config, w_id) {
+        console.log(sensor_config)
+        
+        let storage = clientStorage.getItem(STORAGE_KEY);
+        storage = JSON.parse(storage);
+        sensor_config = JSON.parse(sensor_config.replace(/&#34;/g, '"'))[0];
+
+        document.getElementById(`btn-payload-data-${dev_id}-${w_id}`)["disabled"] = true;
+        // document.getElementById(`button-payload-data-${w_id}`).style.pointerEvents="none";
+        // document.getElementById(`slider-payload-data-${w_id}`).style["background-color"]="#B1D9FA";
+        // let status = []
+        // console.log(`btn-payload-data-${dev_id}-${w_id}`);
+        // sensor_config.status_key.forEach(element => {
+        //     status.push(storage.payload[dev_id].payload_data[element].at(-1))
+        // });
+        
+        // // delete sensor_config.cmd[];
+        // let downlink_cmd=sensor_config.cmd[sensor_config.status_val[0].state];
+        let downlink_cmd = {
+                "downlinks": [
+                    {
+                    "f_port": 200,
+                    "priority": "HIGHEST",
+                    "confirmed": true,
+                    "frm_payload": "qAEGAQUAAlUAAQ=="
+                    }
+                ]
+            };
+        // sensor_config.status_val.forEach((element, index) => {
+        //     //Find current state
+            
+        //     if(JSON.stringify(element.val)===JSON.stringify(status)) {
+                
+        //         if(index==sensor_config.status_val.length-1) downlink_cmd=sensor_config.cmd[sensor_config.status_val[0].state];
+        //         else downlink_cmd=sensor_config.cmd[sensor_config.status_val[index+1].state];
+                
+        //     }
+            
+        // });
+
+        mqtt_publish(`devices/${dev_id}/down/push`, JSON.stringify(downlink_cmd));
+        
+        let interval = setInterval(function(){
+            let timetag = document.getElementById(`buttontime-payload-data-${w_id}`);
+            let timevalue = parseFloat(timetag.innerHTML);
+            //intialize counter
+            if(timetag.innerHTML=='UPDATED' || timetag.innerHTML=='0' || timetag.innerHTML=='EXPIRED') {
+                timetag.innerHTML = sensor_config.uplink_timeout;
+            }
+            else if (timevalue!=0) {
+                timetag.innerHTML = (timevalue - 0.1).toFixed(1);
+                
+            }
+            else {
+                timetag.innerHTML = "EXPIRED";
+                clearInterval(interval);
+                document.getElementById(`btn-payload-data-${dev_id}-${w_id}`)["disabled"] = false;
+                // document.getElementById(`button-payload-data-${w_id}`).style.pointerEvents="auto";
+                // document.getElementById(`slider-payload-data-${w_id}`).style["background-color"]="#2196F3";
+                // document.getElementById(`button-payload-data-${w_id}`).checked = !document.getElementById(`button-payload-data-${w_id}`).checked;
+            }
+            
+        }, 100);
+
+        $(`#btn-payload-data-${dev_id}-${w_id}`).data('id', {
+            interval: interval
+        });
+    }
 </script>
 </body>
 
