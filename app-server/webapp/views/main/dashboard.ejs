@@ -54,7 +54,7 @@
                                 <a class="dropdown-item"  onclick="selectBoard('<%=board[i].key%>', '<%=board[i].value%>')"><%=board[i].value%></a>
                                 
                                 <%}%>
-                                yright © LoraWAN TestBed 2021<div class="dropdown-divider"></div>
+                                <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" role="button" data-toggle="modal" data-target="#addBoardModal">
                                     <i class="fas fa-plus fa-sm text-gray-600"></i>&nbsp;<%= __('Add board') %>
                                 </a>
@@ -143,7 +143,7 @@
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button class="btn btn-secondary" type="button" data-dismiss="modal"><%= __('Cancel') %></button>
+                                        <button class="btn btn-outline-dark" type="button" data-dismiss="modal"><%= __('Cancel') %></button>
                                     </div>
                                 </div>
                             </div>
@@ -177,7 +177,7 @@
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button class="btn btn-secondary" type="button" data-dismiss="modal"><%= __('Cancel') %></button>
+                                        <button class="btn btn-outline-dark" type="button" data-dismiss="modal"><%= __('Cancel') %></button>
                                     </div>
                                 </div>
                             </div>
@@ -208,7 +208,7 @@
                                             
                                             <button class="btn btn-primary" type="submit"><%= __('Delete') %></button>
                                         </form>
-                                        <button class="btn btn-secondary" type="button" data-dismiss="modal"><%= __('Cancel') %></button>  
+                                        <button class="btn btn-outline-dark" type="button" data-dismiss="modal"><%= __('Cancel') %></button>  
                     
                                     </div>
                                 </div>
@@ -327,7 +327,7 @@
                                                 </div>
                                             </div>
                                             
-                                            <a id="addSensorButton" onclick="add_sensor()" class="btn btn-primary btn-user btn-block"><%= __('Add more sensor') %> ...</a>
+                                            <a id="addSensorButton" onclick="add_sensor()" class="btn btn-outline-secondary btn-user btn-block"><%= __('Add more sensor') %> ...</a>
                                             <script>
                                                 check_no_sensor();
                                                 
@@ -385,14 +385,14 @@
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button class="btn btn-secondary" type="button" data-dismiss="modal"><%= __('Cancel') %></button>
+                                        <button class="btn btn-outline-dark" type="button" data-dismiss="modal"><%= __('Cancel') %></button>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                     </div>                
-
+                
                     <!-- Content Row -->
                     <%try {%>
                     <%for(let i=0; i< board.length ; i++){ %>
@@ -403,7 +403,7 @@
                         <%}%>
                         
                         <%try {%>
-                            
+                        
                         <%for(let j=0; j< boardWidget.length; j++){ %>
                             <%if(boardWidget[j].b_board_id == board[i].key){%>
                                 <%var config = boardWidget[j].config_dict; %>
@@ -457,61 +457,62 @@
                                 <!------------------------------------------------------------------------------------------------------------------------>
 
                                 <%}else if(config.type == 'Chart'){%>
-                                    <div class="card shadow col-md-12 mb-4">
+                                    <div class="col-xl-12 col-md-6">
+                                        <div class="card shadow mb-4">
                             
-                                        <div
-                                            class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                            <h6 class="m-0 font-weight-bold text-<%=config.view['Color of line']%>"><%=boardWidget[j].w_display_name%></h6>
-                                            <div class="dropdown no-arrow">
-                                                <a class="dropdown-toggle" role="button" id="dropdownMenuLink"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                                    aria-labelledby="dropdownMenuLink">
-                                                    <!-- <div class="dropdown-header">Dropdown Header:</div> -->
-                                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editWidgetModal"
-                                                                onclick="openEditWidgetModal('<%=boardWidget[j].w_id%>')"><%= __('Configure widget') %></a>
-
-                                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#deleteWidgetModal"
-                                                                onclick="openDeleteWidgetModal('<%=boardWidget[j].w_id%>')"><%= __('Delete widget') %></a>
-                                                                <script>
-                                                                    function openEditWidgetModal(widget_id) {
-                                                                        var str = "Widget ID: " + widget_id;
-                                                                        $("#widget_id").html(str);
-                                                                        document.getElementById(`edit-widget_id`).value = widget_id;
-                                                                    }
-
-                                                                    function openDeleteWidgetModal(widget_id) {
-                                                                        document.getElementById(`delete-widget_id`).value = widget_id;
-                                                                    }
-                                                                </script>
-                                                    <!-- <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="#">Something else here</a> -->
+                                            <div
+                                                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                                <h6 class="m-0 font-weight-bold text-<%=config.view['Color of line']%>"><%=boardWidget[j].w_display_name%></h6>
+                                                <div class="dropdown no-arrow">
+                                                    <a class="dropdown-toggle" role="button" id="dropdownMenuLink"
+                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                        aria-labelledby="dropdownMenuLink">
+                                                        <!-- <div class="dropdown-header">Dropdown Header:</div> -->
+                                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editWidgetModal"
+                                                                    onclick="openEditWidgetModal('<%=boardWidget[j].w_id%>')"><%= __('Configure widget') %></a>
+    
+                                                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#deleteWidgetModal"
+                                                                    onclick="openDeleteWidgetModal('<%=boardWidget[j].w_id%>')"><%= __('Delete widget') %></a>
+                                                                    <script>
+                                                                        function openEditWidgetModal(widget_id) {
+                                                                            var str = "Widget ID: " + widget_id;
+                                                                            $("#widget_id").html(str);
+                                                                            document.getElementById(`edit-widget_id`).value = widget_id;
+                                                                        }
+    
+                                                                        function openDeleteWidgetModal(widget_id) {
+                                                                            document.getElementById(`delete-widget_id`).value = widget_id;
+                                                                        }
+                                                                    </script>
+                                                        <!-- <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item" href="#">Something else here</a> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="card-body">
+                                                <div class="chart-area">
+                                                    <%let tmp1 = boardWidget[j]%>
+                                                    <%let tmp = ''%>
+                                                    <%let arr = []%>
+                                                    
+                                                    <%for(let k = 0; k < tmp1.e_dev_id.length; k++){%>
+                                                        <%tmp+=`${tmp1.e_dev_id[k]} ${tmp1.s_sensor_key[k]} `%>
+                                                        <%arr.push({dev: tmp1.e_dev_id[k], sensor: tmp1.s_sensor_key[k]})%>
+                                                        
+                                                    <%}%>
+                                                    <canvas id="chart payload-data <%=tmp%><%=boardWidget[j].w_id%>"></canvas>
+                                                    <script>
+                                                        $("#chart payload-data <%=tmp%><%=boardWidget[j].w_id%>").data('id', {
+                                                            deviceSensor: '<%= arr.toString%>'.split(',')
+                                                        });  
+                                                    </script>
                                                 </div>
                                             </div>
                                         </div>
-                                        
-                                        <div class="card-body">
-                                            <div class="chart-area">
-                                                <%let tmp1 = boardWidget[j]%>
-                                                <%let tmp = ''%>
-                                                <%let arr = []%>
-                                                
-                                                <%for(let k = 0; k < tmp1.e_dev_id.length; k++){%>
-                                                    <%tmp+=`${tmp1.e_dev_id[k]} ${tmp1.s_sensor_key[k]} `%>
-                                                    <%arr.push({dev: tmp1.e_dev_id[k], sensor: tmp1.s_sensor_key[k]})%>
-                                                    
-                                                <%}%>
-                                                <canvas id="chart payload-data <%=tmp%><%=boardWidget[j].w_id%>"></canvas>
-                                                <script>
-                                                    $("#chart payload-data <%=tmp%><%=boardWidget[j].w_id%>").data('id', {
-                                                        deviceSensor: '<%= arr.toString%>'.split(',')
-                                                    });  
-                                                </script>
-                                            </div>
-                                        </div>
-                                        
                                     </div>
                                 
                                 <!------------------------------------------------------------------------------------------------------------------------>
@@ -562,8 +563,11 @@
                                                 <div class="d-inline no-gutters">
                                                     <div class="col mr-2">
                                                         <div class="text-xs font-weight-bold text-primary text-uppercase text-center">
-                                                            <%=boardWidget[j].w_display_name%></div>
-                                                            <div class="p mb-0 text-xs text-black-50" id="buttontime-payload-data-<%=boardWidget[j].w_id%>">UPDATED</div>
+                                                            <%=boardWidget[j].w_display_name%>
+                                                        </div>
+                                                        <div class="p mb-0 text-xs text-black-50" id="buttontime-payload-data-<%=boardWidget[j].w_id%>">
+                                                            UPDATED
+                                                        </div>
                                                         <!-- <hr class="sidebar-divider"> -->
                                                         <div class="mt-2">
                                                             <button  id="btn-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"
@@ -756,6 +760,65 @@
                                         </div>
                                     </div>
                                     <%}else if(config.type == '3-way toggle switch'){%> 
+                                        <div class="col-xl-3 col-md-6 mb-4">
+                                            <!-- Metrics Testing Table -->
+                                            <div class="card shadow">
+                                                <!-- Card Header - Dropdown -->
+                                                <div
+                                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                                    <h6 class="m-0 font-weight-bold text-primary">Metrics Testing</h6>
+                                                    <div class="dropdown no-arrow">
+                                                        <a class="dropdown-toggle" role="button" id="dropdownMenuLink"
+                                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                                        </a>
+                                                        <!-- <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                            aria-labelledby="dropdownMenuLink">
+                                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editWidgetModal"
+                                                                        onclick="openEditWidgetModal('<%=boardWidget[j].w_id%>')"><%= __('Configure widget') %></a>
+                        
+                                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#deleteWidgetModal"
+                                                                        onclick="openDeleteWidgetModal('<%=boardWidget[j].w_id%>')"><%= __('Delete widget') %></a>
+                                                            <script>
+                                                                function openEditWidgetModal(widget_id) {
+                                                                    var str = "Widget ID: " + widget_id;
+                                                                    $("#widget_id").html(str);
+                                                                    document.getElementById(`edit-widget_id`).value = widget_id;
+                                                                }
+                                                                function openDeleteWidgetModal(widget_id) {
+                                                                    document.getElementById(`delete-widget_id`).value = widget_id;
+                                                                }
+                                                            </script>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                                <!-- Card Body -->
+                                                <div class="card-body row align-items-center small font-weight-bold ">
+                                                    <div id="metric-sensor-name" class="col-6 text-primary">Name of sensor</div>
+                                                    <div class="col-6 d-flex flex-wrap" style="gap: 5px;">
+                                                        <button  id="btn-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"
+                                                            class="btn btn-sm btn-primary shadow-sm controller" role="button"
+                                                            onclick="">
+                                                            <span><%= __('Start') %></span>
+                                                        </button>
+                                                        <button  d="btn-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"
+                                                            class="btn btn-sm btn-dark shadow-sm controller" role="button"
+                                                            onclick="">
+                                                            <span><%= __('Configure') %></span>
+                                                        </button>
+                                                    </div>
+                                                    <hr class="col-11 sidebar-divider">
+                                                    <div class="col-3">Avg. PLR</div>
+                                                    <div class="col-3"><span class="mx-2">___</span><span>unit</span></div>
+                                                    <div class="col-3">Avg. RTT</div>
+                                                    <div class="col-3"><span class="mx-2">___</span><span>unit</span></div>
+                                                    <div class="col-3">Avg. RE</div>
+                                                    <div class="col-3"><span class="mx-2">___</span><span>unit</span></div>
+                                                    <div class="col-3">Avg. RESP</div>
+                                                    <div class="col-3"><span class="mx-2">___</span><span>unit</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     <div class="col-xl-3 col-md-6 mb-4 dashboard-card">
                                         <div class="card border-left-<%=config.view['Color of button state 1']%> shadow">
                                             <div class="card-body d-flex align-item-center">
@@ -833,9 +896,67 @@
                                         </div>
                                     </div>
                                     
-                                <%}%>
-                                
-                                    
+                                    <%}else if(config.type == 'metric-testing'){%> 
+                                        <div class="col-xl-3 col-md-6 mb-4">
+                                            <!-- Metrics Testing Table -->
+                                            <div class="card shadow">
+                                                <!-- Card Header - Dropdown -->
+                                                <div
+                                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                                    <h6 class="m-0 font-weight-bold text-primary">Metrics Testing</h6>
+                                                    <div class="dropdown no-arrow">
+                                                        <a class="dropdown-toggle" role="button" id="dropdownMenuLink"
+                                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                                        </a>
+                                                        <!-- <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                            aria-labelledby="dropdownMenuLink">
+                                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editWidgetModal"
+                                                                        onclick="openEditWidgetModal('<%=boardWidget[j].w_id%>')"><%= __('Configure widget') %></a>
+                        
+                                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#deleteWidgetModal"
+                                                                        onclick="openDeleteWidgetModal('<%=boardWidget[j].w_id%>')"><%= __('Delete widget') %></a>
+                                                            <script>
+                                                                function openEditWidgetModal(widget_id) {
+                                                                    var str = "Widget ID: " + widget_id;
+                                                                    $("#widget_id").html(str);
+                                                                    document.getElementById(`edit-widget_id`).value = widget_id;
+                                                                }
+                                                                function openDeleteWidgetModal(widget_id) {
+                                                                    document.getElementById(`delete-widget_id`).value = widget_id;
+                                                                }
+                                                            </script>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                                <!-- Card Body -->
+                                                <div class="card-body row align-items-center small font-weight-bold ">
+                                                    <div id="metric-sensor-name" class="col-6 text-primary">Name of sensor</div>
+                                                    <div class="col-6 d-flex flex-wrap" style="gap: 5px;">
+                                                        <button  id="btn-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"
+                                                            class="btn btn-sm btn-primary shadow-sm controller" role="button"
+                                                            onclick="">
+                                                            <span><%= __('Start') %></span>
+                                                        </button>
+                                                        <button  d="btn-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"
+                                                            class="btn btn-sm btn-dark shadow-sm controller" role="button"
+                                                            onclick="">
+                                                            <span><%= __('Configure') %></span>
+                                                        </button>
+                                                    </div>
+                                                    <hr class="col-11 sidebar-divider">
+                                                    <div class="col-3">Avg. PLR</div>
+                                                    <div class="col-3"><span class="mx-2">___</span><span>unit</span></div>
+                                                    <div class="col-3">Avg. RTT</div>
+                                                    <div class="col-3"><span class="mx-2">___</span><span>unit</span></div>
+                                                    <div class="col-3">Avg. RE</div>
+                                                    <div class="col-3"><span class="mx-2">___</span><span>unit</span></div>
+                                                    <div class="col-3">Avg. RESP</div>
+                                                    <div class="col-3"><span class="mx-2">___</span><span>unit</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <%}%>
                                 
                             <%}%>
                         <%}%>
@@ -874,10 +995,8 @@
                         </div>
                         
                     </div> -->
-
-                    
+               
                 </div>
-
                 <!-- /.container-fluid -->
 
             </div>
@@ -909,11 +1028,11 @@
                 </div>
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <p id="widget_id">Widget ID: temp</p>
+                    <p id="widget_id" class="font-weight-bold">Widget ID: temp</p>
                     <hr>
                     <!-- action="widget/configure" -->
                     <form method="post" action="" class="user">
-                        <input type="text" class="form-control form-control-user" id='edit-widget_id' value="">
+                        <!-- <input type="text" class="form-control form-control-user" id='edit-widget_id' value=""> -->
                         <!-- Input type Text -->
                         <label for="widget_name"><%= __('Widget name') %></label>
                         <div class="form-group">
@@ -933,7 +1052,7 @@
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal"><%= __('Cancel') %></button>
+                    <button class="btn btn-outline-dark" type="button" data-dismiss="modal"><%= __('Cancel') %></button>
                 </div>
             </div>
         </div>
@@ -964,7 +1083,7 @@
                         <input type="hidden" class="form-control form-control-user" name="widget_id" id='delete-widget_id' value="">
                         <button class="btn btn-primary" type="submit"><%= __('Delete') %></button>
                     </form>  
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal"><%= __('Cancel') %></button>  
+                    <button class="btn btn-outline-dark" type="button" data-dismiss="modal"><%= __('Cancel') %></button>  
                                         
                                     
                         
@@ -991,7 +1110,7 @@
                 <!-- Modal footer -->
                 <div class="modal-footer">
                     
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal"><%= __('Cancel') %></button>
+                    <button class="btn btn-outline-dark" type="button" data-dismiss="modal"><%= __('Cancel') %></button>
                     
                     <form action="../login/logout" method="post">
                         <!-- <a  onclick="this.parentNode.submit();">Logout</a> -->
