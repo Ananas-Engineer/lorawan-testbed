@@ -5,7 +5,7 @@
 -- Dumped from database version 12.10
 -- Dumped by pg_dump version 12.9
 
--- Started on 2022-07-10 15:27:01 UTC
+-- Started on 2022-07-30 15:23:49 UTC
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -19,26 +19,58 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 6 (class 2615 OID 2200)
--- Name: public; Type: SCHEMA; Schema: -; Owner: root
+-- TOC entry 4 (class 3079 OID 16988)
+-- Name: timescaledb; Type: EXTENSION; Schema: -; Owner: -
 --
 
-CREATE SCHEMA public;
-
-
-ALTER SCHEMA public OWNER TO root;
-
---
--- TOC entry 3629 (class 0 OID 0)
--- Dependencies: 6
--- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: root
---
-
-COMMENT ON SCHEMA public IS 'standard public schema';
+CREATE EXTENSION IF NOT EXISTS timescaledb WITH SCHEMA public;
 
 
 --
--- TOC entry 1141 (class 1247 OID 18636)
+-- TOC entry 3795 (class 0 OID 0)
+-- Dependencies: 4
+-- Name: EXTENSION timescaledb; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION timescaledb IS 'Enables scalable inserts and complex queries for time-series data';
+
+
+--
+-- TOC entry 2 (class 3079 OID 18530)
+-- Name: citext; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS citext WITH SCHEMA public;
+
+
+--
+-- TOC entry 3796 (class 0 OID 0)
+-- Dependencies: 2
+-- Name: EXTENSION citext; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION citext IS 'data type for case-insensitive character strings';
+
+
+--
+-- TOC entry 3 (class 3079 OID 18685)
+-- Name: pgcrypto; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS pgcrypto WITH SCHEMA public;
+
+
+--
+-- TOC entry 3797 (class 0 OID 0)
+-- Dependencies: 3
+-- Name: EXTENSION pgcrypto; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION pgcrypto IS 'cryptographic functions';
+
+
+--
+-- TOC entry 1179 (class 1247 OID 18636)
 -- Name: email; Type: DOMAIN; Schema: public; Owner: root
 --
 
@@ -49,7 +81,7 @@ CREATE DOMAIN public.email AS public.citext
 ALTER DOMAIN public.email OWNER TO root;
 
 --
--- TOC entry 1145 (class 1247 OID 18639)
+-- TOC entry 1183 (class 1247 OID 18639)
 -- Name: phone; Type: DOMAIN; Schema: public; Owner: root
 --
 
@@ -378,7 +410,7 @@ CREATE SEQUENCE public."BOARD__id_seq"
 ALTER TABLE public."BOARD__id_seq" OWNER TO root;
 
 --
--- TOC entry 3630 (class 0 OID 0)
+-- TOC entry 3798 (class 0 OID 0)
 -- Dependencies: 260
 -- Name: BOARD__id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
@@ -429,7 +461,7 @@ CREATE SEQUENCE public."DEVTYPE__id_seq"
 ALTER TABLE public."DEVTYPE__id_seq" OWNER TO root;
 
 --
--- TOC entry 3631 (class 0 OID 0)
+-- TOC entry 3799 (class 0 OID 0)
 -- Dependencies: 263
 -- Name: DEVTYPE__id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
@@ -467,7 +499,7 @@ CREATE SEQUENCE public."DOWNLINK_TESTING__id_seq"
 ALTER TABLE public."DOWNLINK_TESTING__id_seq" OWNER TO root;
 
 --
--- TOC entry 3632 (class 0 OID 0)
+-- TOC entry 3800 (class 0 OID 0)
 -- Dependencies: 265
 -- Name: DOWNLINK_TESTING__id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
@@ -527,7 +559,7 @@ CREATE SEQUENCE public."ENDDEV__id_seq"
 ALTER TABLE public."ENDDEV__id_seq" OWNER TO root;
 
 --
--- TOC entry 3633 (class 0 OID 0)
+-- TOC entry 3801 (class 0 OID 0)
 -- Dependencies: 267
 -- Name: ENDDEV__id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
@@ -567,7 +599,7 @@ CREATE SEQUENCE public."NOTIFICATION__id_seq"
 ALTER TABLE public."NOTIFICATION__id_seq" OWNER TO root;
 
 --
--- TOC entry 3634 (class 0 OID 0)
+-- TOC entry 3802 (class 0 OID 0)
 -- Dependencies: 269
 -- Name: NOTIFICATION__id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
@@ -635,7 +667,7 @@ CREATE SEQUENCE public."PROFILE__id_seq"
 ALTER TABLE public."PROFILE__id_seq" OWNER TO root;
 
 --
--- TOC entry 3635 (class 0 OID 0)
+-- TOC entry 3803 (class 0 OID 0)
 -- Dependencies: 272
 -- Name: PROFILE__id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
@@ -676,7 +708,7 @@ CREATE SEQUENCE public."SENSOR__id_seq"
 ALTER TABLE public."SENSOR__id_seq" OWNER TO root;
 
 --
--- TOC entry 3636 (class 0 OID 0)
+-- TOC entry 3804 (class 0 OID 0)
 -- Dependencies: 274
 -- Name: SENSOR__id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
@@ -714,7 +746,7 @@ CREATE SEQUENCE public."UPLINK_TESTING__id_seq"
 ALTER TABLE public."UPLINK_TESTING__id_seq" OWNER TO root;
 
 --
--- TOC entry 3637 (class 0 OID 0)
+-- TOC entry 3805 (class 0 OID 0)
 -- Dependencies: 276
 -- Name: UPLINK_TESTING__id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
@@ -769,7 +801,7 @@ CREATE SEQUENCE public."WIDGET_TYPE__id_seq"
 ALTER TABLE public."WIDGET_TYPE__id_seq" OWNER TO root;
 
 --
--- TOC entry 3638 (class 0 OID 0)
+-- TOC entry 3806 (class 0 OID 0)
 -- Dependencies: 279
 -- Name: WIDGET_TYPE__id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
@@ -794,7 +826,7 @@ CREATE SEQUENCE public."WIDGET__id_seq"
 ALTER TABLE public."WIDGET__id_seq" OWNER TO root;
 
 --
--- TOC entry 3639 (class 0 OID 0)
+-- TOC entry 3807 (class 0 OID 0)
 -- Dependencies: 280
 -- Name: WIDGET__id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
@@ -803,7 +835,7 @@ ALTER SEQUENCE public."WIDGET__id_seq" OWNED BY public."WIDGET"._id;
 
 
 --
--- TOC entry 3402 (class 2604 OID 18515)
+-- TOC entry 3493 (class 2604 OID 18515)
 -- Name: BOARD _id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -811,7 +843,7 @@ ALTER TABLE ONLY public."BOARD" ALTER COLUMN _id SET DEFAULT nextval('public."BO
 
 
 --
--- TOC entry 3403 (class 2604 OID 18516)
+-- TOC entry 3494 (class 2604 OID 18516)
 -- Name: DEV_TYPE _id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -819,7 +851,7 @@ ALTER TABLE ONLY public."DEV_TYPE" ALTER COLUMN _id SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 3404 (class 2604 OID 18501)
+-- TOC entry 3495 (class 2604 OID 18501)
 -- Name: DOWNLINK_TESTING _id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -827,7 +859,7 @@ ALTER TABLE ONLY public."DOWNLINK_TESTING" ALTER COLUMN _id SET DEFAULT nextval(
 
 
 --
--- TOC entry 3405 (class 2604 OID 18517)
+-- TOC entry 3496 (class 2604 OID 18517)
 -- Name: ENDDEV _id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -835,7 +867,7 @@ ALTER TABLE ONLY public."ENDDEV" ALTER COLUMN _id SET DEFAULT nextval('public."E
 
 
 --
--- TOC entry 3406 (class 2604 OID 18518)
+-- TOC entry 3497 (class 2604 OID 18518)
 -- Name: NOTIFICATION _id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -843,7 +875,7 @@ ALTER TABLE ONLY public."NOTIFICATION" ALTER COLUMN _id SET DEFAULT nextval('pub
 
 
 --
--- TOC entry 3411 (class 2604 OID 18662)
+-- TOC entry 3502 (class 2604 OID 18662)
 -- Name: PROFILE _id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -851,7 +883,7 @@ ALTER TABLE ONLY public."PROFILE" ALTER COLUMN _id SET DEFAULT nextval('public."
 
 
 --
--- TOC entry 3407 (class 2604 OID 18519)
+-- TOC entry 3498 (class 2604 OID 18519)
 -- Name: SENSOR _id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -859,7 +891,7 @@ ALTER TABLE ONLY public."SENSOR" ALTER COLUMN _id SET DEFAULT nextval('public."S
 
 
 --
--- TOC entry 3408 (class 2604 OID 18520)
+-- TOC entry 3499 (class 2604 OID 18520)
 -- Name: UPLINK_TESTING _id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -867,7 +899,7 @@ ALTER TABLE ONLY public."UPLINK_TESTING" ALTER COLUMN _id SET DEFAULT nextval('p
 
 
 --
--- TOC entry 3409 (class 2604 OID 18521)
+-- TOC entry 3500 (class 2604 OID 18521)
 -- Name: WIDGET _id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -875,7 +907,7 @@ ALTER TABLE ONLY public."WIDGET" ALTER COLUMN _id SET DEFAULT nextval('public."W
 
 
 --
--- TOC entry 3410 (class 2604 OID 18522)
+-- TOC entry 3501 (class 2604 OID 18522)
 -- Name: WIDGET_TYPE _id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -883,7 +915,228 @@ ALTER TABLE ONLY public."WIDGET_TYPE" ALTER COLUMN _id SET DEFAULT nextval('publ
 
 
 --
--- TOC entry 3599 (class 0 OID 18229)
+-- TOC entry 3467 (class 0 OID 17338)
+-- Dependencies: 243
+-- Data for Name: cache_inval_bgw_job; Type: TABLE DATA; Schema: _timescaledb_cache; Owner: root
+--
+
+COPY _timescaledb_cache.cache_inval_bgw_job  FROM stdin;
+\.
+
+
+--
+-- TOC entry 3466 (class 0 OID 17341)
+-- Dependencies: 244
+-- Data for Name: cache_inval_extension; Type: TABLE DATA; Schema: _timescaledb_cache; Owner: root
+--
+
+COPY _timescaledb_cache.cache_inval_extension  FROM stdin;
+\.
+
+
+--
+-- TOC entry 3465 (class 0 OID 17335)
+-- Dependencies: 242
+-- Data for Name: cache_inval_hypertable; Type: TABLE DATA; Schema: _timescaledb_cache; Owner: root
+--
+
+COPY _timescaledb_cache.cache_inval_hypertable  FROM stdin;
+\.
+
+
+--
+-- TOC entry 3441 (class 0 OID 17007)
+-- Dependencies: 212
+-- Data for Name: hypertable; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
+--
+
+COPY _timescaledb_catalog.hypertable (id, schema_name, table_name, associated_schema_name, associated_table_prefix, num_dimensions, chunk_sizing_func_schema, chunk_sizing_func_name, chunk_target_size, compression_state, compressed_hypertable_id, replication_factor) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3448 (class 0 OID 17092)
+-- Dependencies: 221
+-- Data for Name: chunk; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
+--
+
+COPY _timescaledb_catalog.chunk (id, hypertable_id, schema_name, table_name, compressed_chunk_id, dropped, status) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3444 (class 0 OID 17057)
+-- Dependencies: 217
+-- Data for Name: dimension; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
+--
+
+COPY _timescaledb_catalog.dimension (id, hypertable_id, column_name, column_type, aligned, num_slices, partitioning_func_schema, partitioning_func, interval_length, integer_now_func_schema, integer_now_func) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3446 (class 0 OID 17076)
+-- Dependencies: 219
+-- Data for Name: dimension_slice; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
+--
+
+COPY _timescaledb_catalog.dimension_slice (id, dimension_id, range_start, range_end) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3450 (class 0 OID 17114)
+-- Dependencies: 222
+-- Data for Name: chunk_constraint; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
+--
+
+COPY _timescaledb_catalog.chunk_constraint (chunk_id, dimension_slice_id, constraint_name, hypertable_constraint_name) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3453 (class 0 OID 17148)
+-- Dependencies: 225
+-- Data for Name: chunk_data_node; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
+--
+
+COPY _timescaledb_catalog.chunk_data_node (chunk_id, node_chunk_id, node_name) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3452 (class 0 OID 17132)
+-- Dependencies: 224
+-- Data for Name: chunk_index; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
+--
+
+COPY _timescaledb_catalog.chunk_index (chunk_id, index_name, hypertable_id, hypertable_index_name) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3463 (class 0 OID 17297)
+-- Dependencies: 238
+-- Data for Name: compression_chunk_size; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
+--
+
+COPY _timescaledb_catalog.compression_chunk_size (chunk_id, compressed_chunk_id, uncompressed_heap_size, uncompressed_toast_size, uncompressed_index_size, compressed_heap_size, compressed_toast_size, compressed_index_size, numrows_pre_compression, numrows_post_compression) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3457 (class 0 OID 17213)
+-- Dependencies: 231
+-- Data for Name: continuous_agg; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
+--
+
+COPY _timescaledb_catalog.continuous_agg (mat_hypertable_id, raw_hypertable_id, user_view_schema, user_view_name, partial_view_schema, partial_view_name, bucket_width, direct_view_schema, direct_view_name, materialized_only) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3458 (class 0 OID 17234)
+-- Dependencies: 232
+-- Data for Name: continuous_aggs_bucket_function; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
+--
+
+COPY _timescaledb_catalog.continuous_aggs_bucket_function (mat_hypertable_id, experimental, name, bucket_width, origin, timezone) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3460 (class 0 OID 17257)
+-- Dependencies: 234
+-- Data for Name: continuous_aggs_hypertable_invalidation_log; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
+--
+
+COPY _timescaledb_catalog.continuous_aggs_hypertable_invalidation_log (hypertable_id, lowest_modified_value, greatest_modified_value) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3459 (class 0 OID 17247)
+-- Dependencies: 233
+-- Data for Name: continuous_aggs_invalidation_threshold; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
+--
+
+COPY _timescaledb_catalog.continuous_aggs_invalidation_threshold (hypertable_id, watermark) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3461 (class 0 OID 17261)
+-- Dependencies: 235
+-- Data for Name: continuous_aggs_materialization_invalidation_log; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
+--
+
+COPY _timescaledb_catalog.continuous_aggs_materialization_invalidation_log (materialization_id, lowest_modified_value, greatest_modified_value) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3462 (class 0 OID 17278)
+-- Dependencies: 237
+-- Data for Name: hypertable_compression; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
+--
+
+COPY _timescaledb_catalog.hypertable_compression (hypertable_id, attname, compression_algorithm_id, segmentby_column_index, orderby_column_index, orderby_asc, orderby_nullsfirst) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3442 (class 0 OID 17028)
+-- Dependencies: 213
+-- Data for Name: hypertable_data_node; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
+--
+
+COPY _timescaledb_catalog.hypertable_data_node (hypertable_id, node_hypertable_id, node_name, block_chunks) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3456 (class 0 OID 17205)
+-- Dependencies: 230
+-- Data for Name: metadata; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
+--
+
+COPY _timescaledb_catalog.metadata (key, value, include_in_telemetry) FROM stdin;
+exported_uuid	8db77446-db7b-4909-a70a-46fa8a7454e0	t
+\.
+
+
+--
+-- TOC entry 3464 (class 0 OID 17312)
+-- Dependencies: 239
+-- Data for Name: remote_txn; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
+--
+
+COPY _timescaledb_catalog.remote_txn (data_node_name, remote_transaction_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3443 (class 0 OID 17042)
+-- Dependencies: 215
+-- Data for Name: tablespace; Type: TABLE DATA; Schema: _timescaledb_catalog; Owner: root
+--
+
+COPY _timescaledb_catalog.tablespace (id, hypertable_id, tablespace_name) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3455 (class 0 OID 17162)
+-- Dependencies: 227
+-- Data for Name: bgw_job; Type: TABLE DATA; Schema: _timescaledb_config; Owner: root
+--
+
+COPY _timescaledb_config.bgw_job (id, application_name, schedule_interval, max_runtime, max_retries, retry_period, proc_schema, proc_name, owner, scheduled, hypertable_id, config) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3765 (class 0 OID 18229)
 -- Dependencies: 257
 -- Data for Name: ADMIN; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -893,7 +1146,7 @@ COPY public."ADMIN" (profile_id) FROM stdin;
 
 
 --
--- TOC entry 3600 (class 0 OID 18232)
+-- TOC entry 3766 (class 0 OID 18232)
 -- Dependencies: 258
 -- Data for Name: BELONG_TO; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -928,11 +1181,30 @@ COPY public."BELONG_TO" (widget_id, sensor_id) FROM stdin;
 388	224
 388	225
 388	226
+350	201
+351	201
+352	203
+353	207
+353	206
+366	236
+367	237
+368	238
+369	239
+370	240
+371	241
+372	242
+373	243
+374	244
+375	242
+376	241
+377	240
+378	243
+379	244
 \.
 
 
 --
--- TOC entry 3601 (class 0 OID 18235)
+-- TOC entry 3767 (class 0 OID 18235)
 -- Dependencies: 259
 -- Data for Name: BOARD; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -945,11 +1217,13 @@ COPY public."BOARD" (_id, display_name, profile_id) FROM stdin;
 70	eui-a8404111e1832b1c	5
 76	Garden 1	9
 77	Garden 2	9
+72	eui-a84041681182a79a	5
+73	eui-a84041681182a79a	5
 \.
 
 
 --
--- TOC entry 3603 (class 0 OID 18243)
+-- TOC entry 3769 (class 0 OID 18243)
 -- Dependencies: 261
 -- Data for Name: CUSTOMER; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -962,7 +1236,7 @@ COPY public."CUSTOMER" (profile_id) FROM stdin;
 
 
 --
--- TOC entry 3604 (class 0 OID 18246)
+-- TOC entry 3770 (class 0 OID 18246)
 -- Dependencies: 262
 -- Data for Name: DEV_TYPE; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -973,12 +1247,12 @@ COPY public."DEV_TYPE" (_id, dev_type, dev_type_config) FROM stdin;
 2	BH17DS18	{"sensor_list": [{"key": "BatV", "unit": "V", "domain": "number", "widget_type": null}, {"key": "AirTemp", "unit": "°C", "domain": "number", "widget_type": null}, {"key": "Illumi", "unit": "Lux", "domain": "number", "widget_type": null}], "controller_list": []}
 3	LSE01	{"sensor_list": [{"key": "BatV", "unit": "V", "domain": "number", "widget_type": null}, {"key": "SoilTemp", "unit": "°C", "domain": "number", "widget_type": null}, {"key": "SoilHumid", "unit": "%", "domain": "number", "widget_type": null}, {"key": "SoilEC", "unit": "uS/cm", "domain": "number", "widget_type": null}], "controller_list": []}
 4	LT-22222-L	{"sensor_list": [{"key": "ACI1_status", "unit": "mA", "domain": "number", "widget_type": null}, {"key": "ACI2_status", "unit": "mA", "domain": "number", "widget_type": null}, {"key": "AVI1_status", "unit": "V", "domain": "number", "widget_type": null}, {"key": "AVI2_status", "unit": "V", "domain": "number", "widget_type": null}, {"key": "DI1_status", "unit": null, "domain": ["H", "L"], "widget_type": null}, {"key": "DI2_status", "unit": null, "domain": ["H", "L"], "widget_type": null}, {"key": "DO1_status", "unit": null, "domain": ["H", "L"], "widget_type": null}, {"key": "DO2_status", "unit": null, "domain": ["H", "L"], "widget_type": null}, {"key": "RO1_status", "unit": null, "domain": ["ON", "OFF"], "widget_type": null}, {"key": "RO2_status", "unit": null, "domain": ["ON", "OFF"], "widget_type": null}], "controller_list": [{"cmd": {"H": {"downlinks": [{"f_port": 1, "priority": "HIGHEST", "confirmed": true, "frm_payload": "AgAREQ=="}]}, "L": {"downlinks": [{"f_port": 1, "priority": "HIGHEST", "confirmed": true, "frm_payload": "AgEREQ=="}]}}, "key": "DO1_ctrl", "status_key": "DO1_status", "widget_type": "Toggle button"}, {"cmd": {"H": {"downlinks": [{"f_port": 1, "priority": "HIGHEST", "confirmed": true, "frm_payload": "AhEAEQ=="}]}, "L": {"downlinks": [{"f_port": 1, "priority": "HIGHEST", "confirmed": true, "frm_payload": "AhEBEQ=="}]}}, "key": "DO2_ctrl", "status_key": "DO2_status", "widget_type": "Toggle button"}, {"cmd": {"ON": {"downlinks": [{"f_port": 1, "priority": "HIGHEST", "confirmed": true, "frm_payload": "AwER"}]}, "OFF": {"downlinks": [{"f_port": 1, "priority": "HIGHEST", "confirmed": true, "frm_payload": "AwAR"}]}}, "key": "RO1_ctrl", "status_key": "RO1_status", "widget_type": "Toggle button"}, {"cmd": {"ON": {"downlinks": [{"f_port": 1, "priority": "HIGHEST", "confirmed": true, "frm_payload": "AxEB"}]}, "OFF": {"downlinks": [{"f_port": 1, "priority": "HIGHEST", "confirmed": true, "frm_payload": "AxEA"}]}}, "key": "RO2_ctrl", "status_key": "RO2_status", "widget_type": "Toggle button"}, {"key": "DO1_tctrl", "widget_type": "Button"}, {"key": "DO2_tctrl", "widget_type": "Button"}, {"key": "RO1_tctrl", "widget_type": "Button"}, {"key": "RO2_tctrl", "widget_type": "Button"}, {"cmd": {"STATE1": {"downlinks": [{"f_port": 1, "priority": "HIGHEST", "confirmed": true, "frm_payload": "AwAB"}]}, "STATE2": {"downlinks": [{"f_port": 1, "priority": "HIGHEST", "confirmed": true, "frm_payload": "AwEA"}]}}, "key": "RO_toggle", "status_key": ["RO1_status", "RO2_status"], "status_val": [{"val": ["OFF", "ON"], "state": "STATE1"}, {"val": ["ON", "OFF"], "state": "STATE2"}], "widget_type": "3-way toggle switch", "uplink_timeout": 70}]}
-5	RS485-LN-TESTBED	\N
+5	RS485-LN-TESTBED	{"sensor_list": [{"key": "RELAY_CH0_status", "unit": null, "domain": ["ON", "OFF"], "widget_type": null}, {"key": "RELAY_CH1_status", "unit": null, "domain": ["ON", "OFF"], "widget_type": null}, {"key": "RELAY_CH2_status", "unit": null, "domain": ["ON", "OFF"], "widget_type": null}, {"key": "RELAY_CH3_status", "unit": null, "domain": ["ON", "OFF"], "widget_type": null}], "controller_list": [{"cmd": {"ON": {"downlinks": [{"f_port": 200, "priority": "HIGHEST", "confirmed": true, "frm_payload": "qAEGAQUAAP8ABg=="}]}, "OFF": {"downlinks": [{"f_port": 200, "priority": "HIGHEST", "confirmed": true, "frm_payload": "qAEGAQUAAAAABg=="}]}}, "key": "RELAY_CH0_ctrl", "status_key": "RELAY_CH0_status", "widget_type": "Toggle button", "uplink_timeout": 70}, {"cmd": {"ON": {"downlinks": [{"f_port": 200, "priority": "HIGHEST", "confirmed": true, "frm_payload": "qAEGAQUAAf8ABg=="}]}, "OFF": {"downlinks": [{"f_port": 200, "priority": "HIGHEST", "confirmed": true, "frm_payload": "qAEGAQUAAQAABg=="}]}}, "key": "RELAY_CH1_ctrl", "status_key": "RELAY_CH1_status", "widget_type": "Toggle button", "uplink_timeout": 70}, {"cmd": {"ON": {"downlinks": [{"f_port": 200, "priority": "HIGHEST", "confirmed": true, "frm_payload": "qAEGAQUAAv8ABg=="}]}, "OFF": {"downlinks": [{"f_port": 200, "priority": "HIGHEST", "confirmed": true, "frm_payload": "qAEGAQUAAgAABg=="}]}}, "key": "RELAY_CH2_ctrl", "status_key": "RELAY_CH2_status", "widget_type": "Toggle button", "uplink_timeout": 70}, {"cmd": {"ON": {"downlinks": [{"f_port": 200, "priority": "HIGHEST", "confirmed": true, "frm_payload": "qAEGAQUAA/8ABg=="}]}, "OFF": {"downlinks": [{"f_port": 200, "priority": "HIGHEST", "confirmed": true, "frm_payload": "qAEGAQUAAwAABg=="}]}}, "key": "RELAY_CH3_ctrl", "status_key": "RELAY_CH3_status", "widget_type": "Toggle button", "uplink_timeout": 70}, {"cmd": {"TOGGLE": {"downlinks": [{"f_port": 200, "priority": "HIGHEST", "confirmed": true, "frm_payload": "CP8="}]}}, "key": "RELAY_POLL_UPLINK_ctrl", "widget_type": "Button", "uplink_timeout": 70}]}
 \.
 
 
 --
--- TOC entry 3606 (class 0 OID 18254)
+-- TOC entry 3772 (class 0 OID 18254)
 -- Dependencies: 264
 -- Data for Name: DOWNLINK_TESTING; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -1220,7 +1494,7 @@ COPY public."DOWNLINK_TESTING" (_id, message) FROM stdin;
 
 
 --
--- TOC entry 3608 (class 0 OID 18262)
+-- TOC entry 3774 (class 0 OID 18262)
 -- Dependencies: 266
 -- Data for Name: ENDDEV; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -1232,22 +1506,494 @@ COPY public."ENDDEV" (_id, display_name, dev_id, dev_addr, join_eui, dev_eui, de
 75	eui-a840414c21832b19	eui-a840414c21832b19	260DE8CD	A000000000000101	A840414C21832B19	dragino	lsn50v2-s31	AS_923	0
 76	eui-a8404194d1832e4b	eui-a8404194d1832e4b	260D84AD	A000000000000101	A8404194D1832E4B	dragino	lse01	AS_923	3
 77	eui-a84041576183519d	eui-a84041576183519d	260D4BE4	A000000000000100	A84041576183519D	dragino	lht65	AS_923	1
-78	eui-a84041681182a79a	eui-a84041681182a79a	260D3816	A000000000000101	A84041681182A79A	dragino	rs485-ln	AS_923	5
+87	eui-a84041681182a79a	eui-a84041681182a79a	260D7761	A000000000000101	A84041681182A79A	dragino	rs485-ln	AS_923	5
 \.
 
 
 --
--- TOC entry 3598 (class 0 OID 18223)
+-- TOC entry 3764 (class 0 OID 18223)
 -- Dependencies: 256
 -- Data for Name: ENDDEV_PAYLOAD; Type: TABLE DATA; Schema: public; Owner: root
 --
 
 COPY public."ENDDEV_PAYLOAD" (recv_timestamp, payload_data, enddev_id) FROM stdin;
+2022-07-17 08:52:48.610106	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	86
+2022-07-21 16:07:50.387936	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "ON", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 16:10:20.113941	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "ON", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 16:12:50.116421	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "ON", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 16:15:20.101422	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "ON", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 16:17:50.099244	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "ON", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 16:20:20.098183	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "ON", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 16:22:50.105938	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "ON", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 16:25:20.099535	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "ON", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 16:27:50.091994	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "ON", "RELAY_CH3_status": "ON"}	87
+2022-07-21 16:30:20.091399	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "ON", "RELAY_CH3_status": "ON"}	87
+2022-07-21 16:32:43.297947	{"RELAY_CH3_status": "OFF"}	87
+2022-07-21 16:32:50.110342	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "ON", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 16:35:20.111441	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "ON", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 16:37:50.095215	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "ON", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 16:40:20.098429	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "ON", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 16:42:50.116427	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "ON", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 16:45:20.099877	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "ON", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 16:47:50.100658	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "ON", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 16:50:20.102397	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "ON", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 16:52:50.093678	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "ON", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 18:58:15.733965	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 19:00:45.49177	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 19:03:15.488316	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 19:05:45.452066	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 19:08:15.436131	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 19:10:45.445102	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 19:13:15.435886	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 19:15:45.432353	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 19:18:15.447062	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 19:20:45.43238	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 19:23:15.432138	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 19:25:45.432612	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 19:28:15.436366	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 19:30:45.429544	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 19:33:15.437128	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 19:35:45.435906	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 19:38:15.432104	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 19:40:45.432291	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 19:43:15.432526	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 19:45:45.439572	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 19:48:15.424324	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 19:50:45.43749	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 19:53:15.424943	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 19:55:45.433543	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 19:58:15.428015	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 20:00:45.424238	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 20:03:15.420553	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 20:05:45.434339	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 20:08:15.433973	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 20:10:45.433271	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 20:13:15.42342	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 20:15:45.426077	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 20:18:15.42808	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 20:20:45.427764	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 20:23:15.424216	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 20:25:45.427883	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 20:28:15.418314	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 20:30:45.42189	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 20:33:15.421259	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 20:35:45.41349	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 20:38:15.420551	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 20:40:45.413115	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 20:43:15.419592	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 20:45:45.42097	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 20:48:15.419905	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 20:50:45.412187	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 20:53:15.425425	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 20:55:45.415403	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 20:58:15.411434	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 21:00:45.421124	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 21:03:15.409534	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 21:05:53.429457	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 21:08:15.430271	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 21:10:45.411904	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 21:13:15.407406	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 21:15:45.40608	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 21:18:15.409093	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 21:20:45.413811	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 21:23:15.408227	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 21:25:45.415218	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 21:28:15.402927	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 21:30:45.413336	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 21:33:15.40433	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 21:35:45.413875	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 21:38:15.407164	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 21:40:45.418879	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 21:43:15.403727	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 21:45:45.410071	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 21:48:15.402333	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 21:50:45.410207	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 21:53:15.404495	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 21:55:45.395497	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 21:58:15.398834	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 22:00:45.395831	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 22:03:15.413775	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 22:05:45.399965	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 22:08:15.398418	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 22:10:45.396608	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 22:13:15.393957	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 22:15:45.389661	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 22:18:15.389581	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 22:20:45.40035	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 22:23:15.398143	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 22:25:45.396951	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 22:28:15.39248	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 22:30:45.396209	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 22:33:15.3846	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 22:35:45.396199	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 22:38:15.394567	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 22:40:45.385793	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 22:43:15.396338	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 22:45:45.405395	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 22:48:15.395386	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 22:50:45.39448	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 22:53:15.386789	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 22:55:45.396403	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 22:58:15.38188	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 23:00:45.390218	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 23:03:15.380052	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 23:05:45.389236	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 23:08:15.376349	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 23:10:45.391651	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 23:13:15.381112	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 23:15:45.380994	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 23:18:15.377471	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 23:20:45.374942	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 23:23:15.385177	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 23:25:45.37236	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 23:28:15.375904	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 23:30:45.386609	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 23:33:15.37802	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 23:35:45.377512	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 23:38:15.383206	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 23:40:45.380515	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 23:43:15.384107	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 23:45:45.376348	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 23:48:15.387197	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 23:50:45.36583	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 23:53:15.365126	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 23:55:45.371489	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-21 23:58:15.374437	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 00:00:45.369181	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 00:03:15.368471	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 00:05:45.370937	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 00:08:15.365375	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 00:10:45.369838	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 00:13:15.371284	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 00:15:45.385735	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 00:18:15.366564	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 00:20:45.360256	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 00:23:15.356631	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 00:25:45.365899	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 00:28:15.360114	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 00:30:45.384977	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 00:33:15.363005	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 00:35:45.361047	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 00:38:15.358534	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 00:40:45.373904	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 00:43:15.375746	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 00:45:45.356322	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 00:48:15.36309	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 00:50:45.353579	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 00:53:15.373724	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 00:55:45.359495	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 00:58:15.353215	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 01:00:45.359254	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 01:03:15.34864	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 01:05:45.357704	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 01:08:15.349035	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 01:10:45.348288	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 01:13:15.362487	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 01:15:45.359274	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 01:18:15.361856	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 01:20:45.352641	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 01:23:15.353878	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 01:25:45.356953	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 01:28:15.373942	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 01:30:45.357751	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 01:33:15.35285	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 01:35:45.347593	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 01:38:15.346489	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 01:40:45.345913	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 01:43:15.350247	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 01:45:45.350012	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 01:48:15.361284	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 01:50:45.347056	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 01:53:15.345669	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 01:55:45.343291	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 01:58:15.351491	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 02:00:45.346062	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 02:03:15.367412	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 02:05:45.343801	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 02:08:15.364095	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 02:10:45.357762	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 02:13:15.341616	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 02:15:45.345638	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 02:18:15.338836	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 02:20:45.347187	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 02:23:15.334352	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 02:25:45.339097	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 02:28:15.33835	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 02:30:45.34114	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 02:33:15.341239	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 02:35:45.348245	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 02:38:15.341246	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 02:40:45.341807	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 02:43:15.711388	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 02:45:45.348394	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 02:48:15.341697	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 02:50:45.343702	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 02:53:15.342385	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 02:55:45.347073	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 02:58:15.341833	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 03:00:45.340144	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 03:03:15.332651	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 03:05:45.339682	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 03:08:15.341384	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 03:10:45.334422	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 03:13:15.332193	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 03:15:45.340686	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 03:18:15.339753	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 03:20:45.350969	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 03:23:15.334798	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 03:25:45.336471	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 03:28:15.335538	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 03:30:45.338365	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 03:33:15.342557	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 03:35:45.330121	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 03:38:15.338348	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 03:40:45.339999	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 03:43:15.325538	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 03:45:45.336718	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 03:48:15.328108	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 03:50:45.337045	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 03:53:15.329328	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 03:55:45.330593	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 03:58:15.320886	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 04:00:45.330143	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 04:03:15.32605	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 04:05:45.339318	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 04:08:15.335461	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 04:10:45.34136	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 04:13:15.326041	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 04:15:45.334564	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 04:18:15.332844	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 04:20:45.32877	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 04:23:15.325687	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 04:25:45.33061	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 04:28:15.344814	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 04:30:45.334337	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 04:33:15.329486	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 04:35:45.319231	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 04:38:15.329548	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 04:40:45.319832	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 04:43:15.33209	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 04:45:45.333417	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 04:48:15.333741	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 04:50:45.326508	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 04:53:15.322849	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 04:55:45.325001	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 04:58:15.327247	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 05:00:45.324514	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 05:03:15.322799	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 05:05:45.328397	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 05:06:40.652576	{"RELAY_CH2_status": "ON"}	87
+2022-07-22 05:07:00.553131	{"RELAY_CH2_status": "OFF"}	87
+2022-07-22 05:08:15.319686	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 05:08:50.694935	{"RELAY_CH2_status": "ON"}	87
+2022-07-22 05:09:17.710369	{"RELAY_CH2_status": "OFF"}	87
+2022-07-22 05:10:45.327176	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 05:13:15.327589	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 05:15:45.318381	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 05:18:15.341822	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 05:20:45.332351	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 05:23:15.33475	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 05:25:35.901889	{"RELAY_CH1_status": "ON"}	87
+2022-07-22 05:25:45.324028	{"RELAY_CH0_status": "ON", "RELAY_CH1_status": "ON", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 05:26:52.868005	{"RELAY_CH0_status": "OFF"}	87
+2022-07-22 05:26:59.563166	{"RELAY_CH3_status": "ON"}	87
+2022-07-22 05:28:07.113615	{"RELAY_CH0_status": "ON"}	87
+2022-07-22 05:28:13.801242	{"RELAY_CH1_status": "OFF"}	87
+2022-07-22 05:28:20.483566	{"RELAY_CH2_status": "ON"}	87
+2022-07-22 05:28:27.171968	{"RELAY_CH2_status": "ON"}	87
+2022-07-22 05:28:47.083692	{"RELAY_CH2_status": "OFF"}	87
+2022-07-22 05:28:55.613432	{"RELAY_CH1_status": "ON"}	87
+2022-07-22 05:29:04.179217	{"RELAY_CH1_status": "OFF"}	87
+2022-07-22 05:29:12.710716	{"RELAY_CH3_status": "OFF"}	87
+2022-07-22 05:29:21.993011	{"RELAY_CH0_status": "OFF"}	87
+2022-07-22 05:29:54.60053	{"RELAY_CH3_status": "ON"}	87
+2022-07-22 05:30:01.301965	{"RELAY_CH0_status": "ON"}	87
+2022-07-22 05:30:07.977863	{"RELAY_CH1_status": "ON"}	87
+2022-07-22 05:30:14.670619	{"RELAY_CH2_status": "ON"}	87
+2022-07-22 05:30:25.636945	{"RELAY_CH3_status": "OFF"}	87
+2022-07-22 05:30:32.316174	{"RELAY_CH0_status": "OFF"}	87
+2022-07-22 05:30:39.009071	{"RELAY_CH1_status": "OFF"}	87
+2022-07-22 05:30:45.697288	{"RELAY_CH2_status": "OFF"}	87
+2022-07-22 05:33:15.328868	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 05:35:45.323516	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 05:35:53.980102	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 05:38:15.335235	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 05:40:45.324612	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 05:43:15.331592	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 05:45:45.337854	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 05:48:15.319175	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 05:50:45.319412	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 05:53:15.334359	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 05:55:45.32277	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 05:58:15.326268	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 06:00:45.338712	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 06:03:15.327334	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 06:05:45.326136	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 06:08:15.329642	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 06:10:45.338335	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 06:13:15.320413	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 06:15:45.326874	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 06:18:15.332747	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 06:20:45.346839	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 06:23:15.328724	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 06:25:45.322248	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 06:28:15.328321	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 06:30:45.324886	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 06:33:15.328097	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 06:35:45.332119	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 06:38:15.326557	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 06:40:45.33371	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 06:43:15.328657	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 06:45:45.327363	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 06:48:15.322164	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 06:50:45.326083	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 06:53:15.334582	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 06:55:45.33755	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 06:58:15.330397	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 07:00:45.328773	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 07:03:15.327995	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 07:05:45.339471	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 07:08:15.330405	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 07:10:45.323092	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 07:13:15.329822	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 07:15:45.324699	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 07:18:15.324831	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 07:20:45.339968	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 07:23:15.346592	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 07:25:45.330015	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 07:28:15.333783	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 07:30:45.326566	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 07:33:15.337486	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 07:35:45.328831	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 07:38:15.338648	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 07:40:45.354273	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 07:43:15.332578	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 07:45:45.336996	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 07:48:15.331901	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 07:50:45.344563	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 07:53:15.342573	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 07:55:45.33714	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 07:58:15.337982	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 08:00:45.34258	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 08:03:15.337325	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 08:05:45.353152	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 08:08:15.331194	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 08:10:45.345548	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 08:13:15.331118	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 08:15:45.336888	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 08:18:15.342234	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 08:20:45.341273	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 08:23:15.341313	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 08:25:45.342493	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 08:28:15.34397	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 08:30:45.350357	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 08:33:15.334844	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 08:35:45.351132	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 08:38:15.349585	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 08:40:45.350637	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 08:43:15.350411	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 08:45:45.335974	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 08:48:15.348133	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 08:50:54.348146	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 08:53:15.346842	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 08:55:45.337916	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 08:58:15.352712	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 09:00:45.363837	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 09:03:15.337857	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 09:05:45.34305	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 09:08:15.347082	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 09:10:45.356464	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 09:13:15.352388	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 09:15:45.34516	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 09:18:15.349716	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 09:20:45.342646	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 09:23:15.352956	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 09:25:45.35325	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 09:28:15.347752	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 09:30:45.345133	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 09:33:15.345313	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 09:35:45.343342	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 09:38:15.35763	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 09:40:45.355469	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 09:43:15.343082	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 09:45:45.341608	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 09:48:15.344957	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 09:50:45.521636	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 09:53:15.34461	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 09:55:45.352583	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 09:58:15.347417	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 10:00:45.34711	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 10:03:15.36	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 10:05:45.359366	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 10:08:15.353235	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 10:10:45.346509	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 10:13:15.35265	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 10:15:45.346574	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 10:18:15.372893	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 10:20:45.353143	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 10:23:15.345507	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 10:25:45.362971	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 10:28:15.357639	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 10:30:45.342516	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 10:33:15.349684	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 10:35:45.356592	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 10:38:15.354263	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 10:40:45.351631	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 10:43:15.344414	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 10:45:45.358127	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 10:48:15.360399	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 10:50:45.350822	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 10:53:15.361556	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 10:55:45.343888	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 10:58:15.349124	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 11:00:45.361072	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 11:03:15.346663	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 11:05:45.357895	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 11:08:15.350121	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 11:10:45.351905	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 11:13:15.357468	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 11:15:45.364358	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 11:18:15.3478	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 11:20:45.356428	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 11:23:15.356266	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 11:25:45.35294	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 11:28:15.354688	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 11:30:45.355047	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 11:33:15.342726	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 11:35:45.34585	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 11:38:15.344562	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 11:40:45.350551	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 11:43:15.352288	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 11:45:45.348441	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 11:48:15.350742	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 11:50:45.344371	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 11:53:15.350004	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 11:55:45.356379	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 11:58:15.353198	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 12:00:45.354591	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 12:03:15.346252	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 12:05:45.367001	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 12:08:15.352437	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 12:10:45.347396	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 12:13:15.358218	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 12:15:45.365053	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 12:18:15.357503	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 12:20:45.354575	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 12:23:15.348938	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 12:25:45.351986	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 12:28:15.351435	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 12:30:45.350996	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 12:33:15.350733	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 12:35:45.34699	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 12:38:15.347403	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 12:40:45.346973	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 12:43:15.346499	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
+2022-07-22 12:45:45.346772	{"RELAY_CH0_status": "OFF", "RELAY_CH1_status": "OFF", "RELAY_CH2_status": "OFF", "RELAY_CH3_status": "OFF"}	87
 \.
 
 
 --
--- TOC entry 3610 (class 0 OID 18270)
+-- TOC entry 3776 (class 0 OID 18270)
 -- Dependencies: 268
 -- Data for Name: NOTIFICATION; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -1257,7 +2003,7 @@ COPY public."NOTIFICATION" (_id, title, content, updated_timestamp) FROM stdin;
 
 
 --
--- TOC entry 3612 (class 0 OID 18278)
+-- TOC entry 3778 (class 0 OID 18278)
 -- Dependencies: 270
 -- Data for Name: NOTIFY; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -1267,7 +2013,7 @@ COPY public."NOTIFY" (profile_id, noti_id) FROM stdin;
 
 
 --
--- TOC entry 3613 (class 0 OID 18281)
+-- TOC entry 3779 (class 0 OID 18281)
 -- Dependencies: 271
 -- Data for Name: OWN; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -1279,11 +2025,12 @@ COPY public."OWN" (profile_id, enddev_id) FROM stdin;
 9	76
 9	73
 9	75
+5	87
 \.
 
 
 --
--- TOC entry 3623 (class 0 OID 18653)
+-- TOC entry 3789 (class 0 OID 18653)
 -- Dependencies: 281
 -- Data for Name: PROFILE; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -1295,7 +2042,7 @@ $2a$06$H5pv.bSicDiHOTpuQgiN9eCqrgtmj1MAcqQ/B9X1ZnPeVEnSK95O.	CUSTOMER	9	Customer
 
 
 --
--- TOC entry 3615 (class 0 OID 18286)
+-- TOC entry 3781 (class 0 OID 18286)
 -- Dependencies: 273
 -- Data for Name: SENSOR; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -1337,11 +2084,20 @@ COPY public."SENSOR" (enddev_id, _id, sensor_key, sensor_type, sensor_config) FR
 72	218	RO_toggle	controller	{"cmd": {"STATE1": {"downlinks": [{"f_port": 1, "priority": "HIGHEST", "confirmed": true, "frm_payload": "AwAB"}]}, "STATE2": {"downlinks": [{"f_port": 1, "priority": "HIGHEST", "confirmed": true, "frm_payload": "AwEA"}]}}, "key": "RO_toggle", "status_key": ["RO1_status", "RO2_status"], "status_val": [{"val": ["OFF", "ON"], "state": "STATE1"}, {"val": ["ON", "OFF"], "state": "STATE2"}], "widget_type": "3-way toggle switch", "uplink_timeout": 70}
 73	210	AirTemp	sensor	{"key": "AirTemp", "unit": "°C", "domain": "number", "widget_type": null}
 74	213	AirTemp	sensor	{"key": "AirTemp", "unit": "°C", "domain": "number", "widget_type": null}
+87	236	RELAY_CH0_status	sensor	{"key": "RELAY_CH0_status", "unit": null, "domain": ["ON", "OFF"], "widget_type": null}
+87	237	RELAY_CH1_status	sensor	{"key": "RELAY_CH1_status", "unit": null, "domain": ["ON", "OFF"], "widget_type": null}
+87	238	RELAY_CH2_status	sensor	{"key": "RELAY_CH2_status", "unit": null, "domain": ["ON", "OFF"], "widget_type": null}
+87	239	RELAY_CH3_status	sensor	{"key": "RELAY_CH3_status", "unit": null, "domain": ["ON", "OFF"], "widget_type": null}
+87	240	RELAY_CH0_ctrl	controller	{"cmd": {"ON": {"downlinks": [{"f_port": 200, "priority": "HIGHEST", "confirmed": true, "frm_payload": "qAEGAQUAAP8ABg=="}]}, "OFF": {"downlinks": [{"f_port": 200, "priority": "HIGHEST", "confirmed": true, "frm_payload": "qAEGAQUAAAAABg=="}]}}, "key": "RELAY_CH0_ctrl", "status_key": "RELAY_CH0_status", "widget_type": "Toggle button", "uplink_timeout": 70}
+87	241	RELAY_CH1_ctrl	controller	{"cmd": {"ON": {"downlinks": [{"f_port": 200, "priority": "HIGHEST", "confirmed": true, "frm_payload": "qAEGAQUAAf8ABg=="}]}, "OFF": {"downlinks": [{"f_port": 200, "priority": "HIGHEST", "confirmed": true, "frm_payload": "qAEGAQUAAQAABg=="}]}}, "key": "RELAY_CH1_ctrl", "status_key": "RELAY_CH1_status", "widget_type": "Toggle button", "uplink_timeout": 70}
+87	242	RELAY_CH2_ctrl	controller	{"cmd": {"ON": {"downlinks": [{"f_port": 200, "priority": "HIGHEST", "confirmed": true, "frm_payload": "qAEGAQUAAv8ABg=="}]}, "OFF": {"downlinks": [{"f_port": 200, "priority": "HIGHEST", "confirmed": true, "frm_payload": "qAEGAQUAAgAABg=="}]}}, "key": "RELAY_CH2_ctrl", "status_key": "RELAY_CH2_status", "widget_type": "Toggle button", "uplink_timeout": 70}
+87	243	RELAY_CH3_ctrl	controller	{"cmd": {"ON": {"downlinks": [{"f_port": 200, "priority": "HIGHEST", "confirmed": true, "frm_payload": "qAEGAQUAA/8ABg=="}]}, "OFF": {"downlinks": [{"f_port": 200, "priority": "HIGHEST", "confirmed": true, "frm_payload": "qAEGAQUAAwAABg=="}]}}, "key": "RELAY_CH3_ctrl", "status_key": "RELAY_CH3_status", "widget_type": "Toggle button", "uplink_timeout": 70}
+87	244	RELAY_POLL_UPLINK_ctrl	controller	{"cmd": {"TOGGLE": {"downlinks": [{"f_port": 200, "priority": "HIGHEST", "confirmed": true, "frm_payload": "CP8="}]}}, "key": "RELAY_POLL_UPLINK_ctrl", "widget_type": "Button", "uplink_timeout": 70}
 \.
 
 
 --
--- TOC entry 3617 (class 0 OID 18294)
+-- TOC entry 3783 (class 0 OID 18294)
 -- Dependencies: 275
 -- Data for Name: UPLINK_TESTING; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -1740,7 +2496,7 @@ COPY public."UPLINK_TESTING" (_id, message) FROM stdin;
 
 
 --
--- TOC entry 3619 (class 0 OID 18302)
+-- TOC entry 3785 (class 0 OID 18302)
 -- Dependencies: 277
 -- Data for Name: WIDGET; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -1794,11 +2550,41 @@ COPY public."WIDGET" (_id, display_name, config_dict, board_id, widget_type_id) 
 386	Cabbage room Airtemp	{"type": "Card", "view": {"Icon": "", "Color of card": "primary"}, "numberOfDataSource": {"number": 1, "maxNumber": 1}}	77	1
 387	Cabbage room Illumi	{"type": "Card", "view": {"Icon": "", "Color of card": "warning"}, "numberOfDataSource": {"number": 1, "maxNumber": 1}}	77	1
 388	Watermelon monitor	{"type": "Chart", "view": {"Color of line": "primary"}, "numberOfDataSource": {"number": 3, "maxNumber": 3}}	77	2
+350	ch0	{"type": "Button", "view": {"Color of button": "primary"}, "numberOfDataSource": {"number": 1, "maxNumber": 1}}	66	4
+351	sample1	{"type": "Button", "view": {"Color of button": "primary"}, "numberOfDataSource": {"number": 1, "maxNumber": 1}}	66	4
+352	RELAY1	{"type": "Button", "view": {"Color of button": "primary"}, "numberOfDataSource": {"number": 1, "maxNumber": 1}}	66	4
+353		{"type": "Thresholds", "view": {"Color of thresholds": "primary"}, "numberOfDataSource": {"number": 2, "maxNumber": 3}}	66	3
+354	RELAY_CH0_status	{"type": "Card", "view": {"Icon": null, "Color of card": "primary"}, "numberOfDataSource": {"maxNumber": 1, "defaultNumber": 1}}	72	1
+355	RELAY_CH1_status	{"type": "Card", "view": {"Icon": null, "Color of card": "primary"}, "numberOfDataSource": {"maxNumber": 1, "defaultNumber": 1}}	72	1
+356	RELAY_CH2_status	{"type": "Card", "view": {"Icon": null, "Color of card": "primary"}, "numberOfDataSource": {"maxNumber": 1, "defaultNumber": 1}}	72	1
+357	RELAY_CH3_status	{"type": "Card", "view": {"Icon": null, "Color of card": "primary"}, "numberOfDataSource": {"maxNumber": 1, "defaultNumber": 1}}	72	1
+358	RELAY_CH0_ctrl	{"type": "Card", "view": {"Icon": null, "Color of card": "primary"}, "numberOfDataSource": {"maxNumber": 1, "defaultNumber": 1}}	72	1
+359	RELAY_CH1_ctrl	{"type": "Card", "view": {"Icon": null, "Color of card": "primary"}, "numberOfDataSource": {"maxNumber": 1, "defaultNumber": 1}}	72	1
+360	RELAY_CH2_ctrl	{"type": "Card", "view": {"Icon": null, "Color of card": "primary"}, "numberOfDataSource": {"maxNumber": 1, "defaultNumber": 1}}	72	1
+361	RELAY_CH3_ctrl	{"type": "Card", "view": {"Icon": null, "Color of card": "primary"}, "numberOfDataSource": {"maxNumber": 1, "defaultNumber": 1}}	72	1
+362	RELAY_POLL_UPLINK_ctrl	{"type": "Card", "view": {"Icon": null, "Color of card": "primary"}, "numberOfDataSource": {"maxNumber": 1, "defaultNumber": 1}}	72	1
+363	Relay2	{"type": "Button", "view": {"Color of button": "primary"}, "numberOfDataSource": {"number": 1, "maxNumber": 1}}	66	4
+364		{"type": "Switch", "view": {"Color of switch checked": "primary", "Color of switch unchecked": "warning"}, "numberOfDataSource": {"number": 1, "maxNumber": 1}}	66	7
+365		{"type": "Toggle button", "view": {"Color of button state 1": "primary", "Color of button state 2": "warning"}, "numberOfDataSource": {"number": 1, "maxNumber": 1}}	66	8
+366	RELAY_CH0_status	{"type": "Card", "view": {"Icon": null, "Color of card": "primary"}, "numberOfDataSource": {"maxNumber": 1, "defaultNumber": 1}}	73	1
+367	RELAY_CH1_status	{"type": "Card", "view": {"Icon": null, "Color of card": "primary"}, "numberOfDataSource": {"maxNumber": 1, "defaultNumber": 1}}	73	1
+368	RELAY_CH2_status	{"type": "Card", "view": {"Icon": null, "Color of card": "primary"}, "numberOfDataSource": {"maxNumber": 1, "defaultNumber": 1}}	73	1
+369	RELAY_CH3_status	{"type": "Card", "view": {"Icon": null, "Color of card": "primary"}, "numberOfDataSource": {"maxNumber": 1, "defaultNumber": 1}}	73	1
+370	RELAY_CH0_ctrl	{"type": "Card", "view": {"Icon": null, "Color of card": "primary"}, "numberOfDataSource": {"maxNumber": 1, "defaultNumber": 1}}	73	1
+371	RELAY_CH1_ctrl	{"type": "Card", "view": {"Icon": null, "Color of card": "primary"}, "numberOfDataSource": {"maxNumber": 1, "defaultNumber": 1}}	73	1
+372	RELAY_CH2_ctrl	{"type": "Card", "view": {"Icon": null, "Color of card": "primary"}, "numberOfDataSource": {"maxNumber": 1, "defaultNumber": 1}}	73	1
+373	RELAY_CH3_ctrl	{"type": "Card", "view": {"Icon": null, "Color of card": "primary"}, "numberOfDataSource": {"maxNumber": 1, "defaultNumber": 1}}	73	1
+374	RELAY_POLL_UPLINK_ctrl	{"type": "Card", "view": {"Icon": null, "Color of card": "primary"}, "numberOfDataSource": {"maxNumber": 1, "defaultNumber": 1}}	73	1
+375	Relay2	{"type": "Button", "view": {"Color of button": "primary"}, "numberOfDataSource": {"number": 1, "maxNumber": 1}}	66	4
+376	R1	{"type": "Button", "view": {"Color of button": ""}, "numberOfDataSource": {"number": 1, "maxNumber": 1}}	66	4
+377	R0	{"type": "Button", "view": {"Color of button": "primary"}, "numberOfDataSource": {"number": 1, "maxNumber": 1}}	66	4
+378	R3	{"type": "Button", "view": {"Color of button": "primary"}, "numberOfDataSource": {"number": 1, "maxNumber": 1}}	66	4
+379	Poll	{"type": "Button", "view": {"Color of button": "primary"}, "numberOfDataSource": {"number": 1, "maxNumber": 1}}	66	4
 \.
 
 
 --
--- TOC entry 3620 (class 0 OID 18308)
+-- TOC entry 3786 (class 0 OID 18308)
 -- Dependencies: 278
 -- Data for Name: WIDGET_TYPE; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -1815,16 +2601,70 @@ COPY public."WIDGET_TYPE" (_id, ui_config, category) FROM stdin;
 
 
 --
--- TOC entry 3640 (class 0 OID 0)
+-- TOC entry 3808 (class 0 OID 0)
+-- Dependencies: 223
+-- Name: chunk_constraint_name; Type: SEQUENCE SET; Schema: _timescaledb_catalog; Owner: root
+--
+
+SELECT pg_catalog.setval('_timescaledb_catalog.chunk_constraint_name', 1, false);
+
+
+--
+-- TOC entry 3809 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: chunk_id_seq; Type: SEQUENCE SET; Schema: _timescaledb_catalog; Owner: root
+--
+
+SELECT pg_catalog.setval('_timescaledb_catalog.chunk_id_seq', 1, false);
+
+
+--
+-- TOC entry 3810 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: dimension_id_seq; Type: SEQUENCE SET; Schema: _timescaledb_catalog; Owner: root
+--
+
+SELECT pg_catalog.setval('_timescaledb_catalog.dimension_id_seq', 1, false);
+
+
+--
+-- TOC entry 3811 (class 0 OID 0)
+-- Dependencies: 218
+-- Name: dimension_slice_id_seq; Type: SEQUENCE SET; Schema: _timescaledb_catalog; Owner: root
+--
+
+SELECT pg_catalog.setval('_timescaledb_catalog.dimension_slice_id_seq', 1, false);
+
+
+--
+-- TOC entry 3812 (class 0 OID 0)
+-- Dependencies: 211
+-- Name: hypertable_id_seq; Type: SEQUENCE SET; Schema: _timescaledb_catalog; Owner: root
+--
+
+SELECT pg_catalog.setval('_timescaledb_catalog.hypertable_id_seq', 1, false);
+
+
+--
+-- TOC entry 3813 (class 0 OID 0)
+-- Dependencies: 226
+-- Name: bgw_job_id_seq; Type: SEQUENCE SET; Schema: _timescaledb_config; Owner: root
+--
+
+SELECT pg_catalog.setval('_timescaledb_config.bgw_job_id_seq', 1000, false);
+
+
+--
+-- TOC entry 3814 (class 0 OID 0)
 -- Dependencies: 260
 -- Name: BOARD__id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('public."BOARD__id_seq"', 71, true);
+SELECT pg_catalog.setval('public."BOARD__id_seq"', 73, true);
 
 
 --
--- TOC entry 3641 (class 0 OID 0)
+-- TOC entry 3815 (class 0 OID 0)
 -- Dependencies: 263
 -- Name: DEVTYPE__id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
@@ -1833,7 +2673,7 @@ SELECT pg_catalog.setval('public."DEVTYPE__id_seq"', 6, true);
 
 
 --
--- TOC entry 3642 (class 0 OID 0)
+-- TOC entry 3816 (class 0 OID 0)
 -- Dependencies: 265
 -- Name: DOWNLINK_TESTING__id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
@@ -1842,16 +2682,16 @@ SELECT pg_catalog.setval('public."DOWNLINK_TESTING__id_seq"', 232, true);
 
 
 --
--- TOC entry 3643 (class 0 OID 0)
+-- TOC entry 3817 (class 0 OID 0)
 -- Dependencies: 267
 -- Name: ENDDEV__id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('public."ENDDEV__id_seq"', 75, true);
+SELECT pg_catalog.setval('public."ENDDEV__id_seq"', 87, true);
 
 
 --
--- TOC entry 3644 (class 0 OID 0)
+-- TOC entry 3818 (class 0 OID 0)
 -- Dependencies: 269
 -- Name: NOTIFICATION__id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
@@ -1860,7 +2700,7 @@ SELECT pg_catalog.setval('public."NOTIFICATION__id_seq"', 1, false);
 
 
 --
--- TOC entry 3645 (class 0 OID 0)
+-- TOC entry 3819 (class 0 OID 0)
 -- Dependencies: 272
 -- Name: PROFILE__id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
@@ -1869,16 +2709,16 @@ SELECT pg_catalog.setval('public."PROFILE__id_seq"', 9, true);
 
 
 --
--- TOC entry 3646 (class 0 OID 0)
+-- TOC entry 3820 (class 0 OID 0)
 -- Dependencies: 274
 -- Name: SENSOR__id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('public."SENSOR__id_seq"', 218, true);
+SELECT pg_catalog.setval('public."SENSOR__id_seq"', 244, true);
 
 
 --
--- TOC entry 3647 (class 0 OID 0)
+-- TOC entry 3821 (class 0 OID 0)
 -- Dependencies: 276
 -- Name: UPLINK_TESTING__id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
@@ -1887,7 +2727,7 @@ SELECT pg_catalog.setval('public."UPLINK_TESTING__id_seq"', 445, true);
 
 
 --
--- TOC entry 3648 (class 0 OID 0)
+-- TOC entry 3822 (class 0 OID 0)
 -- Dependencies: 279
 -- Name: WIDGET_TYPE__id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
@@ -1896,16 +2736,16 @@ SELECT pg_catalog.setval('public."WIDGET_TYPE__id_seq"', 9, true);
 
 
 --
--- TOC entry 3649 (class 0 OID 0)
+-- TOC entry 3823 (class 0 OID 0)
 -- Dependencies: 280
 -- Name: WIDGET__id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('public."WIDGET__id_seq"', 349, true);
+SELECT pg_catalog.setval('public."WIDGET__id_seq"', 381, true);
 
 
 --
--- TOC entry 3414 (class 2606 OID 18416)
+-- TOC entry 3580 (class 2606 OID 18416)
 -- Name: ADMIN ADMIN_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -1914,7 +2754,7 @@ ALTER TABLE ONLY public."ADMIN"
 
 
 --
--- TOC entry 3416 (class 2606 OID 18418)
+-- TOC entry 3582 (class 2606 OID 18418)
 -- Name: BELONG_TO BELONG_TO_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -1923,7 +2763,7 @@ ALTER TABLE ONLY public."BELONG_TO"
 
 
 --
--- TOC entry 3418 (class 2606 OID 18420)
+-- TOC entry 3584 (class 2606 OID 18420)
 -- Name: BOARD BOARD_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -1932,7 +2772,7 @@ ALTER TABLE ONLY public."BOARD"
 
 
 --
--- TOC entry 3420 (class 2606 OID 18422)
+-- TOC entry 3586 (class 2606 OID 18422)
 -- Name: CUSTOMER CUSTOMER_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -1941,7 +2781,7 @@ ALTER TABLE ONLY public."CUSTOMER"
 
 
 --
--- TOC entry 3422 (class 2606 OID 18424)
+-- TOC entry 3588 (class 2606 OID 18424)
 -- Name: DEV_TYPE DEVTYPE_dev_type_key; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -1950,7 +2790,7 @@ ALTER TABLE ONLY public."DEV_TYPE"
 
 
 --
--- TOC entry 3424 (class 2606 OID 18426)
+-- TOC entry 3590 (class 2606 OID 18426)
 -- Name: DEV_TYPE DEVTYPE_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -1959,7 +2799,7 @@ ALTER TABLE ONLY public."DEV_TYPE"
 
 
 --
--- TOC entry 3426 (class 2606 OID 18428)
+-- TOC entry 3592 (class 2606 OID 18428)
 -- Name: DOWNLINK_TESTING DOWNLINK_TESTING_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -1968,7 +2808,7 @@ ALTER TABLE ONLY public."DOWNLINK_TESTING"
 
 
 --
--- TOC entry 3428 (class 2606 OID 18430)
+-- TOC entry 3594 (class 2606 OID 18430)
 -- Name: ENDDEV ENDDEV_dev_id_key; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -1977,7 +2817,7 @@ ALTER TABLE ONLY public."ENDDEV"
 
 
 --
--- TOC entry 3430 (class 2606 OID 18432)
+-- TOC entry 3596 (class 2606 OID 18432)
 -- Name: ENDDEV ENDDEV_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -1986,7 +2826,7 @@ ALTER TABLE ONLY public."ENDDEV"
 
 
 --
--- TOC entry 3432 (class 2606 OID 18434)
+-- TOC entry 3598 (class 2606 OID 18434)
 -- Name: NOTIFICATION NOTIFICATION_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -1995,7 +2835,7 @@ ALTER TABLE ONLY public."NOTIFICATION"
 
 
 --
--- TOC entry 3434 (class 2606 OID 18436)
+-- TOC entry 3600 (class 2606 OID 18436)
 -- Name: NOTIFY NOTIFY_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2004,7 +2844,7 @@ ALTER TABLE ONLY public."NOTIFY"
 
 
 --
--- TOC entry 3436 (class 2606 OID 18438)
+-- TOC entry 3602 (class 2606 OID 18438)
 -- Name: OWN OWN_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2013,7 +2853,7 @@ ALTER TABLE ONLY public."OWN"
 
 
 --
--- TOC entry 3446 (class 2606 OID 18664)
+-- TOC entry 3612 (class 2606 OID 18664)
 -- Name: PROFILE PROFILE_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2022,7 +2862,7 @@ ALTER TABLE ONLY public."PROFILE"
 
 
 --
--- TOC entry 3438 (class 2606 OID 18440)
+-- TOC entry 3604 (class 2606 OID 18440)
 -- Name: SENSOR SENSOR_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2031,7 +2871,7 @@ ALTER TABLE ONLY public."SENSOR"
 
 
 --
--- TOC entry 3440 (class 2606 OID 18442)
+-- TOC entry 3606 (class 2606 OID 18442)
 -- Name: UPLINK_TESTING UPLINK_TESTING_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2040,7 +2880,7 @@ ALTER TABLE ONLY public."UPLINK_TESTING"
 
 
 --
--- TOC entry 3444 (class 2606 OID 18444)
+-- TOC entry 3610 (class 2606 OID 18444)
 -- Name: WIDGET_TYPE WIDGET_TYPE_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2049,7 +2889,7 @@ ALTER TABLE ONLY public."WIDGET_TYPE"
 
 
 --
--- TOC entry 3442 (class 2606 OID 18446)
+-- TOC entry 3608 (class 2606 OID 18446)
 -- Name: WIDGET WIDGET_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2058,7 +2898,7 @@ ALTER TABLE ONLY public."WIDGET"
 
 
 --
--- TOC entry 3412 (class 1259 OID 18447)
+-- TOC entry 3578 (class 1259 OID 18447)
 -- Name: ENDDEV_PAYLOAD_recv_timestamp_idx; Type: INDEX; Schema: public; Owner: root
 --
 
@@ -2066,7 +2906,7 @@ CREATE INDEX "ENDDEV_PAYLOAD_recv_timestamp_idx" ON public."ENDDEV_PAYLOAD" USIN
 
 
 --
--- TOC entry 3460 (class 2620 OID 18448)
+-- TOC entry 3626 (class 2620 OID 18448)
 -- Name: OWN generate_dashboard; Type: TRIGGER; Schema: public; Owner: root
 --
 
@@ -2074,7 +2914,7 @@ CREATE TRIGGER generate_dashboard AFTER INSERT ON public."OWN" FOR EACH ROW EXEC
 
 
 --
--- TOC entry 3447 (class 2606 OID 18670)
+-- TOC entry 3613 (class 2606 OID 18670)
 -- Name: ADMIN ADMIN_profile_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2083,7 +2923,7 @@ ALTER TABLE ONLY public."ADMIN"
 
 
 --
--- TOC entry 3448 (class 2606 OID 18449)
+-- TOC entry 3614 (class 2606 OID 18449)
 -- Name: BELONG_TO BELONG_TO_sensor_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2092,7 +2932,7 @@ ALTER TABLE ONLY public."BELONG_TO"
 
 
 --
--- TOC entry 3449 (class 2606 OID 18454)
+-- TOC entry 3615 (class 2606 OID 18454)
 -- Name: BELONG_TO BELONG_TO_widget_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2101,7 +2941,7 @@ ALTER TABLE ONLY public."BELONG_TO"
 
 
 --
--- TOC entry 3450 (class 2606 OID 18459)
+-- TOC entry 3616 (class 2606 OID 18459)
 -- Name: BOARD BOARD_profile_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2110,7 +2950,7 @@ ALTER TABLE ONLY public."BOARD"
 
 
 --
--- TOC entry 3451 (class 2606 OID 18675)
+-- TOC entry 3617 (class 2606 OID 18675)
 -- Name: CUSTOMER CUSTOMER_profile_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2119,7 +2959,7 @@ ALTER TABLE ONLY public."CUSTOMER"
 
 
 --
--- TOC entry 3452 (class 2606 OID 18464)
+-- TOC entry 3618 (class 2606 OID 18464)
 -- Name: ENDDEV ENDDEV_dev_type_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2128,7 +2968,7 @@ ALTER TABLE ONLY public."ENDDEV"
 
 
 --
--- TOC entry 3453 (class 2606 OID 18469)
+-- TOC entry 3619 (class 2606 OID 18469)
 -- Name: NOTIFY NOTIFY_noti_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2137,7 +2977,7 @@ ALTER TABLE ONLY public."NOTIFY"
 
 
 --
--- TOC entry 3454 (class 2606 OID 18680)
+-- TOC entry 3620 (class 2606 OID 18680)
 -- Name: NOTIFY NOTIFY_profile_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2146,7 +2986,7 @@ ALTER TABLE ONLY public."NOTIFY"
 
 
 --
--- TOC entry 3455 (class 2606 OID 18474)
+-- TOC entry 3621 (class 2606 OID 18474)
 -- Name: OWN OWN_enddev_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2155,7 +2995,7 @@ ALTER TABLE ONLY public."OWN"
 
 
 --
--- TOC entry 3456 (class 2606 OID 18479)
+-- TOC entry 3622 (class 2606 OID 18479)
 -- Name: OWN OWN_profile_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2164,7 +3004,7 @@ ALTER TABLE ONLY public."OWN"
 
 
 --
--- TOC entry 3457 (class 2606 OID 18484)
+-- TOC entry 3623 (class 2606 OID 18484)
 -- Name: SENSOR SENSOR_enddev_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2173,7 +3013,7 @@ ALTER TABLE ONLY public."SENSOR"
 
 
 --
--- TOC entry 3458 (class 2606 OID 18489)
+-- TOC entry 3624 (class 2606 OID 18489)
 -- Name: WIDGET WIDGET_board_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2182,7 +3022,7 @@ ALTER TABLE ONLY public."WIDGET"
 
 
 --
--- TOC entry 3459 (class 2606 OID 18494)
+-- TOC entry 3625 (class 2606 OID 18494)
 -- Name: WIDGET WIDGET_widget_type_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -2190,7 +3030,7 @@ ALTER TABLE ONLY public."WIDGET"
     ADD CONSTRAINT "WIDGET_widget_type_id_fkey" FOREIGN KEY (widget_type_id) REFERENCES public."WIDGET_TYPE"(_id) NOT VALID;
 
 
--- Completed on 2022-07-10 15:27:11 UTC
+-- Completed on 2022-07-30 15:24:16 UTC
 
 --
 -- PostgreSQL database dump complete

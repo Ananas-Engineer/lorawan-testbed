@@ -1,0 +1,17 @@
+{
+    "SERVER_ADDR": "128.199.105.69",
+    "SERVER_ADDR_INSIDE_DOCKER": "127.0.0.1",
+    "MQTT_PORT": 1883,
+    "WEBSOCKET_PORT": 8083,
+    "HTTP_API_PORT": 8081,
+    "ADMIN_USERNAME": "admin",
+    "ADMIN_PASSWORD": "public",
+    "SYSTEM_USERNAME":"anxYQc2AmG8fNcuaWaFA",
+    "SYSTEM_PASSWORD": "xgeVOB89kyEVpHTfgKGg",
+    "ENDUSER_USERNAME": "bz7AaQzqSnfWeicreBQz",
+    "ENDUSER_PASSWORD": "YuBnmreoWUUtZK5j1o1w",
+    "TTS_BRIDGE_CLIENT_ID": "tts-bridge",
+    "TTS_CLIENT_CLIENT_ID": "tts-client",
+    "DB_CONNECTOR_CLIENT_ID": "db-connector",
+    "PREPROCESSOR_CLIENT_ID": "preprocessor"
+}
