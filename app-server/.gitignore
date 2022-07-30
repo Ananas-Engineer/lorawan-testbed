@@ -1,5 +1,3 @@
-common/
-
 db/run/pgadmin/volumes/
 
 streaming-broker/node_modules/
