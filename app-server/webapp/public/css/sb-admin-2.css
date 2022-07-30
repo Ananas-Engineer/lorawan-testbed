@@ -612,6 +612,11 @@ pre code {
   padding-left: 0.75rem;
 }
 
+.dashboard-card {
+  max-width: fit-content !important;
+  max-width: -moz-fit-content !important;
+}
+
 .col {
   flex-basis: 0;
   flex-grow: 1;
@@ -6931,6 +6936,10 @@ button.bg-dark:focus {
   justify-content: space-around !important;
 }
 
+.justify-content-evenly {
+  justify-content: space-evenly !important;
+}
+
 .align-items-start {
   align-items: flex-start !important;
 }
@@ -10003,6 +10012,10 @@ a:focus {
 
 .text-lg {
   font-size: 1.2rem;
+}
+
+.text-med {
+  font-size: 0.95rem;
 }
 
 .text-gray-100 {
