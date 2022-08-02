@@ -791,14 +791,14 @@
                                                 <div class="card-body row align-items-center small font-weight-bold ">
                                                     <div id="metric-sensor-name" class="col-6 text-primary">Name of sensor</div>
                                                     <div class="col-6 d-flex flex-wrap" style="gap: 5px;">
-                                                        <button  id="btn-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"
+                                                        <button  id="btnmetric-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"
                                                             class="btn btn-sm btn-primary shadow-sm controller" role="button"
                                                             onclick="metricTestingManager('<%=boardWidget[j].e_dev_id[0]%>',
                                                             '<%=JSON.stringify(boardWidget[j].sensor_config)%>',
                                                             '<%=boardWidget[j].w_id%>')">
-                                                            <span><%= __('Start') %></span>
+                                                            <span id="btnmetriclabel-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"><%= __('Start') %></span>
                                                         </button>
-                                                        <button  d="btn-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"
+                                                        <button  d="btncofig-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"
                                                             class="btn btn-sm btn-dark shadow-sm controller" role="button"
                                                             onclick="">
                                                             <span><%= __('Configure') %></span>
@@ -806,13 +806,13 @@
                                                     </div>
                                                     <hr class="col-11 sidebar-divider">
                                                     <div class="col-3">Avg. PLR</div>
-                                                    <div class="col-3"><span class="mx-2">___</span><span>unit</span></div>
+                                                    <div class="col-3"><span id="btnmetricplr-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>" class="mx-2">___</span><span>unit</span></div>
                                                     <div class="col-3">Avg. RTT</div>
-                                                    <div class="col-3"><span class="mx-2">___</span><span>unit</span></div>
+                                                    <div class="col-3"><span id="btnmetricrtt-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>" class="mx-2">___</span><span>unit</span></div>
                                                     <div class="col-3">Avg. RE</div>
-                                                    <div class="col-3"><span class="mx-2">___</span><span>unit</span></div>
+                                                    <div class="col-3"><span id="btnmetricre-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>" class="mx-2">___</span><span>unit</span></div>
                                                     <div class="col-3">Avg. RESP</div>
-                                                    <div class="col-3"><span class="mx-2">___</span><span>unit</span></div>
+                                                    <div class="col-3"><span id="btnmetricresp-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>" class="mx-2">___</span><span>unit</span></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -1598,6 +1598,56 @@
                                                         
                         
                     });
+
+                    document.querySelectorAll(`[id^=btnmetricrtt-payload-data-${dev_id}]`).forEach((item)=>{
+                        try {
+                                var data = $(`#${item.id}`).data('id');
+                                // var path = item.id.split('-').pop();
+                                let rtt = Date.now() - data.starttime;
+                                if(storage.payload[dev_id].testing){
+                                    storage.payload[dev_id].testing.rtt.push(rtt);
+                                }
+                                else {
+                                    storage.payload[dev_id].testing = {
+                                        plr: [], rtt: [], resp: []
+                                    }
+                                }
+                                item.innerText = rtt;
+                        }
+                        catch (err) {
+                            console.log(err)
+                        }  
+                    });
+                    document.querySelectorAll(`[id^=btnmetricresp-payload-data-${dev_id}]`).forEach((item)=>{
+                        try {
+                                // var data = $(`#${item.id}`).data('id');
+                                // var path = item.id.split('-').pop();
+                                let resp = storage.payload[dev_id].testing.rtt.reduce((a, b) => a + b, 0);
+                                storage.payload[dev_id].testing.resp.push(resp);
+                                
+                                item.innerText = resp;
+                                
+                        }
+                        catch (err) {
+                            console.log(err)
+                        }  
+                    });
+                    document.querySelectorAll(`[id^=btnmetricplr-payload-data-${dev_id}]`).forEach((item)=>{
+                        try {
+                                var data = $(`#${item.id}`).data('id');
+                                // var path = item.id.split('-').pop();
+                                let plr = 123/data.packageCnt;
+                                storage.payload[dev_id].testing.resp.push(plr);
+                                item.innerText = plr;
+
+                                $(`#${item.id}`).data('id', {
+                                    packageCnt: data.packageCnt+1
+                                });
+                        }
+                        catch (err) {
+                            console.log(err)
+                        }  
+                    });
                     //GRAPH
                     document.querySelectorAll(`[id^=timestamp-payload-data-${dev_id}-${i}]`).forEach((item)=>{
                                                         item.innerHTML = `<%= __('Last updated') %>: ${parsed_message.recv_timestamp}`;                                  
@@ -1867,15 +1917,15 @@
         });
     }
     function metricTestingManager(dev_id, sensor_config, w_id) {
-        console.log('here');
+
         //VARIABLE PREPROCESSOR
         let storage = clientStorage.getItem(STORAGE_KEY);
         storage = JSON.parse(storage);
         sensor_config = JSON.parse(sensor_config.replace(/&#34;/g, '"'))[0];
         
         //CHANGE BUTTON UI
-        // document.getElementById(`btn-payload-data-${dev_id}-${w_id}`)["disabled"] = true;
-
+        document.getElementById(`btnmetriclabel-payload-data-${dev_id}-${w_id}`).innerText = "<%= __('Stop') %>";
+        document.getElementById(`btnmetric-payload-data-${dev_id}-${w_id}`).style["background-color"]="#C90000";
         //DISABLE OTHER SAME BUTTON
         document.querySelectorAll(`[id^=button-payload-data]`).forEach((item)=>{
             item["disabled"] = true;
@@ -1902,19 +1952,19 @@
         // let downlink_cmd=sensor_config.cmd[sensor_config.status_val[0].state];
         let downlink_cmd = sensor_config.cmd.OFF;
         console.log('cmd', downlink_cmd)
-        let oldData = storage.payload[dev_id].payload_data[sensor_config.status_key].at(-1)
-        if(oldData){
-            switch (oldData) {
-                case 'ON':
-                    downlink_cmd=sensor_config.cmd.OFF;
-                    break;
-                case 'OFF':
-                    downlink_cmd=sensor_config.cmd.ON;
-                    break;
-                default:
-                    break;
-            }
-        }
+        // let oldData = storage.payload[dev_id].payload_data[sensor_config.status_key].at(-1)
+        // if(oldData){
+        //     switch (oldData) {
+        //         case 'ON':
+        //             downlink_cmd=sensor_config.cmd.OFF;
+        //             break;
+        //         case 'OFF':
+        //             downlink_cmd=sensor_config.cmd.ON;
+        //             break;
+        //         default:
+        //             break;
+        //     }
+        // }
         // let downlink_cmd = {
         //         "downlinks": [
         //             {
@@ -1938,30 +1988,38 @@
         // });
         mqtt_publish(`devices/${dev_id}/down/push`, JSON.stringify(downlink_cmd));
         
-        let interval = setInterval(function(){
-            let timetag = document.getElementById(`buttontime-payload-data-${w_id}`);
-            let timevalue = parseFloat(timetag.innerHTML);
-            //intialize counter
-            if(timetag.innerHTML=='UPDATED' || timetag.innerHTML=='0' || timetag.innerHTML=='EXPIRED') {
-                timetag.innerHTML = sensor_config.uplink_timeout;
-            }
-            else if (timevalue!=0) {
-                timetag.innerHTML = (timevalue - 0.1).toFixed(1);
+        // let interval = setInterval(function(){
+        //     let timetag = document.getElementById(`buttontime-payload-data-${w_id}`);
+        //     let timevalue = parseFloat(timetag.innerHTML);
+        //     //intialize counter
+        //     if(timetag.innerHTML=='UPDATED' || timetag.innerHTML=='0' || timetag.innerHTML=='EXPIRED') {
+        //         timetag.innerHTML = sensor_config.uplink_timeout;
+        //     }
+        //     else if (timevalue!=0) {
+        //         timetag.innerHTML = (timevalue - 0.1).toFixed(1);
                 
-            }
-            else {
-                timetag.innerHTML = "EXPIRED";
-                clearInterval(interval);
-                document.getElementById(`btn-payload-data-${dev_id}-${w_id}`)["disabled"] = false;
-                // document.getElementById(`button-payload-data-${w_id}`).style.pointerEvents="auto";
-                // document.getElementById(`slider-payload-data-${w_id}`).style["background-color"]="#2196F3";
-                // document.getElementById(`button-payload-data-${w_id}`).checked = !document.getElementById(`button-payload-data-${w_id}`).checked;
-            }
+        //     }
+        //     else {
+        //         timetag.innerHTML = "EXPIRED";
+        //         clearInterval(interval);
+        //         document.getElementById(`btn-payload-data-${dev_id}-${w_id}`)["disabled"] = false;
+        //         // document.getElementById(`button-payload-data-${w_id}`).style.pointerEvents="auto";
+        //         // document.getElementById(`slider-payload-data-${w_id}`).style["background-color"]="#2196F3";
+        //         // document.getElementById(`button-payload-data-${w_id}`).checked = !document.getElementById(`button-payload-data-${w_id}`).checked;
+        //     }
             
-        }, 100);
-        $(`#btn-payload-data-${dev_id}-${w_id}`).data('id', {
-            interval: interval
+        // }, 100);
+        // $(`#btn-payload-data-${dev_id}-${w_id}`).data('id', {
+        //     interval: interval
+        // });
+
+        $(`#btnmetricrtt-payload-data-${dev_id}-${w_id}`).data('id', {
+            starttime: Date.now()
         });
+        $(`#btnmetricplr-payload-data-${dev_id}-${w_id}`).data('id', {
+            packageCnt: 1
+        });
+        
     }
 </script>
 </body>
