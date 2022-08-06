@@ -66,6 +66,7 @@ function extract_dev_data(json_pkg) {
     };
 
     let payload_json_pkg = {
+        "f_cnt": json_pkg["uplink_message"]["f_cnt"],
         "recv_timestamp" : json_pkg["received_at"],
         "payload_data" : json_pkg["uplink_message"]["decoded_payload"]["data"]
     };
