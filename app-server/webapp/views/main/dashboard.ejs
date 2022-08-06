@@ -893,7 +893,7 @@
                                                 <!-- Card Header - Dropdown -->
                                                 <div
                                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                                    <h6 class="m-0 font-weight-bold text-primary">Metrics Testing</h6>
+                                                    <h6 class="m-0 font-weight-bold text-primary"><%=boardWidget[j].w_display_name%></h6>
                                                     <div class="dropdown no-arrow">
                                                         <a class="dropdown-toggle" role="button" id="dropdownMenuLink"
                                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -921,14 +921,16 @@
                                                 </div>
                                                 <!-- Card Body -->
                                                 <div class="card-body row align-items-center small font-weight-bold ">
-                                                    <div id="metric-sensor-name" class="col-6 text-primary">Name of sensor</div>
+                                                    <!-- <div id="metric-sensor-name" class="col-6 text-primary">Name of sensor</div> -->
                                                     <div class="col-6 d-flex flex-wrap" style="gap: 5px;">
-                                                        <button  id="btn-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"
-                                                            class="btn btn-sm btn-primary shadow-sm controller" role="button"
-                                                            onclick="">
-                                                            <span><%= __('Start') %></span>
+                                                        <button  id="btnmetric-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"
+                                                            class="btn-payload-data- btn-sm btn-primary shadow-sm controller" role="button"
+                                                            onclick="metricTestingManager('<%=boardWidget[j].e_dev_id[0]%>',
+                                                            '<%=JSON.stringify(boardWidget[j].sensor_config)%>',
+                                                            '<%=boardWidget[j].w_id%>')">
+                                                            <span id="btnmetriclabel-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"><%= __('Start') %></span>
                                                         </button>
-                                                        <button  d="btn-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"
+                                                        <button  id="btnmetricconfig-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"
                                                             class="btn btn-sm btn-dark shadow-sm controller" role="button"
                                                             onclick="">
                                                             <span><%= __('Configure') %></span>
@@ -936,13 +938,75 @@
                                                     </div>
                                                     <hr class="col-11 sidebar-divider">
                                                     <div class="col-3">Avg. PLR</div>
-                                                    <div class="col-3"><span class="mx-2">___</span><span>unit</span></div>
+                                                    <div class="col-3"><span class="mx-2" id="btnmetricplr-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">___</span><span>unit</span></div>
                                                     <div class="col-3">Avg. RTT</div>
-                                                    <div class="col-3"><span class="mx-2">___</span><span>unit</span></div>
+                                                    <div class="col-3"><span class="mx-2" id="btnmetricrtt-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">___</span><span>unit</span></div>
                                                     <div class="col-3">Avg. RE</div>
-                                                    <div class="col-3"><span class="mx-2">___</span><span>unit</span></div>
+                                                    <div class="col-3"><span class="mx-2" >___</span><span>unit</span></div>
                                                     <div class="col-3">Avg. RESP</div>
-                                                    <div class="col-3"><span class="mx-2">___</span><span>unit</span></div>
+                                                    <div class="col-3"><span class="mx-2" id="btnmetricresp-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">___</span><span>unit</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <%}else if(config.type == 'metric-testing-uplink'){%> 
+                                        <div class="col-xl-3 col-md-6 mb-4">
+                                            <!-- Metrics Testing Table -->
+                                            <div class="card shadow">
+                                                <!-- Card Header - Dropdown -->
+                                                <div
+                                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                                    <h6 class="m-0 font-weight-bold text-primary"><%=boardWidget[j].w_display_name%></h6>
+                                                    <div class="dropdown no-arrow">
+                                                        <a class="dropdown-toggle" role="button" id="dropdownMenuLink"
+                                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                                        </a>
+                                                        <!-- <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                            aria-labelledby="dropdownMenuLink">
+                                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editWidgetModal"
+                                                                        onclick="openEditWidgetModal('<%=boardWidget[j].w_id%>')"><%= __('Configure widget') %></a>
+                        
+                                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#deleteWidgetModal"
+                                                                        onclick="openDeleteWidgetModal('<%=boardWidget[j].w_id%>')"><%= __('Delete widget') %></a>
+                                                            <script>
+                                                                function openEditWidgetModal(widget_id) {
+                                                                    var str = "Widget ID: " + widget_id;
+                                                                    $("#widget_id").html(str);
+                                                                    document.getElementById(`edit-widget_id`).value = widget_id;
+                                                                }
+                                                                function openDeleteWidgetModal(widget_id) {
+                                                                    document.getElementById(`delete-widget_id`).value = widget_id;
+                                                                }
+                                                            </script>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                                <!-- Card Body -->
+                                                <div class="card-body row align-items-center small font-weight-bold ">
+                                                    <!-- <div id="metric-sensor-name" class="col-6 text-primary">Name of sensor</div> -->
+                                                    <div class="col-6 d-flex flex-wrap" style="gap: 5px;">
+                                                        <button  id="btnmetric-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"
+                                                            class="btn-payload-data- btn-sm btn-primary shadow-sm controller" role="button"
+                                                            onclick="metricTestingUplinkManager('<%=boardWidget[j].e_dev_id[0]%>',
+                                                            '<%=JSON.stringify(boardWidget[j].sensor_config)%>',
+                                                            '<%=boardWidget[j].w_id%>')">
+                                                            <span id="btnmetriclabel-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"><%= __('Start') %></span>
+                                                        </button>
+                                                        <button  id="btnmetricconfig-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"
+                                                            class="btn btn-sm btn-dark shadow-sm controller" role="button"
+                                                            onclick="">
+                                                            <span><%= __('Configure') %></span>
+                                                        </button>
+                                                    </div>
+                                                    <hr class="col-11 sidebar-divider">
+                                                    <div class="col-3">Avg. PLR</div>
+                                                    <div class="col-3"><span class="mx-2" id="btnmetricplr-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">___</span><span>unit</span></div>
+                                                    <div class="col-3">Avg. RTT</div>
+                                                    <div class="col-3"><span class="mx-2" id="btnmetricrtt-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">___</span><span>unit</span></div>
+                                                    <div class="col-3">Avg. RE</div>
+                                                    <div class="col-3"><span class="mx-2" >___</span><span>unit</span></div>
+                                                    <div class="col-3">Avg. RESP</div>
+                                                    <div class="col-3"><span class="mx-2" id="btnmetricresp-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">___</span><span>unit</span></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -1603,16 +1667,19 @@
                         try {
                                 var data = $(`#${item.id}`).data('id');
                                 // var path = item.id.split('-').pop();
-                                let rtt = Date.now() - data.starttime;
-                                if(storage.payload[dev_id].testing){
-                                    storage.payload[dev_id].testing.rtt.push(rtt);
-                                }
-                                else {
-                                    storage.payload[dev_id].testing = {
-                                        plr: [], rtt: [], resp: []
+                                if(data&&data.state=='start'){
+                                    let rtt = Date.now() - data.starttime;
+                                    if(storage.payload[dev_id].testing){
+                                        storage.payload[dev_id].testing.rtt.push(rtt);
                                     }
+                                    else {
+                                        storage.payload[dev_id].testing = {
+                                            plr: [], rtt: [], resp: []
+                                        }
+                                    }
+                                    item.innerText = rtt;
                                 }
-                                item.innerText = rtt;
+                                
                         }
                         catch (err) {
                             console.log(err)
@@ -1620,12 +1687,15 @@
                     });
                     document.querySelectorAll(`[id^=btnmetricresp-payload-data-${dev_id}]`).forEach((item)=>{
                         try {
-                                // var data = $(`#${item.id}`).data('id');
+                                var data = $(`#${item.id}`).data('id');
                                 // var path = item.id.split('-').pop();
-                                let resp = storage.payload[dev_id].testing.rtt.reduce((a, b) => a + b, 0);
-                                storage.payload[dev_id].testing.resp.push(resp);
+                                if(data&&data.state=='start'){
+                                    let resp = storage.payload[dev_id].testing.rtt.reduce((a, b) => a + b, 0)/1;
+                                    storage.payload[dev_id].testing.resp.push(resp);
+                                    
+                                    item.innerText = resp;
+                                }
                                 
-                                item.innerText = resp;
                                 
                         }
                         catch (err) {
@@ -1636,13 +1706,17 @@
                         try {
                                 var data = $(`#${item.id}`).data('id');
                                 // var path = item.id.split('-').pop();
-                                let plr = 123/data.packageCnt;
-                                storage.payload[dev_id].testing.resp.push(plr);
-                                item.innerText = plr;
+                                if(data&&data.state=='start'){
+                                    console.log(parsed_message);
+                                    let plr = parsed_message.f_cnt/data.packageCnt;
+                                    storage.payload[dev_id].testing.plr.push(plr);
+                                    item.innerText = plr;
 
-                                $(`#${item.id}`).data('id', {
-                                    packageCnt: data.packageCnt+1
-                                });
+                                    $(`#${item.id}`).data('id', {
+                                        packageCnt: data.packageCnt+1
+                                    });
+                                }
+                                
                         }
                         catch (err) {
                             console.log(err)
@@ -1918,6 +1992,9 @@
     }
     function metricTestingManager(dev_id, sensor_config, w_id) {
 
+        var data = $(`#btnmetric-payload-data-${dev_id}-${w_id}`).data('id');
+        if(data&&data.state=='start') return;
+
         //VARIABLE PREPROCESSOR
         let storage = clientStorage.getItem(STORAGE_KEY);
         storage = JSON.parse(storage);
@@ -1950,8 +2027,8 @@
         
         // // delete sensor_config.cmd[];
         // let downlink_cmd=sensor_config.cmd[sensor_config.status_val[0].state];
-        let downlink_cmd = sensor_config.cmd.OFF;
-        console.log('cmd', downlink_cmd)
+        let downlink_cmd = sensor_config.cmd.DEFAULT;
+        console.log('cmd', downlink_cmd);
         // let oldData = storage.payload[dev_id].payload_data[sensor_config.status_key].at(-1)
         // if(oldData){
         //     switch (oldData) {
@@ -2014,10 +2091,18 @@
         // });
 
         $(`#btnmetricrtt-payload-data-${dev_id}-${w_id}`).data('id', {
+            state: 'start',
             starttime: Date.now()
         });
         $(`#btnmetricplr-payload-data-${dev_id}-${w_id}`).data('id', {
+            state: 'start',
             packageCnt: 1
+        });
+        $(`#btnmetricresp-payload-data-${dev_id}-${w_id}`).data('id', {
+            state: 'start'
+        });
+        $(`#btnmetric-payload-data-${dev_id}-${w_id}`).data('id', {
+            state: 'start'
         });
         
     }
