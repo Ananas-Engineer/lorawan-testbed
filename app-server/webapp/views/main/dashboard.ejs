@@ -886,7 +886,7 @@
                                         </div>
                                     </div>
                                     
-                                    <%}else if(config.type == 'metric-testing'){%> 
+                                    <%}else if(config.type == 'metric-testing-downlink'){%> 
                                         <div class="col-xl-3 col-md-6 mb-4">
                                             <!-- Metrics Testing Table -->
                                             <div class="card shadow">
@@ -921,16 +921,16 @@
                                                 </div>
                                                 <!-- Card Body -->
                                                 <div class="card-body row align-items-center small font-weight-bold ">
-                                                    <!-- <div id="metric-sensor-name" class="col-6 text-primary">Name of sensor</div> -->
+                                                    <div id="btnmetricdownlinktime-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>" class="col-6 text-primary">UPDATED</div>
                                                     <div class="col-6 d-flex flex-wrap" style="gap: 5px;">
-                                                        <button  id="btnmetric-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"
+                                                        <button  id="btnmetricdownlink-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"
                                                             class="btn-payload-data- btn-sm btn-primary shadow-sm controller" role="button"
-                                                            onclick="metricTestingManager('<%=boardWidget[j].e_dev_id[0]%>',
+                                                            onclick="metricTestingDownlinkManager('<%=boardWidget[j].e_dev_id[0]%>',
                                                             '<%=JSON.stringify(boardWidget[j].sensor_config)%>',
                                                             '<%=boardWidget[j].w_id%>')">
-                                                            <span id="btnmetriclabel-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"><%= __('Start') %></span>
+                                                            <span id="btnmetricdownlinklabel-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"><%= __('Start') %></span>
                                                         </button>
-                                                        <button  id="btnmetricconfig-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"
+                                                        <button  id="btnmetricdownlinkconfig-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"
                                                             class="btn btn-sm btn-dark shadow-sm controller" role="button"
                                                             onclick="">
                                                             <span><%= __('Configure') %></span>
@@ -938,13 +938,13 @@
                                                     </div>
                                                     <hr class="col-11 sidebar-divider">
                                                     <div class="col-3">Avg. PLR</div>
-                                                    <div class="col-3"><span class="mx-2" id="btnmetricplr-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">___</span><span>unit</span></div>
+                                                    <div class="col-3"><span class="mx-2" id="btnmetricdownlinkplr-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">0</span><span>unit</span></div>
                                                     <div class="col-3">Avg. RTT</div>
-                                                    <div class="col-3"><span class="mx-2" id="btnmetricrtt-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">___</span><span>unit</span></div>
-                                                    <div class="col-3">Avg. RE</div>
-                                                    <div class="col-3"><span class="mx-2" >___</span><span>unit</span></div>
+                                                    <div class="col-3"><span class="mx-2" id="btnmetricdownlinkrtt-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">0</span><span>unit</span></div>
+                                                    <!-- <div class="col-3">Avg. RE</div>
+                                                    <div class="col-3"><span class="mx-2" >___</span><span>unit</span></div> -->
                                                     <div class="col-3">Avg. RESP</div>
-                                                    <div class="col-3"><span class="mx-2" id="btnmetricresp-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">___</span><span>unit</span></div>
+                                                    <div class="col-3"><span class="mx-2" id="btnmetricdownlinkresp-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">0</span><span>unit</span></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -985,14 +985,14 @@
                                                 <div class="card-body row align-items-center small font-weight-bold ">
                                                     <!-- <div id="metric-sensor-name" class="col-6 text-primary">Name of sensor</div> -->
                                                     <div class="col-6 d-flex flex-wrap" style="gap: 5px;">
-                                                        <button  id="btnmetric-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"
+                                                        <button  id="btnmetricuplink-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"
                                                             class="btn-payload-data- btn-sm btn-primary shadow-sm controller" role="button"
                                                             onclick="metricTestingUplinkManager('<%=boardWidget[j].e_dev_id[0]%>',
                                                             '<%=JSON.stringify(boardWidget[j].sensor_config)%>',
                                                             '<%=boardWidget[j].w_id%>')">
-                                                            <span id="btnmetriclabel-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"><%= __('Start') %></span>
+                                                            <span id="btnmetricuplinklabel-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"><%= __('Start') %></span>
                                                         </button>
-                                                        <button  id="btnmetricconfig-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"
+                                                        <button  id="btnmetricuplinkconfig-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"
                                                             class="btn btn-sm btn-dark shadow-sm controller" role="button"
                                                             onclick="">
                                                             <span><%= __('Configure') %></span>
@@ -1000,13 +1000,13 @@
                                                     </div>
                                                     <hr class="col-11 sidebar-divider">
                                                     <div class="col-3">Avg. PLR</div>
-                                                    <div class="col-3"><span class="mx-2" id="btnmetricplr-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">___</span><span>unit</span></div>
+                                                    <div class="col-3"><span class="mx-2" id="btnmetricuplinkplr-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">___</span><span>unit</span></div>
                                                     <div class="col-3">Avg. RTT</div>
-                                                    <div class="col-3"><span class="mx-2" id="btnmetricrtt-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">___</span><span>unit</span></div>
+                                                    <div class="col-3"><span class="mx-2" id="btnmetricuplinkrtt-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">___</span><span>unit</span></div>
                                                     <div class="col-3">Avg. RE</div>
                                                     <div class="col-3"><span class="mx-2" >___</span><span>unit</span></div>
                                                     <div class="col-3">Avg. RESP</div>
-                                                    <div class="col-3"><span class="mx-2" id="btnmetricresp-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">___</span><span>unit</span></div>
+                                                    <div class="col-3"><span class="mx-2" id="btnmetricuplinkresp-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">___</span><span>unit</span></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -1663,18 +1663,18 @@
                         
                     });
 
-                    document.querySelectorAll(`[id^=btnmetricrtt-payload-data-${dev_id}]`).forEach((item)=>{
+                    document.querySelectorAll(`[id^=btnmetricdownlinkrtt-payload-data-${dev_id}]`).forEach((item)=>{
                         try {
                                 var data = $(`#${item.id}`).data('id');
                                 // var path = item.id.split('-').pop();
                                 if(data&&data.state=='start'){
                                     let rtt = Date.now() - data.starttime;
-                                    if(storage.payload[dev_id].testing){
-                                        storage.payload[dev_id].testing.rtt.push(rtt);
+                                    if(storage.payload[dev_id].downlinktesting){
+                                        storage.payload[dev_id].downlinktesting.downlinkrtt.push(rtt);
                                     }
                                     else {
-                                        storage.payload[dev_id].testing = {
-                                            plr: [], rtt: [], resp: []
+                                        storage.payload[dev_id].downlinktesting = {
+                                            downlinkplr: [], downlinkrtt: [], downlinkresp: []
                                         }
                                     }
                                     item.innerText = rtt;
@@ -1685,13 +1685,14 @@
                             console.log(err)
                         }  
                     });
-                    document.querySelectorAll(`[id^=btnmetricresp-payload-data-${dev_id}]`).forEach((item)=>{
+                    document.querySelectorAll(`[id^=btnmetricdownlinkresp-payload-data-${dev_id}]`).forEach((item)=>{
                         try {
                                 var data = $(`#${item.id}`).data('id');
                                 // var path = item.id.split('-').pop();
                                 if(data&&data.state=='start'){
-                                    let resp = storage.payload[dev_id].testing.rtt.reduce((a, b) => a + b, 0)/1;
-                                    storage.payload[dev_id].testing.resp.push(resp);
+                                    let resp = storage.payload[dev_id].downlinktesting.downlinkrtt.reduce((a, b) => a + b, 0)/1;
+                                    console.log('resp ', resp);
+                                    storage.payload[dev_id].downlinktesting.downlinkresp.push(resp);
                                     
                                     item.innerText = resp;
                                 }
@@ -1702,17 +1703,117 @@
                             console.log(err)
                         }  
                     });
-                    document.querySelectorAll(`[id^=btnmetricplr-payload-data-${dev_id}]`).forEach((item)=>{
+                    document.querySelectorAll(`[id^=btnmetricdownlinkplr-payload-data-${dev_id}]`).forEach((item)=>{
+                        try {
+                                var data = $(`#${item.id}`).data('id');
+                                var path = item.id.split('-').pop();
+                                if(data&&data.state=='start'){
+                                    console.log(parsed_message);
+                                    clearInterval(data.interval);
+                                    document.getElementById(`btnmetricdownlinktime-payload-data-${dev_id}-${path}`).innerHTML='UPDATED';
+                                    let plr = parsed_message.f_cnt/data.packageCnt;
+                                    storage.payload[dev_id].downlinktesting.downlinkplr.push(plr);
+                                    item.innerText = plr;
+
+                                    let downlink_cmd = data.sensor_config.cmd.DEFAULT;
+                                    mqtt_publish(`devices/${dev_id}/down/push`, JSON.stringify(downlink_cmd));
+
+                                    let interval = setInterval(function(){
+                                        let timetag = document.getElementById(`btnmetricdownlinktime-payload-data-${dev_id}-${path}`);
+                                        let timevalue = parseFloat(timetag.innerHTML);
+                                        //intialize counter
+                                        if(timetag.innerHTML=='UPDATED' || timetag.innerHTML=='0' || timetag.innerHTML=='EXPIRED') {
+                                            timetag.innerHTML = 70; //sensor_config.uplink_timeout;
+                                        }
+                                        else if (timevalue!=0) {
+                                            timetag.innerHTML = (timevalue - 0.1).toFixed(1);
+                                            
+                                        }
+                                        else {
+                                            timetag.innerHTML = "EXPIRED";
+                                            clearInterval(interval);
+                                            let plr = (data.packageLostCnt+1)/data.packageCnt;
+                                            storage.payload[dev_id].downlinktesting.downlinkplr.push(plr);
+                                            item.innerText = plr;
+
+                                            $(`#${item.id}`).data('id', {
+                                                packageLostCnt: (data.packageLostCnt+1)
+                                            });
+                                            // document.getElementById(`btn-payload-data-${dev_id}-${w_id}`)["disabled"] = false;
+                                            // document.getElementById(`button-payload-data-${w_id}`).style.pointerEvents="auto";
+                                            // document.getElementById(`slider-payload-data-${w_id}`).style["background-color"]="#2196F3";
+                                            // document.getElementById(`button-payload-data-${w_id}`).checked = !document.getElementById(`button-payload-data-${w_id}`).checked;
+                                        }
+                                        
+                                    }, 100);
+
+                                    
+
+                                    $(`#${item.id}`).data('id', {
+                                        state: 'start',
+                                        packageCnt: (data.packageCnt+1),
+                                        sensor_config: data.sensor_config,
+                                        interval: interval
+                                    });
+                                }
+                                
+                        }
+                        catch (err) {
+                            console.log(err)
+                        }  
+                    });
+
+                    document.querySelectorAll(`[id^=btnmetricuplinkrtt-payload-data-${dev_id}]`).forEach((item)=>{
+                        try {
+                                var data = $(`#${item.id}`).data('id');
+                                // var path = item.id.split('-').pop();
+                                if(data&&data.state=='start'){
+                                    let rtt = Date.now() - data.starttime;
+                                    if(storage.payload[dev_id].uplinktesting){
+                                        storage.payload[dev_id].uplinktesting.rtt.push(rtt);
+                                    }
+                                    else {
+                                        storage.payload[dev_id].uplinktesting = {
+                                            uplinkplr: [], uplinkrtt: [], uplinkresp: []
+                                        }
+                                    }
+                                    item.innerText = rtt;
+                                }
+                                
+                        }
+                        catch (err) {
+                            console.log(err)
+                        }  
+                    });
+                    document.querySelectorAll(`[id^=btnmetricuplinkresp-payload-data-${dev_id}]`).forEach((item)=>{
+                        try {
+                                var data = $(`#${item.id}`).data('id');
+                                // var path = item.id.split('-').pop();
+                                if(data&&data.state=='start'){
+                                    let resp = storage.payload[dev_id].uplinktesting.uplinkrtt.reduce((a, b) => a + b, 0)/1;
+                                    storage.payload[dev_id].uplinktesting.uplinkresp.push(resp);
+                                    
+                                    item.innerText = resp;
+                                }
+                                
+                                
+                        }
+                        catch (err) {
+                            console.log(err)
+                        }  
+                    });
+                    document.querySelectorAll(`[id^=btnmetricuplinkplr-payload-data-${dev_id}]`).forEach((item)=>{
                         try {
                                 var data = $(`#${item.id}`).data('id');
                                 // var path = item.id.split('-').pop();
                                 if(data&&data.state=='start'){
                                     console.log(parsed_message);
                                     let plr = parsed_message.f_cnt/data.packageCnt;
-                                    storage.payload[dev_id].testing.plr.push(plr);
+                                    storage.payload[dev_id].uplinktesting.uplinkplr.push(plr);
                                     item.innerText = plr;
 
                                     $(`#${item.id}`).data('id', {
+                                        state: 'start',
                                         packageCnt: data.packageCnt+1
                                     });
                                 }
@@ -1970,7 +2071,7 @@
             let timevalue = parseFloat(timetag.innerHTML);
             //intialize counter
             if(timetag.innerHTML=='UPDATED' || timetag.innerHTML=='0' || timetag.innerHTML=='EXPIRED') {
-                timetag.innerHTML = sensor_config.uplink_timeout;
+                timetag.innerHTML = 70; //sensor_config.uplink_timeout;
             }
             else if (timevalue!=0) {
                 timetag.innerHTML = (timevalue - 0.1).toFixed(1);
@@ -1990,10 +2091,40 @@
             interval: interval
         });
     }
-    function metricTestingManager(dev_id, sensor_config, w_id) {
+    function metricTestingDownlinkManager(dev_id, sensor_config, w_id) {
 
-        var data = $(`#btnmetric-payload-data-${dev_id}-${w_id}`).data('id');
-        if(data&&data.state=='start') return;
+        var data = $(`#btnmetricdownlink-payload-data-${dev_id}-${w_id}`).data('id');
+        if(data&&data.state=='start') {
+
+            var data = $(`#btnmetricdownlinkplr-payload-data-${dev_id}-${w_id}`).data('id');
+            if(data) {
+                clearInterval(data.interval);
+            }
+            
+            let storage = clientStorage.getItem(STORAGE_KEY);
+            storage = JSON.parse(storage);
+            sensor_config = JSON.parse(sensor_config.replace(/&#34;/g, '"'))[0];
+            document.getElementById(`btnmetricdownlinklabel-payload-data-${dev_id}-${w_id}`).innerText = "<%= __('Start') %>";
+            document.getElementById(`btnmetricdownlink-payload-data-${dev_id}-${w_id}`).style["background-color"]="#4259b8";
+            document.getElementById(`btnmetricdownlinktime-payload-data-${dev_id}-${w_id}`).innerHTML = "UPDATED";
+            delete storage.payload[dev_id].downlinktesting;
+
+            clientStorage.setItem(STORAGE_KEY, JSON.stringify(storage));
+
+            $(`#btnmetricdownlinkrtt-payload-data-${dev_id}-${w_id}`).data('id', {
+                state: 'stop'
+            });
+            $(`#btnmetricdownlinkplr-payload-data-${dev_id}-${w_id}`).data('id', {
+                state: 'stop'
+            });
+            $(`#btnmetricdownlinkresp-payload-data-${dev_id}-${w_id}`).data('id', {
+                state: 'stop'
+            });
+            $(`#btnmetricdownlink-payload-data-${dev_id}-${w_id}`).data('id', {
+                state: 'stop'
+            });
+            return;
+        }
 
         //VARIABLE PREPROCESSOR
         let storage = clientStorage.getItem(STORAGE_KEY);
@@ -2001,8 +2132,8 @@
         sensor_config = JSON.parse(sensor_config.replace(/&#34;/g, '"'))[0];
         
         //CHANGE BUTTON UI
-        document.getElementById(`btnmetriclabel-payload-data-${dev_id}-${w_id}`).innerText = "<%= __('Stop') %>";
-        document.getElementById(`btnmetric-payload-data-${dev_id}-${w_id}`).style["background-color"]="#C90000";
+        document.getElementById(`btnmetricdownlinklabel-payload-data-${dev_id}-${w_id}`).innerText = "<%= __('Stop') %>";
+        document.getElementById(`btnmetricdownlink-payload-data-${dev_id}-${w_id}`).style["background-color"]="#C90000";
         //DISABLE OTHER SAME BUTTON
         document.querySelectorAll(`[id^=button-payload-data]`).forEach((item)=>{
             item["disabled"] = true;
@@ -2014,6 +2145,10 @@
         });
 
         document.querySelectorAll(`[id^=btn-payload-data]`).forEach((item)=>{
+            item["disabled"] = true;
+        });
+
+        document.querySelectorAll(`[id^=btnmetricuplink-payload-data]`).forEach((item)=>{
             item["disabled"] = true;
         });
 
@@ -2065,6 +2200,128 @@
         // });
         mqtt_publish(`devices/${dev_id}/down/push`, JSON.stringify(downlink_cmd));
         
+        let interval = setInterval(function(){
+            let timetag = document.getElementById(`btnmetricdownlinktime-payload-data-${dev_id}-${w_id}`);
+            let timevalue = parseFloat(timetag.innerHTML);
+            //intialize counter
+            if(timetag.innerHTML=='UPDATED' || timetag.innerHTML=='0' || timetag.innerHTML=='EXPIRED') {
+                timetag.innerHTML = 70; //sensor_config.uplink_timeout;
+            }
+            else if (timevalue!=0) {
+                timetag.innerHTML = (timevalue - 0.1).toFixed(1);
+                
+            }
+            else {
+                timetag.innerHTML = "EXPIRED";
+                clearInterval(interval);
+                // document.getElementById(`btn-payload-data-${dev_id}-${w_id}`)["disabled"] = false;
+                // document.getElementById(`button-payload-data-${w_id}`).style.pointerEvents="auto";
+                // document.getElementById(`slider-payload-data-${w_id}`).style["background-color"]="#2196F3";
+                // document.getElementById(`button-payload-data-${w_id}`).checked = !document.getElementById(`button-payload-data-${w_id}`).checked;
+            }
+            
+        }, 100);
+        // $(`#btn-payload-data-${dev_id}-${w_id}`).data('id', {
+        //     interval: interval
+        // });
+
+        $(`#btnmetricdownlinkrtt-payload-data-${dev_id}-${w_id}`).data('id', {
+            state: 'start',
+            starttime: Date.now()
+        });
+        $(`#btnmetricdownlinkplr-payload-data-${dev_id}-${w_id}`).data('id', {
+            state: 'start',
+            packageCnt: 1,
+            sensor_config: sensor_config,
+            interval: interval
+        });
+        $(`#btnmetricdownlinkresp-payload-data-${dev_id}-${w_id}`).data('id', {
+            state: 'start'
+        });
+        $(`#btnmetricdownlink-payload-data-${dev_id}-${w_id}`).data('id', {
+            state: 'start'
+        });
+        
+    }
+    function metricTestingUplinkManager(dev_id, sensor_config, w_id) {
+
+        var data = $(`#btnmetricuplink-payload-data-${dev_id}-${w_id}`).data('id');
+        if(data&&data.state=='start') return;
+
+        //VARIABLE PREPROCESSOR
+        let storage = clientStorage.getItem(STORAGE_KEY);
+        storage = JSON.parse(storage);
+        sensor_config = JSON.parse(sensor_config.replace(/&#34;/g, '"'))[0];
+
+        //CHANGE BUTTON UI
+        document.getElementById(`btnmetricuplinklabel-payload-data-${dev_id}-${w_id}`).innerText = "<%= __('Stop') %>";
+        document.getElementById(`btnmetricuplink-payload-data-${dev_id}-${w_id}`).style["background-color"]="#C90000";
+        //DISABLE OTHER SAME BUTTON
+        document.querySelectorAll(`[id^=button-payload-data]`).forEach((item)=>{
+            item["disabled"] = true;
+            item.style.pointerEvents="none";
+        });
+
+        document.querySelectorAll(`[id^=slicer-payload-data]`).forEach((item)=>{
+            item.style["background-color"]="#B1D9FA";
+        });
+
+        document.querySelectorAll(`[id^=btn-payload-data]`).forEach((item)=>{
+            item["disabled"] = true;
+        });
+
+        document.querySelectorAll(`[id^=btnmetricdownlink-payload-data]`).forEach((item)=>{
+            item["disabled"] = true;
+        });
+
+        // document.getElementById(`button-payload-data-${w_id}`).style.pointerEvents="none";
+        // document.getElementById(`slider-payload-data-${w_id}`).style["background-color"]="#B1D9FA";
+        // let status = []
+        // console.log(`btn-payload-data-${dev_id}-${w_id}`);
+        // sensor_config.status_key.forEach(element => {
+        //     status.push(storage.payload[dev_id].payload_data[element].at(-1))
+        // });
+
+        // // delete sensor_config.cmd[];
+        // let downlink_cmd=sensor_config.cmd[sensor_config.status_val[0].state];
+        let downlink_cmd = sensor_config.cmd.DEFAULT;
+        console.log('cmd', downlink_cmd);
+        // let oldData = storage.payload[dev_id].payload_data[sensor_config.status_key].at(-1)
+        // if(oldData){
+        //     switch (oldData) {
+        //         case 'ON':
+        //             downlink_cmd=sensor_config.cmd.OFF;
+        //             break;
+        //         case 'OFF':
+        //             downlink_cmd=sensor_config.cmd.ON;
+        //             break;
+        //         default:
+        //             break;
+        //     }
+        // }
+        // let downlink_cmd = {
+        //         "downlinks": [
+        //             {
+        //             "f_port": 200,
+        //             "priority": "HIGHEST",
+        //             "confirmed": true,
+        //             "frm_payload": "qAEGAQUAAlUAAQ=="
+        //             }
+        //         ]
+        //     };
+        // sensor_config.status_val.forEach((element, index) => {
+        //     //Find current state
+            
+        //     if(JSON.stringify(element.val)===JSON.stringify(status)) {
+                
+        //         if(index==sensor_config.status_val.length-1) downlink_cmd=sensor_config.cmd[sensor_config.status_val[0].state];
+        //         else downlink_cmd=sensor_config.cmd[sensor_config.status_val[index+1].state];
+                
+        //     }
+            
+        // });
+        mqtt_publish(`devices/${dev_id}/down/push`, JSON.stringify(downlink_cmd));
+
         // let interval = setInterval(function(){
         //     let timetag = document.getElementById(`buttontime-payload-data-${w_id}`);
         //     let timevalue = parseFloat(timetag.innerHTML);
@@ -2090,22 +2347,23 @@
         //     interval: interval
         // });
 
-        $(`#btnmetricrtt-payload-data-${dev_id}-${w_id}`).data('id', {
+        $(`#btnmetricuplinkrtt-payload-data-${dev_id}-${w_id}`).data('id', {
             state: 'start',
             starttime: Date.now()
         });
-        $(`#btnmetricplr-payload-data-${dev_id}-${w_id}`).data('id', {
+        $(`#btnmetricuplinkplr-payload-data-${dev_id}-${w_id}`).data('id', {
             state: 'start',
+            packageLostCnt: 0,
             packageCnt: 1
         });
-        $(`#btnmetricresp-payload-data-${dev_id}-${w_id}`).data('id', {
+        $(`#btnmetricuplinkresp-payload-data-${dev_id}-${w_id}`).data('id', {
             state: 'start'
         });
-        $(`#btnmetric-payload-data-${dev_id}-${w_id}`).data('id', {
+        $(`#btnmetricuplink-payload-data-${dev_id}-${w_id}`).data('id', {
             state: 'start'
         });
-        
-    }
+
+}
 </script>
 </body>
 

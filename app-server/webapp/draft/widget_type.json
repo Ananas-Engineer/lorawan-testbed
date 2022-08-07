@@ -1,52 +1,214 @@
 {
-    "Card": {
-        "type": "Card",
-        "view": {
-          "Icon": {
-            "type": "select",
-            "domain": [
-              "null",
-              "dollar-sign"
-            ]
-          },
-          "Color of card": {
-            "type": "select",
-            "domain": [
-              "Primary",
-              "Warning",
-              "Danger"
-            ]
-          }
+  "sensor_list": [
+    {
+      "key": "RELAY_CH0_status",
+      "unit": null,
+      "domain": [
+        "ON",
+        "OFF"
+      ],
+      "widget_type": null
+    },
+    {
+      "key": "RELAY_CH1_status",
+      "unit": null,
+      "domain": [
+        "ON",
+        "OFF"
+      ],
+      "widget_type": null
+    },
+    {
+      "key": "RELAY_CH2_status",
+      "unit": null,
+      "domain": [
+        "ON",
+        "OFF"
+      ],
+      "widget_type": null
+    },
+    {
+      "key": "RELAY_CH3_status",
+      "unit": null,
+      "domain": [
+        "ON",
+        "OFF"
+      ],
+      "widget_type": null
+    }
+  ],
+  "controller_list": [
+    {
+      "cmd": {
+        "ON": {
+          "downlinks": [
+            {
+              "f_port": 200,
+              "priority": "HIGHEST",
+              "confirmed": true,
+              "frm_payload": "qAEGAQUAAP8ABg=="
+            }
+          ]
         },
-        "numberOfDataSource": {
-          "maxNumber": 1,
-          "defaultNumber": 1
+        "OFF": {
+          "downlinks": [
+            {
+              "f_port": 200,
+              "priority": "HIGHEST",
+              "confirmed": true,
+              "frm_payload": "qAEGAQUAAAAABg=="
+            }
+          ]
         }
       },
-    "Chart": {
-        "type": "Chart",
-        "view": {
-          "Color of line": {
-              "type": "select",
-              "domain": ["Primary", "Warning", "Danger"]
-          }
-        },
-        "numberOfDataSource": {
-            "defaultNumber": 1,
-            "maxNumber": 1
-        }
+      "key": "RELAY_CH0_ctrl",
+      "status_key": "RELAY_CH0_status",
+      "widget_type": "Toggle button",
+      "uplink_timeout": 70
     },
-    "Thresholds": {
-        "type": "Thresholds",
-        "view": {
-          "Color of thresholds": {
-              "type": "select",
-              "domain": ["Primary", "Warning", "Danger"]
-          }
+    {
+      "cmd": {
+        "ON": {
+          "downlinks": [
+            {
+              "f_port": 200,
+              "priority": "HIGHEST",
+              "confirmed": true,
+              "frm_payload": "qAEGAQUAAf8ABg=="
+            }
+          ]
         },
-        "numberOfDataSource": {
-            "defaultNumber": 1,
-            "maxNumber": 3
+        "OFF": {
+          "downlinks": [
+            {
+              "f_port": 200,
+              "priority": "HIGHEST",
+              "confirmed": true,
+              "frm_payload": "qAEGAQUAAQAABg=="
+            }
+          ]
         }
+      },
+      "key": "RELAY_CH1_ctrl",
+      "status_key": "RELAY_CH1_status",
+      "widget_type": "Toggle button",
+      "uplink_timeout": 70
+    },
+    {
+      "cmd": {
+        "ON": {
+          "downlinks": [
+            {
+              "f_port": 200,
+              "priority": "HIGHEST",
+              "confirmed": true,
+              "frm_payload": "qAEGAQUAAv8ABg=="
+            }
+          ]
+        },
+        "OFF": {
+          "downlinks": [
+            {
+              "f_port": 200,
+              "priority": "HIGHEST",
+              "confirmed": true,
+              "frm_payload": "qAEGAQUAAgAABg=="
+            }
+          ]
+        }
+      },
+      "key": "RELAY_CH2_ctrl",
+      "status_key": "RELAY_CH2_status",
+      "widget_type": "Toggle button",
+      "uplink_timeout": 70
+    },
+    {
+      "cmd": {
+        "ON": {
+          "downlinks": [
+            {
+              "f_port": 200,
+              "priority": "HIGHEST",
+              "confirmed": true,
+              "frm_payload": "qAEGAQUAA/8ABg=="
+            }
+          ]
+        },
+        "OFF": {
+          "downlinks": [
+            {
+              "f_port": 200,
+              "priority": "HIGHEST",
+              "confirmed": true,
+              "frm_payload": "qAEGAQUAAwAABg=="
+            }
+          ]
+        }
+      },
+      "key": "RELAY_CH3_ctrl",
+      "status_key": "RELAY_CH3_status",
+      "widget_type": "Toggle button",
+      "uplink_timeout": 70
+    },
+    {
+      "cmd": {
+        "TOGGLE": {
+          "downlinks": [
+            {
+              "f_port": 200,
+              "priority": "HIGHEST",
+              "confirmed": true,
+              "frm_payload": "CP8="
+            }
+          ]
+        }
+      },
+      "key": "RELAY_POLL_UPLINK_ctrl",
+      "widget_type": "Button",
+      "uplink_timeout": 70
+    },
+    {
+      "cmd": {
+        "DEFAULT": {
+          "downlinks": [
+            {
+              "f_port": 200,
+              "priority": "HIGHEST",
+              "confirmed": true,
+              "frm_payload": "CP8="
+            }
+          ]
+        }
+      },
+      "key": "metric_testing_downlink_ctrl",
+      "status_key": "metric_testing_status",
+      "widget_type": "metric-testing-downlink",
+      "uplink_timeout": 70
+    },
+    {
+      "cmd": {
+        "DEFAULT": {
+          "downlinks": [
+              {
+                  "f_port": 200,
+                  "priority": "HIGHEST",
+                  "confirmed": true,
+                  "frm_payload": "AQABLA=="
+              },
+              
+              {
+                  "f_port": 200,
+                  "priority": "HIGHEST",
+                  "confirmed": true,
+                  "frm_payload": "BP8="
+              }
+          ]
+        }
+      },
+      "key": "metric_testing_uplink_ctrl",
+      "status_key": "metric_testing_status",
+      "widget_type": "metric-testing-uplink",
+      "uplink_timeout": 70
     }
+  ]
 }
