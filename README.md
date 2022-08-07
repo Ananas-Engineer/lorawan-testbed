@@ -24,7 +24,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/kysudua">
-    <img src="./resources/kysudua.jpg" alt="Logo" >
+    <img src="./kysudua.jpg" alt="Logo" >
   </a>
 
   <h3 align="center">LoRaWAN Testbed</h3>
