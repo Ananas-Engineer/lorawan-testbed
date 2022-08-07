@@ -937,13 +937,13 @@
                                                         </button>
                                                     </div>
                                                     <hr class="col-11 sidebar-divider">
-                                                    <div class="col-3">Avg. PLR</div>
+                                                    <div class="col-3">PLR</div>
                                                     <div class="col-3"><span class="mx-2" id="btnmetricdownlinkplr-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">0</span><span>%</span></div>
                                                     <div class="col-3">Avg. RTT</div>
                                                     <div class="col-3"><span class="mx-2" id="btnmetricdownlinkrtt-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">0</span><span>s</span></div>
                                                     <div class="col-3">PKG Sent</div>
                                                     <div class="col-3"><span class="mx-2" id="btnmetricdownlinkpck-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">0</span><span>pkts</span></div>
-                                                    <div class="col-3">Avg. RESP</div>
+                                                    <div class="col-3">RESP</div>
                                                     <div class="col-3"><span class="mx-2" id="btnmetricdownlinkresp-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">0</span><span></span></div>
                                                 </div>
                                             </div>
@@ -999,7 +999,7 @@
                                                         </button>
                                                     </div>
                                                     <hr class="col-11 sidebar-divider">
-                                                    <div class="col-3">Avg. PLR</div>
+                                                    <div class="col-3">PLR</div>
                                                     <div class="col-3"><span class="mx-2" id="btnmetricuplinkplr-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">0</span><span>%</span></div>
                                                     <!-- <div class="col-3">Avg. RTT</div>
                                                     <div class="col-3"><span class="mx-2" id="btnmetricuplinkrtt-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">___</span><span>unit</span></div> -->
@@ -1520,7 +1520,6 @@
     function streaming_broker_message_handler(topic, message, packet)
     {
         try {
-            console.log('parse here');
             var recv_topic = topic.split('/');
             var dev_id = recv_topic[1];
             console.log(topic);
@@ -1733,11 +1732,11 @@
                             var data = $(`#${item.id}`).data('id');
                             // var path = item.id.split('-').pop();
                             if(data&&data.state=='start'){
-                                let resp = (storage.payload[dev_id].downlinktesting.downlinkrtt.reduce((a, b) => a + b, 0)/storage.payload[dev_id].downlinktesting.downlinkrtt.length)/70000;
+                                let resp = 1-((storage.payload[dev_id].downlinktesting.downlinkrtt.reduce((a, b) => a + b, 0)/storage.payload[dev_id].downlinktesting.downlinkrtt.length)/70000);
                                 // console.log('resp ', resp);
                                 storage.payload[dev_id].downlinktesting.downlinkresp.push(resp);
                                 
-                                item.innerText = (1-storage.payload[dev_id].downlinktesting.downlinkresp.reduce((a, b) => a + b, 0)/storage.payload[dev_id].downlinktesting.downlinkresp.length).toFixed(2);
+                                item.innerText = resp.toFixed(2);
                             }
                             
                             
@@ -1765,6 +1764,7 @@
                                 });
                                 let downlink_cmd = data.sensor_config.cmd.DEFAULT;
                                 mqtt_publish(`devices/${dev_id}/down/push`, JSON.stringify(downlink_cmd));
+                                console.log('Send ', downlink_cmd);
                                 console.log('btnmetricdownlinkrtt');
                                 let interval = setInterval(function(){
                                     let timetag = document.getElementById(`btnmetricdownlinktime-payload-data-${dev_id}-${path}`);
@@ -1782,7 +1782,7 @@
                                         clearInterval(interval);
                                         let plr = (data.packageLostCnt+1)/data.packageCnt;
                                         storage.payload[dev_id].downlinktesting.downlinkplr.push(plr);
-                                        item.innerText = (storage.payload[dev_id].downlinktesting.downlinkplr.reduce((a, b) => a + b, 0)/storage.payload[dev_id].downlinktesting.downlinkplr.length).toFixed(2);
+                                        item.innerText = (plr*100).toFixed(2);
 
                                         $(`#${item.id}`).data('id', {
                                             state: 'start',
@@ -1872,8 +1872,8 @@
                             
                             if(data&&data.state=='start'&&parsed_message.f_cnt){
                                 console.log(parsed_message);
-                                $(`#${item.id}`).text('Started');
-                                let plr = 1-(parsed_message.f_cnt/(data.packageCnt+1));
+                                $(`#btnmetricuplinkstate-payload-data-${dev_id}-${path}`).text('Started');
+                                let plr = (1-(parsed_message.f_cnt/(data.packageCnt+1)));
                                 if(storage.payload[dev_id].uplinktesting){
                                     storage.payload[dev_id].uplinktesting.uplinkplr.push(plr);
                                 }
@@ -1884,7 +1884,7 @@
                                     storage.payload[dev_id].uplinktesting.uplinkplr.push(plr);
                                 }
                                 
-                                item.innerText = ((storage.payload[dev_id].uplinktesting.uplinkplr.reduce((a, b) => a + b, 0)/storage.payload[dev_id].uplinktesting.uplinkplr.length)*100).toFixed(2);
+                                item.innerText = (plr*100).toFixed(2);
 
                                 document.getElementById(`btnmetricuplinkpck-payload-data-${dev_id}-${path}`).innerHTML=(data.packageCnt+1);
                                 $(`#${item.id}`).data('id', {
@@ -1985,7 +1985,7 @@
         let downlink_cmd = sensor_config.cmd[Object.keys(sensor_config.cmd)[0]];
         
         mqtt_publish(`devices/${dev_id}/down/push`, JSON.stringify(downlink_cmd));
-        
+        console.log('Send ', downlink_cmd);
         let interval = setInterval(function(){
             let timetag = document.getElementById(`buttontime-payload-data-${dev_id}-${sensor_config.status_key}-${w_id}`);
             let timevalue = parseFloat(timetag.innerHTML);
@@ -2038,7 +2038,7 @@
             
         });
         mqtt_publish(`devices/${dev_id}/down/push`, JSON.stringify(downlink_cmd));
-        
+        console.log('Send ', downlink_cmd);
         let interval = setInterval(function(){
             let timetag = document.getElementById(`buttontime-payload-data-${w_id}`);
             let timevalue = parseFloat(timetag.innerHTML);
@@ -2081,21 +2081,22 @@
         
         // // delete sensor_config.cmd[];
         // let downlink_cmd=sensor_config.cmd[sensor_config.status_val[0].state];
-        let downlink_cmd = sensor_config.cmd.OFF;
+        let downlink_cmd = sensor_config.cmd.TOGGLE;
         console.log('cmd', downlink_cmd)
-        let oldData = storage.payload[dev_id].payload_data[sensor_config.status_key].at(-1)
-        if(oldData){
-            switch (oldData) {
-                case 'ON':
-                    downlink_cmd=sensor_config.cmd.OFF;
-                    break;
-                case 'OFF':
-                    downlink_cmd=sensor_config.cmd.ON;
-                    break;
-                default:
-                    break;
-            }
-        }
+        
+        // if(storage.payload[dev_id].payload_data[sensor_config.status_key]){
+        //     let oldData = storage.payload[dev_id].payload_data[sensor_config.status_key].at(-1);
+        //     switch (oldData) {
+        //         case 'ON':
+        //             downlink_cmd=sensor_config.cmd.OFF;
+        //             break;
+        //         case 'OFF':
+        //             downlink_cmd=sensor_config.cmd.ON;
+        //             break;
+        //         default:
+        //             break;
+        //     }
+        // }
         // let downlink_cmd = {
         //         "downlinks": [
         //             {
@@ -2118,7 +2119,7 @@
             
         // });
         mqtt_publish(`devices/${dev_id}/down/push`, JSON.stringify(downlink_cmd));
-        
+        console.log('Send ', downlink_cmd);
         let interval = setInterval(function(){
             let timetag = document.getElementById(`buttontime-payload-data-${w_id}`);
             let timevalue = parseFloat(timetag.innerHTML);
@@ -2256,7 +2257,7 @@
             
         // });
         mqtt_publish(`devices/${dev_id}/down/push`, JSON.stringify(downlink_cmd));
-        
+        console.log('Send ', downlink_cmd);
         let interval = setInterval(function(){
             let timetag = document.getElementById(`btnmetricdownlinktime-payload-data-${dev_id}-${w_id}`);
             let timevalue = parseFloat(timetag.innerHTML);
@@ -2304,17 +2305,20 @@
     function metricTestingUplinkManager(dev_id, sensor_config, w_id) {
 
         var data = $(`#btnmetricuplink-payload-data-${dev_id}-${w_id}`).data('id');
-        if(data&&data.state=='start') {
-
+        if(data&&(data.state=='start'||data.state=='setup')) {
+            
             // var data = $(`#btnmetricdownlinkplr-payload-data-${dev_id}-${w_id}`).data('id');
             // if(data) {
             //     clearInterval(data.interval);
             // }
-            $(`#btnmetricuplink-payload-data-${dev_id}-${w_id}`).text('Stopped');
+            sensor_config = JSON.parse(sensor_config.replace(/&#34;/g, '"'))[0];
+            let downlink_cmd = sensor_config.cmd.NORMAL;
+            mqtt_publish(`devices/${dev_id}/down/push`, JSON.stringify(downlink_cmd));
+            console.log('Send ', downlink_cmd);
+            $(`#btnmetricuplinkstate-payload-data-${dev_id}-${w_id}`).text('Stopped');
             let storage = clientStorage.getItem(STORAGE_KEY);
             storage = JSON.parse(storage);
-            sensor_config = JSON.parse(sensor_config.replace(/&#34;/g, '"'))[0];
-            document.getElementById(`btnmetricuplinklabel-payload-data-${dev_id}-${w_id}`).innerText = "<%= __('Start') %>";
+            document.getElementById(`btnmetricuplinklabel-payload-data-${dev_id}-${w_id}`).innerHTML = "<%= __('Start') %>";
             document.getElementById(`btnmetricuplink-payload-data-${dev_id}-${w_id}`).style["background-color"]="#4259b8";
             // document.getElementById(`btnmetricuplinktime-payload-data-${dev_id}-${w_id}`).innerHTML = "UPDATED";
             // document.getElementById(`btnmetricuplinkrtt-payload-data-${dev_id}-${w_id}`).innerHTML = "0";
@@ -2377,7 +2381,11 @@
         // // delete sensor_config.cmd[];
         // let downlink_cmd=sensor_config.cmd[sensor_config.status_val[0].state];
         let downlink_cmd = sensor_config.cmd.DEFAULT;
-        console.log('cmd', downlink_cmd);
+        mqtt_publish(`devices/${dev_id}/down/push`, JSON.stringify(downlink_cmd));
+        console.log('Send ', downlink_cmd);
+        // downlink_cmd = sensor_config.cmd.RESET;
+        // mqtt_publish(`devices/${dev_id}/down/push`, JSON.stringify(downlink_cmd));
+        // console.log('Send ', downlink_cmd);
         // let oldData = storage.payload[dev_id].payload_data[sensor_config.status_key].at(-1)
         // if(oldData){
         //     switch (oldData) {
@@ -2412,8 +2420,9 @@
         //     }
             
         // });
-        mqtt_publish(`devices/${dev_id}/down/push`, JSON.stringify(downlink_cmd));
-
+        
+        
+        
         // let interval = setInterval(function(){
         //     let timetag = document.getElementById(`buttontime-payload-data-${w_id}`);
         //     let timevalue = parseFloat(timetag.innerHTML);
