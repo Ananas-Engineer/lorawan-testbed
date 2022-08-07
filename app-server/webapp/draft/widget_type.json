@@ -1,7 +1,67 @@
 {
   "sensor_list": [
     {
-      "key": "RELAY_CH0_status",
+      "key": "ACI1_status",
+      "unit": "mA",
+      "domain": "number",
+      "widget_type": null
+    },
+    {
+      "key": "ACI2_status",
+      "unit": "mA",
+      "domain": "number",
+      "widget_type": null
+    },
+    {
+      "key": "AVI1_status",
+      "unit": "V",
+      "domain": "number",
+      "widget_type": null
+    },
+    {
+      "key": "AVI2_status",
+      "unit": "V",
+      "domain": "number",
+      "widget_type": null
+    },
+    {
+      "key": "DI1_status",
+      "unit": null,
+      "domain": [
+        "H",
+        "L"
+      ],
+      "widget_type": null
+    },
+    {
+      "key": "DI2_status",
+      "unit": null,
+      "domain": [
+        "H",
+        "L"
+      ],
+      "widget_type": null
+    },
+    {
+      "key": "DO1_status",
+      "unit": null,
+      "domain": [
+        "H",
+        "L"
+      ],
+      "widget_type": null
+    },
+    {
+      "key": "DO2_status",
+      "unit": null,
+      "domain": [
+        "H",
+        "L"
+      ],
+      "widget_type": null
+    },
+    {
+      "key": "RO1_status",
       "unit": null,
       "domain": [
         "ON",
@@ -10,25 +70,7 @@
       "widget_type": null
     },
     {
-      "key": "RELAY_CH1_status",
-      "unit": null,
-      "domain": [
-        "ON",
-        "OFF"
-      ],
-      "widget_type": null
-    },
-    {
-      "key": "RELAY_CH2_status",
-      "unit": null,
-      "domain": [
-        "ON",
-        "OFF"
-      ],
-      "widget_type": null
-    },
-    {
-      "key": "RELAY_CH3_status",
+      "key": "RO2_status",
       "unit": null,
       "domain": [
         "ON",
@@ -40,131 +82,173 @@
   "controller_list": [
     {
       "cmd": {
-        "ON": {
+        "H": {
           "downlinks": [
             {
-              "f_port": 200,
+              "f_port": 1,
               "priority": "HIGHEST",
               "confirmed": true,
-              "frm_payload": "qAEGAQUAAP8ABg=="
+              "frm_payload": "AgAREQ=="
             }
           ]
         },
-        "OFF": {
+        "L": {
           "downlinks": [
             {
-              "f_port": 200,
+              "f_port": 1,
               "priority": "HIGHEST",
               "confirmed": true,
-              "frm_payload": "qAEGAQUAAAAABg=="
+              "frm_payload": "AgEREQ=="
             }
           ]
         }
       },
-      "key": "RELAY_CH0_ctrl",
-      "status_key": "RELAY_CH0_status",
-      "widget_type": "Toggle button",
-      "uplink_timeout": 70
+      "key": "DO1_ctrl",
+      "status_key": "DO1_status",
+      "widget_type": "Toggle button"
+    },
+    {
+      "cmd": {
+        "H": {
+          "downlinks": [
+            {
+              "f_port": 1,
+              "priority": "HIGHEST",
+              "confirmed": true,
+              "frm_payload": "AhEAEQ=="
+            }
+          ]
+        },
+        "L": {
+          "downlinks": [
+            {
+              "f_port": 1,
+              "priority": "HIGHEST",
+              "confirmed": true,
+              "frm_payload": "AhEBEQ=="
+            }
+          ]
+        }
+      },
+      "key": "DO2_ctrl",
+      "status_key": "DO2_status",
+      "widget_type": "Toggle button"
     },
     {
       "cmd": {
         "ON": {
           "downlinks": [
             {
-              "f_port": 200,
+              "f_port": 1,
               "priority": "HIGHEST",
               "confirmed": true,
-              "frm_payload": "qAEGAQUAAf8ABg=="
+              "frm_payload": "AwER"
             }
           ]
         },
         "OFF": {
           "downlinks": [
             {
-              "f_port": 200,
+              "f_port": 1,
               "priority": "HIGHEST",
               "confirmed": true,
-              "frm_payload": "qAEGAQUAAQAABg=="
+              "frm_payload": "AwAR"
             }
           ]
         }
       },
-      "key": "RELAY_CH1_ctrl",
-      "status_key": "RELAY_CH1_status",
-      "widget_type": "Toggle button",
-      "uplink_timeout": 70
+      "key": "RO1_ctrl",
+      "status_key": "RO1_status",
+      "widget_type": "Toggle button"
     },
     {
       "cmd": {
         "ON": {
           "downlinks": [
             {
-              "f_port": 200,
+              "f_port": 1,
               "priority": "HIGHEST",
               "confirmed": true,
-              "frm_payload": "qAEGAQUAAv8ABg=="
+              "frm_payload": "AxEB"
             }
           ]
         },
         "OFF": {
           "downlinks": [
             {
-              "f_port": 200,
+              "f_port": 1,
               "priority": "HIGHEST",
               "confirmed": true,
-              "frm_payload": "qAEGAQUAAgAABg=="
+              "frm_payload": "AxEA"
             }
           ]
         }
       },
-      "key": "RELAY_CH2_ctrl",
-      "status_key": "RELAY_CH2_status",
-      "widget_type": "Toggle button",
-      "uplink_timeout": 70
+      "key": "RO2_ctrl",
+      "status_key": "RO2_status",
+      "widget_type": "Toggle button"
+    },
+    {
+      "key": "DO1_tctrl",
+      "widget_type": "Button"
+    },
+    {
+      "key": "DO2_tctrl",
+      "widget_type": "Button"
+    },
+    {
+      "key": "RO1_tctrl",
+      "widget_type": "Button"
+    },
+    {
+      "key": "RO2_tctrl",
+      "widget_type": "Button"
     },
     {
       "cmd": {
-        "ON": {
+        "STATE1": {
           "downlinks": [
             {
-              "f_port": 200,
+              "f_port": 1,
               "priority": "HIGHEST",
               "confirmed": true,
-              "frm_payload": "qAEGAQUAA/8ABg=="
+              "frm_payload": "AwAB"
             }
           ]
         },
-        "OFF": {
+        "STATE2": {
           "downlinks": [
             {
-              "f_port": 200,
+              "f_port": 1,
               "priority": "HIGHEST",
               "confirmed": true,
-              "frm_payload": "qAEGAQUAAwAABg=="
+              "frm_payload": "AwEA"
             }
           ]
         }
       },
-      "key": "RELAY_CH3_ctrl",
-      "status_key": "RELAY_CH3_status",
-      "widget_type": "Toggle button",
-      "uplink_timeout": 70
-    },
-    {
-      "cmd": {
-        "TOGGLE": {
-          "downlinks": [
-            {
-              "f_port": 200,
-              "priority": "HIGHEST",
-              "confirmed": true,
-              "frm_payload": "CP8="
-            }
-          ]
+      "key": "RO_toggle",
+      "status_key": [
+        "RO1_status",
+        "RO2_status"
+      ],
+      "status_val": [
+        {
+          "val": [
+            "OFF",
+            "ON"
+          ],
+          "state": "STATE1"
+        },
+        {
+          "val": [
+            "ON",
+            "OFF"
+          ],
+          "state": "STATE2"
         }
-      },
-      "key": "RELAY_POLL_UPLINK_ctrl",
-      "widget_type": "Button",
+      ],
+      "widget_type": "3-way toggle switch",
       "uplink_timeout": 70
     },
     {
@@ -189,19 +273,18 @@
       "cmd": {
         "DEFAULT": {
           "downlinks": [
-              {
-                  "f_port": 200,
-                  "priority": "HIGHEST",
-                  "confirmed": true,
-                  "frm_payload": "AQABLA=="
-              },
-              
-              {
-                  "f_port": 200,
-                  "priority": "HIGHEST",
-                  "confirmed": true,
-                  "frm_payload": "BP8="
-              }
+            {
+              "f_port": 200,
+              "priority": "HIGHEST",
+              "confirmed": true,
+              "frm_payload": "AQAADw=="
+            },
+            {
+              "f_port": 200,
+              "priority": "HIGHEST",
+              "confirmed": true,
+              "frm_payload": "BP8="
+            }
           ]
         }
       },
