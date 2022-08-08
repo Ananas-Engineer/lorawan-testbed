@@ -2161,10 +2161,10 @@
             document.getElementById(`btnmetricdownlinklabel-payload-data-${dev_id}-${w_id}`).innerText = "<%= __('Start') %>";
             document.getElementById(`btnmetricdownlink-payload-data-${dev_id}-${w_id}`).style["background-color"]="#4259b8";
             document.getElementById(`btnmetricdownlinktime-payload-data-${dev_id}-${w_id}`).innerHTML = "UPDATED";
-            document.getElementById(`btnmetricdownlinkrtt-payload-data-${dev_id}-${w_id}`).innerHTML = "0";
-            document.getElementById(`btnmetricdownlinkresp-payload-data-${dev_id}-${w_id}`).innerHTML = "0";
-            document.getElementById(`btnmetricdownlinkplr-payload-data-${dev_id}-${w_id}`).innerHTML = "0";
-            document.getElementById(`btnmetricdownlinkpck-payload-data-${dev_id}-${w_id}`).innerHTML = "0";
+            // document.getElementById(`btnmetricdownlinkrtt-payload-data-${dev_id}-${w_id}`).innerHTML = "0";
+            // document.getElementById(`btnmetricdownlinkresp-payload-data-${dev_id}-${w_id}`).innerHTML = "0";
+            // document.getElementById(`btnmetricdownlinkplr-payload-data-${dev_id}-${w_id}`).innerHTML = "0";
+            // document.getElementById(`btnmetricdownlinkpck-payload-data-${dev_id}-${w_id}`).innerHTML = "0";
             delete storage.payload[dev_id].downlinktesting;
 
             clientStorage.setItem(STORAGE_KEY, JSON.stringify(storage));
@@ -2323,8 +2323,8 @@
             // document.getElementById(`btnmetricuplinktime-payload-data-${dev_id}-${w_id}`).innerHTML = "UPDATED";
             // document.getElementById(`btnmetricuplinkrtt-payload-data-${dev_id}-${w_id}`).innerHTML = "0";
             // document.getElementById(`btnmetricuplinkresp-payload-data-${dev_id}-${w_id}`).innerHTML = "0";
-            document.getElementById(`btnmetricuplinkplr-payload-data-${dev_id}-${w_id}`).innerHTML = "0";
-            document.getElementById(`btnmetricuplinkpck-payload-data-${dev_id}-${w_id}`).innerHTML = "0";
+            // document.getElementById(`btnmetricuplinkplr-payload-data-${dev_id}-${w_id}`).innerHTML = "0";
+            // document.getElementById(`btnmetricuplinkpck-payload-data-${dev_id}-${w_id}`).innerHTML = "0";
             delete storage.payload[dev_id].uplinktesting;
 
             clientStorage.setItem(STORAGE_KEY, JSON.stringify(storage));
