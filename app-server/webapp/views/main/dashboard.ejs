@@ -582,11 +582,11 @@
                                                         <!-- <hr class="sidebar-divider"> -->
                                                         <div class="mt-2">
                                                             <button  id="btn-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"
-                                                                class="btn btn-lg btn-<%=config.view['Color of button']%> shadow-sm controller" role="button"
+                                                                class="btn btn-<%=config.view['Color of button']%> shadow-sm controller" role="button"
                                                                 onclick="buttonManager('<%=boardWidget[j].e_dev_id[0]%>',
                                                                 '<%=JSON.stringify(boardWidget[j].sensor_config)%>',
                                                                 '<%=boardWidget[j].w_id%>')">
-                                                                <span class="text text-lg"><%= __('Trigger') %></span>
+                                                                <span class="text text-med"><%= __('Trigger') %></span>
                                                             </button>
                                                         </div>
                                                     </div>
@@ -755,67 +755,6 @@
                                         </div>
                                     </div>
                                     <%}else if(config.type == '3-way toggle switch'){%> 
-                                        <div class="col-xl-3 col-md-6 mb-4">
-                                            <!-- Metrics Testing Table -->
-                                            <div class="card shadow">
-                                                <!-- Card Header - Dropdown -->
-                                                <div
-                                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                                    <h6 class="m-0 font-weight-bold text-primary">Metrics Testing</h6>
-                                                    <div class="dropdown no-arrow">
-                                                        <a class="dropdown-toggle" role="button" id="dropdownMenuLink"
-                                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                                        </a>
-                                                        <!-- <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                                            aria-labelledby="dropdownMenuLink">
-                                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editWidgetModal"
-                                                                        onclick="openEditWidgetModal('<%=boardWidget[j].w_id%>')"><%= __('Configure widget') %></a>
-                        
-                                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#deleteWidgetModal"
-                                                                        onclick="openDeleteWidgetModal('<%=boardWidget[j].w_id%>')"><%= __('Delete widget') %></a>
-                                                            <script>
-                                                                function openEditWidgetModal(widget_id) {
-                                                                    var str = "Widget ID: " + widget_id;
-                                                                    $("#widget_id").html(str);
-                                                                    document.getElementById(`edit-widget_id`).value = widget_id;
-                                                                }
-                                                                function openDeleteWidgetModal(widget_id) {
-                                                                    document.getElementById(`delete-widget_id`).value = widget_id;
-                                                                }
-                                                            </script>
-                                                        </div> -->
-                                                    </div>
-                                                </div>
-                                                <!-- Card Body -->
-                                                <div class="card-body row align-items-center small font-weight-bold ">
-                                                    <div id="metric-sensor-name" class="col-6 text-primary">Name of sensor</div>
-                                                    <div class="col-6 d-flex flex-wrap" style="gap: 5px;">
-                                                        <button  id="btnmetric-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"
-                                                            class="btn btn-sm btn-primary shadow-sm controller" role="button"
-                                                            onclick="metricTestingManager('<%=boardWidget[j].e_dev_id[0]%>',
-                                                            '<%=JSON.stringify(boardWidget[j].sensor_config)%>',
-                                                            '<%=boardWidget[j].w_id%>')">
-                                                            <span id="btnmetriclabel-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"><%= __('Start') %></span>
-                                                        </button>
-                                                        <button  d="btncofig-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"
-                                                            class="btn btn-sm btn-dark shadow-sm controller" role="button"
-                                                            onclick="">
-                                                            <span><%= __('Configure') %></span>
-                                                        </button>
-                                                    </div>
-                                                    <hr class="col-11 sidebar-divider">
-                                                    <div class="col-3">Avg. PLR</div>
-                                                    <div class="col-3"><span id="btnmetricplr-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>" class="mx-2">___</span><span>unit</span></div>
-                                                    <div class="col-3">Avg. RTT</div>
-                                                    <div class="col-3"><span id="btnmetricrtt-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>" class="mx-2">___</span><span>unit</span></div>
-                                                    <div class="col-3">Avg. RE</div>
-                                                    <div class="col-3"><span id="btnmetricre-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>" class="mx-2">___</span><span>unit</span></div>
-                                                    <div class="col-3">Avg. RESP</div>
-                                                    <div class="col-3"><span id="btnmetricresp-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>" class="mx-2">___</span><span>unit</span></div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     <div class="col-xl-3 col-md-6 mb-4 dashboard-card">
                                         <div class="card border-left-<%=config.view['Color of button state 1']%> shadow">
                                             <div class="card-body d-flex align-item-center">
@@ -887,9 +826,9 @@
                                     </div>
                                     
                                     <%}else if(config.type == 'metric-testing-downlink'){%> 
-                                        <div class="col-xl-3 col-md-6 mb-4">
+                                        <div class="col-xl-4 col-md-6 mb-4">
                                             <!-- Metrics Testing Table -->
-                                            <div class="card shadow">
+                                            <div class="card shadow" style="height: 100%">
                                                 <!-- Card Header - Dropdown -->
                                                 <div
                                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -899,7 +838,7 @@
                                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                             <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                                                         </a>
-                                                        <!-- <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                                             aria-labelledby="dropdownMenuLink">
                                                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editWidgetModal"
                                                                         onclick="openEditWidgetModal('<%=boardWidget[j].w_id%>')"><%= __('Configure widget') %></a>
@@ -916,7 +855,7 @@
                                                                     document.getElementById(`delete-widget_id`).value = widget_id;
                                                                 }
                                                             </script>
-                                                        </div> -->
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <!-- Card Body -->
@@ -924,7 +863,7 @@
                                                     <div id="btnmetricdownlinktime-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>" class="col-6 text-primary">UPDATED</div>
                                                     <div class="col-6 d-flex flex-wrap" style="gap: 5px;">
                                                         <button  id="btnmetricdownlink-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"
-                                                            class="btn-payload-data- btn-sm btn-primary shadow-sm controller" role="button"
+                                                            class="btn-payload-data- btn btn-sm btn-primary shadow-sm controller" role="button"
                                                             onclick="metricTestingDownlinkManager('<%=boardWidget[j].e_dev_id[0]%>',
                                                             '<%=JSON.stringify(boardWidget[j].sensor_config)%>',
                                                             '<%=boardWidget[j].w_id%>')">
@@ -938,20 +877,20 @@
                                                     </div>
                                                     <hr class="col-11 sidebar-divider">
                                                     <div class="col-3">PLR</div>
-                                                    <div class="col-3"><span class="mx-2" id="btnmetricdownlinkplr-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">0</span><span>%</span></div>
+                                                    <div class="col-3"><span class="mr-1" id="btnmetricdownlinkplr-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">0</span><span>%</span></div>
                                                     <div class="col-3">Avg. RTT</div>
-                                                    <div class="col-3"><span class="mx-2" id="btnmetricdownlinkrtt-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">0</span><span>s</span></div>
+                                                    <div class="col-3"><span class="mr-1" id="btnmetricdownlinkrtt-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">0</span><span>s</span></div>
                                                     <div class="col-3">PKG Sent</div>
-                                                    <div class="col-3"><span class="mx-2" id="btnmetricdownlinkpck-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">0</span><span>pkts</span></div>
+                                                    <div class="col-3"><span class="mr-1" id="btnmetricdownlinkpck-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">0</span><span>pkts</span></div>
                                                     <div class="col-3">RESP</div>
-                                                    <div class="col-3"><span class="mx-2" id="btnmetricdownlinkresp-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">0</span><span></span></div>
+                                                    <div class="col-3"><span class="mr-1" id="btnmetricdownlinkresp-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">0</span><span></span></div>
                                                 </div>
                                             </div>
                                         </div>
                                     <%}else if(config.type == 'metric-testing-uplink'){%> 
-                                        <div class="col-xl-3 col-md-6 mb-4">
+                                        <div class="col-xl-4 col-md-6 mb-4">
                                             <!-- Metrics Testing Table -->
-                                            <div class="card shadow">
+                                            <div class="card shadow" style="height: 100%">
                                                 <!-- Card Header - Dropdown -->
                                                 <div
                                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -961,7 +900,7 @@
                                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                             <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                                                         </a>
-                                                        <!-- <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                                             aria-labelledby="dropdownMenuLink">
                                                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editWidgetModal"
                                                                         onclick="openEditWidgetModal('<%=boardWidget[j].w_id%>')"><%= __('Configure widget') %></a>
@@ -978,7 +917,7 @@
                                                                     document.getElementById(`delete-widget_id`).value = widget_id;
                                                                 }
                                                             </script>
-                                                        </div> -->
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <!-- Card Body -->
@@ -986,7 +925,7 @@
                                                     <div id="btnmetricuplinkstate-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>" class="col-6 text-primary">Stopped</div>
                                                     <div class="col-6 d-flex flex-wrap" style="gap: 5px;">
                                                         <button  id="btnmetricuplink-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>"
-                                                            class="btn-payload-data- btn-sm btn-primary shadow-sm controller" role="button"
+                                                            class="btn-payload-data- btn btn-sm btn-primary shadow-sm controller" role="button"
                                                             onclick="metricTestingUplinkManager('<%=boardWidget[j].e_dev_id[0]%>',
                                                             '<%=JSON.stringify(boardWidget[j].sensor_config)%>',
                                                             '<%=boardWidget[j].w_id%>')">
@@ -1000,11 +939,11 @@
                                                     </div>
                                                     <hr class="col-11 sidebar-divider">
                                                     <div class="col-3">PLR</div>
-                                                    <div class="col-3"><span class="mx-2" id="btnmetricuplinkplr-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">0</span><span>%</span></div>
+                                                    <div class="col-3"><span class="mr-1" id="btnmetricuplinkplr-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">0</span><span>%</span></div>
                                                     <!-- <div class="col-3">Avg. RTT</div>
                                                     <div class="col-3"><span class="mx-2" id="btnmetricuplinkrtt-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">___</span><span>unit</span></div> -->
                                                     <div class="col-3">PKG Recv</div>
-                                                    <div class="col-3"><span class="mx-2"  id="btnmetricuplinkpck-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">0</span><span>pkts</span></div>
+                                                    <div class="col-3"><span class="mr-1"  id="btnmetricuplinkpck-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">0</span><span>pkts</span></div>
                                                     <!-- <div class="col-3">Avg. RESP</div>
                                                     <div class="col-3"><span class="mx-2" id="btnmetricuplinkresp-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">___</span><span>unit</span></div> -->
                                                 </div>
@@ -1873,7 +1812,7 @@
                             if(data&&data.state=='start'&&parsed_message.f_cnt){
                                 console.log(parsed_message);
                                 $(`#btnmetricuplinkstate-payload-data-${dev_id}-${path}`).text('Started');
-                                let plr = (1-(parsed_message.f_cnt/(data.packageCnt+1)));
+                                let plr = (1-((data.packageCnt+1)/parsed_message.f_cnt));
                                 if(storage.payload[dev_id].uplinktesting){
                                     storage.payload[dev_id].uplinktesting.uplinkplr.push(plr);
                                 }

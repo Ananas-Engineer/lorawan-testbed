@@ -615,6 +615,7 @@ pre code {
 .dashboard-card {
   max-width: fit-content !important;
   max-width: -moz-fit-content !important;
+  height: fit-content
 }
 
 .col {
