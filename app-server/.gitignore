@@ -10,5 +10,6 @@ webapp/node_modules/
 webapp/.env/
 webapp/.idea/
 webapp/.vscode/
+*.zip
 
 
