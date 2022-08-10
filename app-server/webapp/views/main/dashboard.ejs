@@ -1743,6 +1743,7 @@
                                     
                                 }, 100);
 
+                                document.getElementById(`btnmetricdownlinkrssi-payload-data-${dev_id}-${path}`).innerHTML=parsed_message.rssi;
                                 document.getElementById(`btnmetricdownlinkpck-payload-data-${dev_id}-${path}`).innerHTML=`${data.packageCnt}`;
                                 $(`#${item.id}`).data('id', {
                                     state: 'start',
@@ -1828,7 +1829,8 @@
                                 }
                                 
                                 item.innerText = (plr*100).toFixed(2);
-
+                                
+                                document.getElementById(`btnmetricuplinkrssi-payload-data-${dev_id}-${path}`).innerHTML=parsed_message.rssi;
                                 document.getElementById(`btnmetricuplinkpck-payload-data-${dev_id}-${path}`).innerHTML=(data.packageCnt+1);
                                 $(`#${item.id}`).data('id', {
                                     state: 'start',
