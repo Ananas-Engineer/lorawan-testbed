@@ -885,7 +885,7 @@
                                                     <div class="col-3">RESP</div>
                                                     <div class="col-3"><span class="mr-1" id="btnmetricdownlinkresp-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">0</span><span></span></div>
                                                     <div class="col-3">Avg. RSSI</div>
-                                                    <div class="col-3"><span class="mr-1" id="btnmetricdownlinkrssi-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">0</span><span></span></div>
+                                                    <div class="col-3"><span class="mr-1" id="btnmetricdownlinkrssi-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">0</span><span>dBm</span></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -949,7 +949,7 @@
                                                     <!-- <div class="col-3">Avg. RESP</div>
                                                     <div class="col-3"><span class="mx-2" id="btnmetricuplinkresp-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">___</span><span>unit</span></div> -->
                                                     <div class="col-3">Avg. RSSI</div>
-                                                    <div class="col-3"><span class="mr-1" id="btnmetricuplinkrssi-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">0</span><span></span></div>
+                                                    <div class="col-3"><span class="mr-1" id="btnmetricuplinkrssi-payload-data-<%=boardWidget[j].e_dev_id[0]%>-<%=boardWidget[j].w_id%>">0</span><span>dBm</span></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -1657,7 +1657,7 @@
                                     }
                                     else {
                                         storage.payload[dev_id].downlinktesting = {
-                                            downlinkplr: [], downlinkrtt: [], downlinkresp: []
+                                            downlinkplr: [], downlinkrtt: [], downlinkresp: [], downlinkrssi: []
                                         }
                                         storage.payload[dev_id].downlinktesting.downlinkrtt.push(rtt);
                                     }
@@ -1688,6 +1688,26 @@
                         console.log(err)
                     }  
                 });
+
+                document.querySelectorAll(`[id^=btnmetricdownlinkrssi-payload-data-${dev_id}]`).forEach((item)=>{
+                        try {
+                                var data = $(`#${item.id}`).data('id');
+                                // var path = item.id.split('-').pop();
+                                if(data&&data.state=='start'){
+                                    let rssi = parsed_message.rssi
+                                    console.log('rssi ', rssi);
+                                    if(storage.payload[dev_id].downlinktesting){
+                                        storage.payload[dev_id].downlinktesting.downlinkrssi.push(rssi);
+                                    }
+                                    item.innerText = -1 * ((storage.payload[dev_id].downlinktesting.downlinkrssi.reduce((a, b) => a + b, 0)/storage.payload[dev_id].downlinktesting.downlinkrssi.length)).toFixed(2);
+                                    // console.log(item.innerText);
+                                }
+                                
+                        }
+                        catch (err) {
+                            console.log(err)
+                        }  
+                    });
                 
                 document.querySelectorAll(`[id^=btnmetricdownlinkplr-payload-data-${dev_id}]`).forEach((item)=>{
                     try {
@@ -1743,7 +1763,6 @@
                                     
                                 }, 100);
 
-                                document.getElementById(`btnmetricdownlinkrssi-payload-data-${dev_id}-${path}`).innerHTML=parsed_message.rssi;
                                 document.getElementById(`btnmetricdownlinkpck-payload-data-${dev_id}-${path}`).innerHTML=`${data.packageCnt}`;
                                 $(`#${item.id}`).data('id', {
                                     state: 'start',
@@ -1803,6 +1822,25 @@
                 //         console.log(err)
                 //     }  
                 // });
+                document.querySelectorAll(`[id^=btnmetricuplinkrssi-payload-data-${dev_id}]`).forEach((item)=>{
+                        try {
+                                var data = $(`#${item.id}`).data('id');
+                                // var path = item.id.split('-').pop();
+                                if(data&&data.state=='start'){
+                                    let rssi = parsed_message.rssi
+                                    console.log('rssi ', rssi);
+                                    if(storage.payload[dev_id].uplinktesting){
+                                        storage.payload[dev_id].uplinktesting.uplinkrssi.push(rssi);
+                                    }
+                                    item.innerText = ((storage.payload[dev_id].uplinktesting.uplinkrssi.reduce((a, b) => a + b, 0)/storage.payload[dev_id].uplinktesting.uplinkrssi.length)).toFixed(2);
+                                    // console.log(item.innerText);
+                                }
+                                
+                        }
+                        catch (err) {
+                            console.log(err)
+                        }  
+                    });
                 document.querySelectorAll(`[id^=btnmetricuplinkplr-payload-data-${dev_id}]`).forEach((item)=>{
                     try {
                             var data = $(`#${item.id}`).data('id');
@@ -1823,14 +1861,13 @@
                                 }
                                 else {
                                     storage.payload[dev_id].uplinktesting = {
-                                        uplinkplr: []
+                                        uplinkplr: [], uplinkrssi: []
                                     }
                                     storage.payload[dev_id].uplinktesting.uplinkplr.push(plr);
                                 }
                                 
                                 item.innerText = (plr*100).toFixed(2);
                                 
-                                document.getElementById(`btnmetricuplinkrssi-payload-data-${dev_id}-${path}`).innerHTML=parsed_message.rssi;
                                 document.getElementById(`btnmetricuplinkpck-payload-data-${dev_id}-${path}`).innerHTML=(data.packageCnt+1);
                                 $(`#${item.id}`).data('id', {
                                     state: 'start',
