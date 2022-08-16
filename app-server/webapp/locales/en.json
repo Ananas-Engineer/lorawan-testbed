@@ -52,5 +52,10 @@
 	"Confirm Changes": "Confirm Changes",
 	"Confirm changes": "Confirm changes",
 	"Start": "Start",
-	"Stop": "Stop"
+	"Stop": "Stop",
+	"Day": "Day",
+	"": "",
+	"__": "__",
+	"${weekmap.get(weekday)}": "${weekmap.get(weekday)}",
+	"Saturday": "Saturday"
 }

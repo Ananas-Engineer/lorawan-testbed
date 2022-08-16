@@ -7,7 +7,7 @@
     </button>
 
     <!-- Topbar Search -->
-    <form
+    <!-- <form
         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
         <div class="input-group">
             <input type="text" class="form-control bg-light border-1 small" placeholder="Search for..."
@@ -18,19 +18,53 @@
                 </button>
             </div>
         </div>
-    </form>
+    </form> -->
+    <div class="text-center">
+        <p id="weekday" class="ml-2 text-gray-800 font-weight-bold d-inline" style="vertical-align: middle;">
+            
+        </p>
+        <p id="time" class="text-gray-800 font-weight-bold d-inline" style="vertical-align: middle;">
+        </p>
+        <script>
+            function refreshTime() {
+                const weekmap = new Map([
+                [0, "Sunday"],
+                [1, "Monday"],
+                [2, "Tuesday"],
+                [3, "Wednesday"],
+                [4, "Thursday"],
+                [5, "Friday"],
+                [6, "<%= __('Saturday')%>"]
+                ]);
+
+                const weekdayDisplay = document.getElementById("weekday");
+                const timeDisplay = document.getElementById("time");
+                const datetime = new Date();
+
+                const weekday = datetime.getUTCDay();
+                const date = datetime.getUTCDate();
+                const month = datetime.getUTCMonth() + 1;
+                const year = datetime.getUTCFullYear();
+                const time = datetime.toLocaleTimeString();
+                const formattedString = date + "/" + month + "/" + year + " - " + time;
+                weekdayDisplay.innerHTML = weekmap.get(weekday);
+                timeDisplay.innerHTML = formattedString;
+            }
+            setInterval(refreshTime, 1000);
+        </script>
+    </div>
 
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
-
+        
         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-        <li class="nav-item dropdown no-arrow d-sm-none">
+        <!-- <li class="nav-item dropdown no-arrow d-sm-none">
             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-search fa-fw"></i>
-            </a>
+            </a> -->
             <!-- Dropdown - Messages -->
-            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+            <!-- <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
                 aria-labelledby="searchDropdown">
                 <form class="form-inline mr-auto w-100 navbar-search">
                     <div class="input-group">
@@ -45,7 +79,7 @@
                     </div>
                 </form>
             </div>
-        </li>
+        </li> -->
 
         <li class="nav-item dropdown no-arrow mx-1">
             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
@@ -83,10 +117,6 @@
                 <a class="dropdown-item" href="#">
                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                     <%= __('Setting') %>
-                </a>
-                <a class="dropdown-item" href="#">
-                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                    <%= __('Language options') %>
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="../login" data-toggle="modal" data-target="#logoutModal">

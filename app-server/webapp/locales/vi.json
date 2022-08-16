@@ -46,5 +46,18 @@
 	"Toggle": "Đảo",
 	"Delete this board": "Xóa bảng này",
 	"Delete this board?": "Muốn xóa bảng này?",
-	"Delete this device?": "Delete this device?"
+	"Delete this device?": "Delete this device?",
+	"Config this board": "Config this board",
+	"Confirm changes": "Confirm changes",
+	"Start": "Start",
+	"Stop": "Stop",
+	"Monday": "Thứ hai",
+	"Tuesday": "Thứ ba",
+	"Wednesday": "Thứ tư",
+	"Thursday": "Thứ năm",
+	"Friday": "Thứ sáu",
+	"Saturday": "Thứ bảy",
+	"Sunday": "Chủ nhật",
+	"__": "__",
+	"${weekmap.get(weekday)}": "${weekmap.get(weekday)}"
 }

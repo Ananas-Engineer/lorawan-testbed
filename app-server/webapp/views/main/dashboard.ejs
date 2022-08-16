@@ -1648,12 +1648,13 @@
                 document.querySelectorAll(`[id^=btnmetricdownlinkrtt-payload-data-${dev_id}]`).forEach((item)=>{
                         try {
                                 var data = $(`#${item.id}`).data('id');
-                                // var path = item.id.split('-').pop();
+                                var path = item.id.split('-').pop();
                                 if(data&&data.state=='start'){
                                     let rtt = Date.now() - data.starttime;
                                     console.log('rtt ', rtt);
                                     storage.payload[dev_id].downlinktesting.downlinkrtt.push(rtt);
                                     item.innerText = ((storage.payload[dev_id].downlinktesting.downlinkrtt.reduce((a, b) => a + b, 0)/storage.payload[dev_id].downlinktesting.downlinkrtt.length)/1000).toFixed(2);
+
                                     // console.log(item.innerText);
                                 }
                                 
@@ -1681,7 +1682,7 @@
                         try {
                                 var data = $(`#${item.id}`).data('id');
                                 // var path = item.id.split('-').pop();
-                                if(data&&data.state=='start'){
+                                if(data&&data.state=='start') {
                                     let rssi = parsed_message.rssi
                                     console.log('rssi ', rssi);
                                     storage.payload[dev_id].downlinktesting.downlinkrssi.push(rssi);
@@ -1709,15 +1710,16 @@
                                     starttime: Date.now()
                                 });
                                 let downlink_cmd = data.sensor_config.cmd.DEFAULT;
-                                mqtt_publish(`devices/${dev_id}/down/push`, JSON.stringify(downlink_cmd));
+                                // mqtt_publish(`devices/${dev_id}/down/push`, JSON.stringify(downlink_cmd));
                                 console.log('Send ', downlink_cmd);
                                 console.log('btnmetricdownlinkrtt');
                                 let interval = setInterval(function(){
                                     let timetag = document.getElementById(`btnmetricdownlinktime-payload-data-${dev_id}-${path}`);
                                     let timevalue = parseFloat(timetag.innerHTML);
                                     //intialize counter
-                                    if(timetag.innerHTML=='UPDATED' || timetag.innerHTML=='0' || timetag.innerHTML=='EXPIRED') {
-                                        timetag.innerHTML = 70; //sensor_config.uplink_timeout;
+                                    if(timetag.innerHTML=='UPDATED' || timetag.innerHTML=='0') {
+                                        mqtt_publish(`devices/${dev_id}/down/push`, JSON.stringify(downlink_cmd));
+                                        timetag.innerHTML = 15; //sensor_config.uplink_timeout;
                                     }
                                     else if (timevalue!=0) {
                                         timetag.innerHTML = (timevalue - 0.1).toFixed(1);
@@ -1725,17 +1727,28 @@
                                     }
                                     else {
                                         timetag.innerHTML = "EXPIRED";
-                                        clearInterval(interval);
+                                        // clearInterval(interval);
+                                        mqtt_publish(`devices/${dev_id}/down/push`, JSON.stringify(downlink_cmd));
+                                        timetag.innerHTML = 15;
+                                        data.packageCnt += 1;
                                         let plr = (data.packageLostCnt+1)/data.packageCnt;
                                         storage.payload[dev_id].downlinktesting.downlinkplr.push(plr);
                                         item.innerText = (plr*100).toFixed(2);
 
+                                        document.getElementById(`btnmetricdownlinkpck-payload-data-${dev_id}-${path}`).innerHTML=`${data.packageCnt}`;
+
                                         $(`#${item.id}`).data('id', {
                                             state: 'start',
-                                            packageLostCnt: (data.packageLostCnt+1),
+                                            packageLostCnt: data.packageLostCnt+1,
                                             packageCnt: data.packageCnt,
                                             sensor_config: data.sensor_config,
                                             interval: interval
+                                        });
+
+                                        $(`#btnmetricdownlinkrtt-payload-data-${dev_id}-${path}`).data('id', {
+                                            state: 'start',
+                                            starttime: Date.now(),
+
                                         });
                                         
                                         // document.getElementById(`btn-payload-data-${dev_id}-${w_id}`)["disabled"] = false;
@@ -1750,7 +1763,7 @@
                                 $(`#${item.id}`).data('id', {
                                     state: 'start',
                                     packageLostCnt: data.packageLostCnt,
-                                    packageCnt: (data.packageCnt+1),
+                                    packageCnt: data.packageCnt+1,
                                     sensor_config: data.sensor_config,
                                     interval: interval
                                 });
