@@ -11,13 +11,13 @@
 
 #include "main.h"
 
-#define DATA_SIZE		8
-#define CMD_BYTE_SIZE	16
+#define DATA_SIZE			8
+#define BUFFER_BYTE_SIZE	128
 
 typedef struct {
-	uint8_t data[CMD_BYTE_SIZE];
+	uint8_t data[BUFFER_BYTE_SIZE];
 	uint8_t size;
-} cmd_byte_t;
+} buffer_byte_t;
 
 typedef struct {
 	uint8_t data[DATA_SIZE];
@@ -31,47 +31,9 @@ typedef struct {
 	uint8_t crc[2];
 } cmd_t;
 
-/* DEFINE CMD */
-/*
-const cmd_t dfal = {
-		.addr = 0x00,
-		.func = 0x00,
-		.data.data = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
-		.data.size = 0x0,
-		.crc = {0x00, 0x00}
-};
+/* DEFINE AT CMD */
+#define AT_CMD_PSW 		"123456"
+#define AT_CMD_PREFIX 	"AT+CFGDEV="
 
-const cmd_t tog_r0 = {
-		.addr = 0x01,
-		.func = 0x05,
-		.data.data = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x55, 0x00},
-		.data.size = 0x4,
-		.crc = {0xF2, 0x9A}
-};
-
-const cmd_t tog_r1 = {
-		.addr = 0x01,
-		.func = 0x05,
-		.data.data = {0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x55, 0x00},
-		.data.size = 0x4,
-		.crc = {0xA3, 0x5A}
-};
-
-const cmd_t tog_r2 = {
-		.addr = 0x01,
-		.func = 0x05,
-		.data.data = {0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x55, 0x00},
-		.data.size = 0x4,
-		.crc = {0x53, 0x5A}
-};
-
-const cmd_t tog_r3 = {
-		.addr = 0x01,
-		.func = 0x05,
-		.data.data = {0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x55, 0x00},
-		.data.size = 0x4,
-		.crc = {0x02, 0x9A}
-};
-*/
 #endif
 
