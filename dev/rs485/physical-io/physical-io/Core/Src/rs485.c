@@ -11,17 +11,25 @@
 #include "cmd.h"
 
 static UART_HandleTypeDef *huart;
+static buffer_byte_t rx_buffer; //recv buffer for uart RX DMA
 
 static inline void uart_send(buffer_byte_t *buffer) {
 	HAL_UART_Transmit(huart, buffer->data, buffer->size, 10);
 }
 
-static inline void uart_recv(buffer_byte_t *buffer) {
-	HAL_UART_Receive(huart, buffer->data, buffer->size, 500);
+static inline buffer_byte_t uart_recv(void) {
+	return rx_buffer;
+}
+
+static inline void uart_rx_buffer_clear(void) {
+	memset(rx_buffer.data, '\0', rx_buffer.size);
 }
 
 void rs485_init(UART_HandleTypeDef *huart_ptr) {
 	huart = huart_ptr;
+	rx_buffer.size = 20;
+	memset(rx_buffer.data, '\0', rx_buffer.size);
+	HAL_UART_Receive_DMA(huart, rx_buffer.data, rx_buffer.size);
 }
 
 buffer_byte_t rs485_compose(cmd_t *cmd) {
@@ -87,7 +95,20 @@ void rs485_send(buffer_byte_t *buffer) {
 	uart_send(buffer);
 }
 
-void rs485_recv(buffer_byte_t *buffer) {
-	uart_recv(buffer);
+buffer_byte_t rs485_recv(void) {
+	return uart_recv();
+}
+
+void rs485_recv_buffer_clear(void) {
+	uart_rx_buffer_clear();
+}
+
+uint8_t rs485_recv_buffer_compare(void) {
+	for (uint8_t i = 0; i < rx_buffer.size; i++) {
+		if (rx_buffer.data[i] != '\0') {
+			return 0;
+		}
+	}
+	return 1;
 }
 

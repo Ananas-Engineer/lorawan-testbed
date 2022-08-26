@@ -34,7 +34,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-//buffer_byte_t rx_buffer;
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -130,8 +130,6 @@ int main(void)
   /* USER CODE BEGIN 2 */
   btn_matrix_init();
   rs485_init(&huart3);
-  //memset(rx_buffer.data, 'x', BUFFER_BYTE_SIZE);
-  //HAL_UART_Receive_DMA(&huart3, rx_buffer.data, BUFFER_BYTE_SIZE);
   /* USER CODE END 2 */
 
   /* Init scheduler */
@@ -389,8 +387,11 @@ void rs485_handler(void *argument)
 {
   /* USER CODE BEGIN rs485_handler */
   /* Infinite loop */
-	buffer_byte_t buffer;
+	buffer_byte_t send_buffer;
 	cmd_t cmd;
+
+	uint32_t curr_tick;
+
   for(;;)
   {
 	  if (osMessageQueueGet(cmd_qHandle, &cmd, NULL, 0) == osOK) {
@@ -406,11 +407,21 @@ void rs485_handler(void *argument)
 		  buffer = rs485_compose_at_cmd(&cmd);
 		  rs485_send(&buffer);
 		  osDelay(pdMS_TO_TICKS(500));
-			*/
-		  //RS485
-		  buffer = rs485_compose(&cmd);
-		  rs485_send(&buffer);
+		   */
 
+		  //RS485
+		  send_buffer = rs485_compose(&cmd);
+		  rs485_recv_buffer_clear();
+		  curr_tick = osKernelGetSysTimerCount();
+
+		  while (osKernelGetSysTimerCount() - curr_tick < RS485_WAIT_PERIOD) {
+			  if (!rs485_recv_buffer_compare()) {
+				  rs485_recv_buffer_clear();
+				  curr_tick = osKernelGetSysTimerCount();
+			  }
+		  }
+
+		  rs485_send(&send_buffer);
 		  trigger_uplink_flag = 1;
 	  }
   }
