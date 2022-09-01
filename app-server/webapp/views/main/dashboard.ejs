@@ -1719,7 +1719,8 @@
                                     //intialize counter
                                     if(timetag.innerHTML=='UPDATED' || timetag.innerHTML=='0') {
                                         mqtt_publish(`devices/${dev_id}/down/push`, JSON.stringify(downlink_cmd));
-                                        timetag.innerHTML = sensor_config.uplink_timeout;
+                                        console.log(data.sensor_config.uplink_timeout);
+                                        timetag.innerHTML = data.sensor_config.uplink_timeout;
                                     }
                                     else if (timevalue!=0) {
                                         timetag.innerHTML = (timevalue - 0.1).toFixed(1);
@@ -1728,8 +1729,10 @@
                                     else {
                                         timetag.innerHTML = "EXPIRED";
                                         // clearInterval(interval);
+                                        console.log("not publish yet");
                                         mqtt_publish(`devices/${dev_id}/down/push`, JSON.stringify(downlink_cmd));
-                                        timetag.innerHTML = sensor_config.uplink_timeout;
+                                        console.log("published");
+                                        timetag.innerHTML = data.sensor_config.uplink_timeout;
                                         data.packageCnt += 1;
                                         let plr = (data.packageLostCnt+1)/data.packageCnt;
                                         storage.payload[dev_id].downlinktesting.downlinkplr.push(plr);
