@@ -1,2 +1,4 @@
-btn_matrix.c:90:6:btn_matrix_init	16	static
-btn_matrix.c:101:8:btn_matrix_read	24	static
+btn_matrix.c:89:20:gpio_write_pin	16	static
+btn_matrix.c:93:29:gpio_read_pin	16	static
+btn_matrix.c:97:6:btn_matrix_init	16	static
+btn_matrix.c:108:8:btn_matrix_read	24	static
