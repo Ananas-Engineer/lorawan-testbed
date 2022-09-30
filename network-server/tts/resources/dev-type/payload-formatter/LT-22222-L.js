@@ -5,6 +5,7 @@ function Decoder(bytes, port) {
     var decode = {};
     var meta = {};
     meta.dev_type = 'LT-22222-L';
+    //meta.location = 'photocopy';
     
     if(hardware=='0')
     {
@@ -43,7 +44,7 @@ function Decoder(bytes, port) {
       decode.AVI2_status= parseFloat(((bytes[2]<<24>>16 | bytes[3])/1000).toFixed(3));
       decode.ACI1_status= parseFloat(((bytes[4]<<24>>16 | bytes[5])/1000).toFixed(3));
       decode.ACI2_status= parseFloat(((bytes[6]<<24>>16 | bytes[7])/1000).toFixed(3));
-      decode.DI1_status= (bytes[8] &0x08)? "H":"L";
+      decode.DI1_status= (bytes[8] &0x08)? "OFF":"ON";
       decode.DI2_status= (bytes[8] &0x10)? "H":"L"
     }
     else if(mode=='2')
@@ -72,28 +73,29 @@ function Decoder(bytes, port) {
     }
     else if(mode=='6')
     {
-      meta.Work_mode= "Exit mode"; 
-      decode.Mode_status= bytes[9] ? "True":"False";
-      decode.AV1L_flag= (bytes[0] &0x80)? "True":"False";
-      decode.AV1H_flag= (bytes[0] &0x40)? "True":"False";
-      decode.AV2L_flag= (bytes[0] &0x20)? "True":"False";
-      decode.AV2H_flag= (bytes[0] &0x10)? "True":"False";   
-      decode.AC1L_flag= (bytes[0] &0x08)? "True":"False";
-      decode.AC1H_flag= (bytes[0] &0x04)? "True":"False";
-      decode.AC2L_flag= (bytes[0] &0x02)? "True":"False";
-      decode.AC2H_flag= (bytes[0] &0x01)? "True":"False";   
-      decode.AV1L_status= (bytes[1] &0x80)? "True":"False";
-      decode.AV1H_status= (bytes[1] &0x40)? "True":"False";
-      decode.AV2L_status= (bytes[1] &0x20)? "True":"False";
-      decode.AV2H_status= (bytes[1] &0x10)? "True":"False";   
-      decode.AC1L_status= (bytes[1] &0x08)? "True":"False";
-      decode.AC1H_status= (bytes[1] &0x04)? "True":"False";
-      decode.AC2L_status= (bytes[1] &0x02)? "True":"False";
-      decode.AC2H_status= (bytes[1] &0x01)? "True":"False";   
-      decode.DI2_status= (bytes[2] &0x08)? "True":"False";
-      decode.DI2_flag= (bytes[2] &0x04)? "True":"False";
-      decode.DI1_status= (bytes[2] &0x02)? "True":"False";
-      decode.DI1_flag= (bytes[2] &0x01)? "True":"False";   
+      return null;
+      // meta.Work_mode= "Exit mode"; 
+      // decode.Mode_status= bytes[9] ? "True":"False";
+      // decode.AV1L_flag= (bytes[0] &0x80)? "True":"False";
+      // decode.AV1H_flag= (bytes[0] &0x40)? "True":"False";
+      // decode.AV2L_flag= (bytes[0] &0x20)? "True":"False";
+      // decode.AV2H_flag= (bytes[0] &0x10)? "True":"False";   
+      // decode.AC1L_flag= (bytes[0] &0x08)? "True":"False";
+      // decode.AC1H_flag= (bytes[0] &0x04)? "True":"False";
+      // decode.AC2L_flag= (bytes[0] &0x02)? "True":"False";
+      // decode.AC2H_flag= (bytes[0] &0x01)? "True":"False";   
+      // decode.AV1L_status= (bytes[1] &0x80)? "True":"False";
+      // decode.AV1H_status= (bytes[1] &0x40)? "True":"False";
+      // decode.AV2L_status= (bytes[1] &0x20)? "True":"False";
+      // decode.AV2H_status= (bytes[1] &0x10)? "True":"False";   
+      // decode.AC1L_status= (bytes[1] &0x08)? "True":"False";
+      // decode.AC1H_status= (bytes[1] &0x04)? "True":"False";
+      // decode.AC2L_status= (bytes[1] &0x02)? "True":"False";
+      // decode.AC2H_status= (bytes[1] &0x01)? "True":"False";   
+      // decode.DI2_status= (bytes[2] &0x08)? "True":"False";
+      // decode.DI2_flag= (bytes[2] &0x04)? "True":"False";
+      // decode.DI1_status= (bytes[2] &0x02)? "True":"False";
+      // decode.DI1_flag= (bytes[2] &0x01)? "True":"False";   
     }
     
     if(bytes.length==11)
