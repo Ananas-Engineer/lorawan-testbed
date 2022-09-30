@@ -7,4 +7,4 @@ node ./emqx_web_hook.js
 ```
 docker cp ./emqx_web_hook.conf <container_id>:/opt/emqx/etc/plugins
 ```
-3. go to EMQX Dashboard -> Plugins -> start `emqx_web_hook`
+3. go to EMQX Dashboard -> Plugins -> start `emqx_web_hook`.
