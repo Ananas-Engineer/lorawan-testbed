@@ -1,5 +1,6 @@
 # How to start EMQX?
 1. [Start EMQX container](emqx/run/).
+2. [Add backup file to EMQX](emqx/backup/).
 2. [Start MQTT authentication and ACL](emqx/http-api/).
 3. [Start MQTT Bridge to Network Server](tts-bridge/using-emqx-bridge/).
 4. [Start Webhook to Web Server](emqx/conf/).
