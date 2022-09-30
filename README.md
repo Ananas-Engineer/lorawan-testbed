@@ -132,7 +132,10 @@ lorawan-testbed
 
 ## Start the Software components on the VPS
 1. (Optional) Start [Network Server](network-server/README.md) locally, or you can use [TTS cloud AU1](https://au1.cloud.thethings.network/console/).
-2. Start [Application Server](app-server/README.md).
+2. Start Application Server.
+    1. Start [Database](app-server/db/README.md).
+    2. Start [Streaming Broker](app-server/streaming-broker/README.md).
+    3. Start [Web Server](app-server/webapp/README.md).
 
 ## PCB and upload code for Hardware RS-485
 
