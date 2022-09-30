@@ -131,7 +131,7 @@ lorawan-testbed
 3. Install [NodeJS](https://nodejs.org/en/download/).
 
 ## Start the Software components on the VPS
-1. Start [Network Server](network-server/) locally, or you can use [TTS cloud AU1](https://au1.cloud.thethings.network/console/).
+1. Start [Network Server](network-server/) locally on VPS, or you can use [TTS cloud AU1](https://au1.cloud.thethings.network/console/).
 2. Start Application Server.
     1. Start [Database](app-server/db/).
     2. Start [Streaming Broker](app-server/streaming-broker/).
