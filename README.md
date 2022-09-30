@@ -117,14 +117,24 @@ lorawan-testbed
 │   
 └───network-server/tts
 │   │   install
-│   │   resources
+│   │   resources/payload-formatter
 |
 └───dev
 │   │   rs485/physical-io
 ```
+`app-server/common/` Contains the configurations of all software components as Json files. You can change the values related to IP addresses, Usernames, Passwords, etc. before starting the servers.
 
 # How to run?
+## Prerequisite
+1. Have a VPS running Ubuntu Linux, or Debian core.
+2. Install [Docker](https://docs.docker.com/engine/install/ubuntu/) and [Docker Compose](https://docs.docker.com/compose/install/linux/).
+3. Install [NodeJS](https://nodejs.org/en/download/).
 
+## Start the Software components on the VPS
+1. (Optional) Start [Network Server](network-server/README.md) locally, or you can use [TTS cloud AU1](https://au1.cloud.thethings.network/console/).
+2. Start [Application Server](app-server/README.md).
+
+## PCB and upload code for Hardware RS-485
 
 # Contact
 *Duy Tinh Nguyen - [@xdtn7](https://www.linkedin.com/in/xdtn7/) - duytinhnguyenforwork@gmail.com*
