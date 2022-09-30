@@ -138,6 +138,7 @@ lorawan-testbed
     3. Start [Web Server](app-server/webapp/).
 
 ## PCB and upload code for Hardware RS-485
+1. [Here](dev/rs485/physical-io/).
 
 # Contact
 *Duy Tinh Nguyen - [@xdtn7](https://www.linkedin.com/in/xdtn7/) - duytinhnguyenforwork@gmail.com*
