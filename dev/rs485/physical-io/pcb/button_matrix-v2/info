@@ -1,0 +1,212 @@
+{
+  "uuid": "bbcbb689238d43211500e42c4c28f8c7",
+  "path": "Offline/button_matrix-v2",
+  "name": "button_matrix-v2",
+  "content": "",
+  "created_at": "2022-07-21 00:38:20",
+  "updated_at": "2022-08-24 01:43:32",
+  "stick": "",
+  "documents": [
+    {
+      "uuid": "43d474aeacb188e2abde30a87f811719",
+      "title": "button_matrix",
+      "description": "",
+      "docType": "1",
+      "master": "",
+      "thumb": "/images/thumb-default.png",
+      "components": {
+        "7809ed3ba7c24a14936ce2a66b37ccdb": 1,
+        "21507fe462954ebb909a348552869f94": 8,
+        "eb4b9aee9bd548aaa0d8f2be9fe0b10f": 8,
+        "dbfa7da092bc44faa13a86aaa683160b": 2,
+        "d1967012734640e5b2f2cc1ea764740b": 11,
+        "8850ffcdb9d242a1b431d4a3e2209db1": 1,
+        "d06fd183e0b742e191bf48a41812063c": 1,
+        "da85efb77378462aaaa3d5ff7db1c1dd": 1
+      },
+      "BOM": [
+        [
+          "Value",
+          "Quantity",
+          "Package",
+          "Components",
+          "CustomPara"
+        ],
+        [
+          "1n",
+          2,
+          "RAD-0.1",
+          "C1,C2",
+          {
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "ea82fbe34d7840de9fdcf3145ab199ef",
+            "uuid": "dbfa7da092bc44faa13a86aaa683160b"
+          }
+        ],
+        [
+          "100uF",
+          1,
+          "CAP-D5.0×F2.0",
+          "C4",
+          {
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "9ab4ba27487f4e968ec8c676394520e2",
+            "uuid": "d06fd183e0b742e191bf48a41812063c"
+          }
+        ],
+        [
+          "1N4007",
+          1,
+          "DO-41_BD2.4-L4.7-P8.70-D0.9-RD",
+          "D1",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "SEMTECH",
+            "BOM_Manufacturer Part": "1N4007",
+            "BOM_Supplier Part": "C106903",
+            "puuid": "c2803222ad4b48fb94db0de548a6280a",
+            "uuid": "da85efb77378462aaaa3d5ff7db1c1dd"
+          }
+        ],
+        [
+          "HDR-F-2.54_1x8",
+          1,
+          "HDR-F-2.54_1X8",
+          "H1",
+          {
+            "BOM_Supplier Part": "C225505",
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "76a028e0363649388f2a2e340a157455",
+            "uuid": "7809ed3ba7c24a14936ce2a66b37ccdb"
+          }
+        ],
+        [
+          "K4-12×12_TH",
+          8,
+          "KEY-TH_4P-L12.0-W12.0-P5.00-LS12.5",
+          "KEY0,KEY1,KEY2,KEY3,KEY4,KEY5,KEY6,KEY7",
+          {
+            "BOM_Supplier Part": "C128053",
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "韩国韩荣",
+            "BOM_Manufacturer Part": "K2-1103DP-M4SW-04",
+            "puuid": "a98235252ba749888f74d5b8012c8785",
+            "uuid": "21507fe462954ebb909a348552869f94"
+          }
+        ],
+        [
+          "LED-TH-5mm_R",
+          1,
+          "LED-TH_BD5.0_RED",
+          "LED1",
+          {
+            "BOM_Manufacturer": "EVERLIGHT(台湾亿光)",
+            "BOM_Manufacturer Part": "333-2SURD/S530-A3",
+            "BOM_Supplier Part": "C87271",
+            "BOM_Supplier": "LCSC",
+            "puuid": "ce0ed154d45b41508e0debca8473ba07",
+            "uuid": "8850ffcdb9d242a1b431d4a3e2209db1"
+          }
+        ],
+        [
+          "2N3906",
+          8,
+          "TO-92-3_L4.9-W3.7-P1.27-L",
+          "Q0,Q1,Q2,Q3,Q4,Q5,Q6,Q7",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "CJ",
+            "BOM_Manufacturer Part": "2N3906",
+            "BOM_Supplier Part": "C9809",
+            "puuid": "6924b36489de4921bb29ca14bf27c33f",
+            "uuid": "eb4b9aee9bd548aaa0d8f2be9fe0b10f"
+          }
+        ],
+        [
+          "2k",
+          8,
+          "R_AXIAL-0.4",
+          "R0,R1,R2,R3,R4,R5,R6,R7",
+          {
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "5905db98cde4487fbb177070aa85bbe1",
+            "uuid": "d1967012734640e5b2f2cc1ea764740b"
+          }
+        ],
+        [
+          "50",
+          1,
+          "R_AXIAL-0.4",
+          "R8",
+          {
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "5905db98cde4487fbb177070aa85bbe1",
+            "uuid": "d1967012734640e5b2f2cc1ea764740b"
+          }
+        ],
+        [
+          "10k",
+          2,
+          "R_AXIAL-0.4",
+          "R9,R10",
+          {
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "5905db98cde4487fbb177070aa85bbe1",
+            "uuid": "d1967012734640e5b2f2cc1ea764740b"
+          }
+        ]
+      ],
+      "updateTime": 1661280212,
+      "createTime": 1657287667,
+      "histories": [],
+      "created_at": "2022-07-08 20:41:07",
+      "updated_at": "2022-08-24 01:43:32"
+    },
+    {
+      "uuid": "81e961dd6f3f8ab55496536271db4306",
+      "puuid": "bbcbb689238d43211500e42c4c28f8c7",
+      "title": "PCB_button_matrix",
+      "filename": "PCB_button_matrix.json",
+      "description": "",
+      "docType": "3",
+      "master": "",
+      "thumb": "/images/thumb-default.png",
+      "components": {
+        "c2803222ad4b48fb94db0de548a6280a": 1,
+        "9ab4ba27487f4e968ec8c676394520e2": 1,
+        "5905db98cde4487fbb177070aa85bbe1": 11,
+        "ea82fbe34d7840de9fdcf3145ab199ef": 2,
+        "a98235252ba749888f74d5b8012c8785": 8,
+        "6924b36489de4921bb29ca14bf27c33f": 8,
+        "ce0ed154d45b41508e0debca8473ba07": 1,
+        "76a028e0363649388f2a2e340a157455": 1
+      },
+      "BOM": [],
+      "updateTime": 1658855116,
+      "createTime": 1658644682,
+      "histories": [],
+      "created_at": "2022-07-24 13:38:02",
+      "updated_at": "2022-07-27 00:05:16"
+    }
+  ],
+  "sort": [
+    "43d474aeacb188e2abde30a87f811719",
+    "b204b75b9da5101116dc8e85189663c1"
+  ],
+  "title": "button_matrix-v2",
+  "foldername": "button_matrix-v2",
+  "schfilename": "button_matrix-v2.json",
+  "schfilemtime": 1661280212544
+}
