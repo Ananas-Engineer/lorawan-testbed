@@ -1,1 +1,4 @@
-> bash ./run.sh
+## Start EMQX container
+```
+bash ./run.sh
+```

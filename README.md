@@ -65,7 +65,21 @@
 
 # About
 
->This project proposes a LoRaWAN-based IoT testbed for performance investigation, including hardware and software components with respect to LoRaWAN network architecture specification. Additionally, the proposed testbed employs an efficient and reliable mechanism for status synchronization between a physical control device and a web-app-based control device to reduce the uplink frequency for saving power. The experimental results show that the packet loss rate is proportional to the distance between the gateway and end-devices, and is affected by building walls, obstacles, and hardware capabilities. Moreover, leveraging a network server and MQTT broker with high availability and scalability enables our proposed testbed to possibly accommodate up to 4000 users accessing the web application deployed on a server with a dual-core CPU and 2GB RAM without failure.
+>This thesis proposes, studies and examines an approach on Developing A
+LoRaWAN-based Testbed for IoT Applications, including hardware and software
+components regarding LoRaWAN network architecture specification, allowing end-
+users to be able to monitor, control and validate their LoRaWAN network and
+wide range of end-devices before any actual deployment in a flexible manner.
+Additionally, the proposed testbed employs an efficient and reliable mechanism
+for status synchronization between a physical control device and a web-app-based
+control device to reduce the uplink packet loss rate as well as uplink frequency
+for saving power. The experimental results show that the packet loss rate is
+proportional to the distance between the gateway and end-devices, and is affected
+by building walls, obstacles, and hardware capabilities. Moreover, leveraging a
+network server and MQTT broker with high availability and scalability enables
+our proposed testbed to possibly accommodate up to 1000 users accessing the web
+application deployed on a VPS with a dual-core CPU and 2GB RAM without
+failure
 
 
 # Built with
@@ -89,6 +103,42 @@
 |Database|[![PostgreSQL][postgresql]][postgresql-url]|
 |Web Server| [![NodeJS][nodejs]][nodejs-url]|
 |Web Application|[![ExpressJS][Expressjs]][Expressjs-url]|
+
+# Files structure
+```
+lorawan-testbed
+│   README.md  
+│
+└───app-server
+│   │   common
+│   │   db
+│   │   streaming-broker
+|   |   webapp
+│   
+└───network-server/tts
+│   │   install
+│   │   resources/payload-formatter
+|
+└───dev
+│   │   rs485/physical-io
+```
+`app-server/common/` Contains the configurations of all software components as Json files. You can change the values related to IP addresses, Usernames, Passwords, etc. before starting the servers.
+
+# How to run?
+## Prerequisite
+1. Have a VPS running Ubuntu Linux, or Debian core.
+2. Install [Docker](https://docs.docker.com/engine/install/ubuntu/) and [Docker Compose](https://docs.docker.com/compose/install/linux/).
+3. Install [NodeJS](https://nodejs.org/en/download/).
+
+## Start the Software components on the VPS
+1. (Optional) Start [Network Server](network-server/README.md) locally, or you can use [TTS cloud AU1](https://au1.cloud.thethings.network/console/).
+2. Start Application Server.
+    1. Start [Database](app-server/db/).
+    2. Start [Streaming Broker](app-server/streaming-broker/).
+    3. Start [Web Server](app-server/webapp/).
+
+## PCB and upload code for Hardware RS-485
+
 # Contact
 *Duy Tinh Nguyen - [@xdtn7](https://www.linkedin.com/in/xdtn7/) - duytinhnguyenforwork@gmail.com*
 
