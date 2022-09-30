@@ -1,4 +1,6 @@
-outside = host machine.
+## Start MQTT bridge
+
+outside = host machine.  
 inside = container.
 
 1. outside > `node emqx-tts-bridge-generator.js <tts_version ('tts-os')>`
