@@ -1,0 +1,264 @@
+{
+  "uuid": "1dcc62fed404e8bf5ef3e7ebc4ecc17d",
+  "path": "Offline/physical-io",
+  "name": "physical-io",
+  "content": "",
+  "created_at": "2022-07-08 20:41:07",
+  "updated_at": "2022-08-24 01:43:49",
+  "stick": "",
+  "documents": [
+    {
+      "uuid": "0a00ad5ad06bae9e5ce91312ce73ff4e",
+      "title": "physical-io",
+      "description": "",
+      "docType": "1",
+      "master": "",
+      "thumb": "/images/thumb-default.png",
+      "components": {
+        "ee4918a6379446e38302eadb55f562ab": 1,
+        "c4f0cde4769b4018870704f72f5a0a8f": 1,
+        "eaa76950fd7343a1953943ee7b9978d3": 3,
+        "da85efb77378462aaaa3d5ff7db1c1dd": 2,
+        "a7291ceaee5442a999df26c55c7e675d": 1,
+        "e691ecce73f74adc83e15434646ffa2d": 1,
+        "2f5c8276f8d64010877a8d3bb97697b8": 2,
+        "3e5f9305e4ff42e585f4a630aaa490d5": 1,
+        "dbfa7da092bc44faa13a86aaa683160b": 2,
+        "8850ffcdb9d242a1b431d4a3e2209db1": 1,
+        "5b9620699ada415aa1c36c115af1d65d": 2,
+        "decd6f6d3af642e7af4bce30b1197f3b": 1,
+        "d1967012734640e5b2f2cc1ea764740b": 1
+      },
+      "BOM": [
+        [
+          "Value",
+          "Quantity",
+          "Package",
+          "Components",
+          "CustomPara"
+        ],
+        [
+          "HDR-F-2.54_1x10",
+          1,
+          "HDR-F-2.54_1X10",
+          "BUTTON_MATIX",
+          {
+            "BOM_Supplier Part": "C35445",
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "af1bce44cacb47cda450f7e17ba302b4",
+            "uuid": "e691ecce73f74adc83e15434646ffa2d"
+          }
+        ],
+        [
+          "1000u",
+          2,
+          "CAP-D10.0×F5.0",
+          "C1,C2",
+          {
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "986ca71d43e94c6f946f952ade660c20",
+            "uuid": "5b9620699ada415aa1c36c115af1d65d"
+          }
+        ],
+        [
+          "104",
+          2,
+          "RAD-0.1",
+          "C3,C4",
+          {
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "ea82fbe34d7840de9fdcf3145ab199ef",
+            "uuid": "dbfa7da092bc44faa13a86aaa683160b"
+          }
+        ],
+        [
+          "220uF",
+          1,
+          "CAP-D6.3×F2.5",
+          "C5",
+          {
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "f22f57806f1b484c9525ae585bd9e142",
+            "uuid": "decd6f6d3af642e7af4bce30b1197f3b"
+          }
+        ],
+        [
+          "1N4007",
+          2,
+          "DO-41_BD2.4-L4.7-P8.70-D0.9-RD",
+          "D1,D9",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "SEMTECH",
+            "BOM_Manufacturer Part": "1N4007",
+            "BOM_Supplier Part": "C106903",
+            "puuid": "c2803222ad4b48fb94db0de548a6280a",
+            "uuid": "da85efb77378462aaaa3d5ff7db1c1dd"
+          }
+        ],
+        [
+          "HDR-F-2.54_1x4",
+          3,
+          "HDR-F-2.54_1X4",
+          "I2C_1,TRIG,UART-RS485",
+          {
+            "BOM_Supplier Part": "C225501",
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "21473b495b6340c992965357d5701779",
+            "uuid": "eaa76950fd7343a1953943ee7b9978d3"
+          }
+        ],
+        [
+          "LED-TH-5mm_R",
+          1,
+          "LED-TH_BD5.0_RED",
+          "LED1",
+          {
+            "BOM_Manufacturer": "EVERLIGHT(台湾亿光)",
+            "BOM_Manufacturer Part": "333-2SURD/S530-A3",
+            "BOM_Supplier Part": "C87271",
+            "BOM_Supplier": "LCSC",
+            "puuid": "ce0ed154d45b41508e0debca8473ba07",
+            "uuid": "8850ffcdb9d242a1b431d4a3e2209db1"
+          }
+        ],
+        [
+          "1k",
+          1,
+          "R_AXIAL-0.4",
+          "R2",
+          {
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "5905db98cde4487fbb177070aa85bbe1",
+            "uuid": "d1967012734640e5b2f2cc1ea764740b"
+          }
+        ],
+        [
+          "HDR-F-2.54_1x6",
+          2,
+          "HDR-F-2.54_1X6",
+          "SPI_1,SPI_2",
+          {
+            "BOM_Supplier Part": "C40877",
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "e86d43893d914130bd34765c00ed5f63",
+            "uuid": "2f5c8276f8d64010877a8d3bb97697b8"
+          }
+        ],
+        [
+          "Blue Pill STM32F103C6T8(3)",
+          1,
+          "BLUE PILL STM32F103C6T8(2)",
+          "U1",
+          {
+            "BOM_Manufacturer": "",
+            "BOM_Manufacturer Part": "",
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "puuid": "702a2db3322c4e69ad20bf135b274bf3",
+            "uuid": "ee4918a6379446e38302eadb55f562ab"
+          }
+        ],
+        [
+          "7805(TO-220)",
+          1,
+          "TO-220-3_L10.0-W4.5-P2.54-L",
+          "U2",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "STMicroelectronics",
+            "BOM_Manufacturer Part": "L7805CV-DG",
+            "BOM_Supplier Part": "C3795",
+            "puuid": "948e610cffd14df79f04c73832b1409b",
+            "uuid": "3e5f9305e4ff42e585f4a630aaa490d5"
+          }
+        ],
+        [
+          "HDR-F-2.54_1x3",
+          1,
+          "HDR-F-2.54_1X3",
+          "UART-USB",
+          {
+            "BOM_Supplier Part": "C146690",
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "f83673d09e13450d934ca6be4be5af8f",
+            "uuid": "a7291ceaee5442a999df26c55c7e675d"
+          }
+        ],
+        [
+          "DOMINO-2",
+          1,
+          "DOMINO-2",
+          "V_IN",
+          {
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "11bc5bbef8ce47b5b61f4f841133c5e6",
+            "uuid": "c4f0cde4769b4018870704f72f5a0a8f"
+          }
+        ]
+      ],
+      "updateTime": 1661280229,
+      "createTime": 1657287667,
+      "histories": [],
+      "created_at": "2022-07-08 20:41:07",
+      "updated_at": "2022-08-24 01:43:49"
+    },
+    {
+      "uuid": "3cbac33577855df0edd8f52ab628c574",
+      "puuid": "1dcc62fed404e8bf5ef3e7ebc4ecc17d",
+      "title": "PCB_physical-io",
+      "filename": "PCB_physical-io.json",
+      "description": "",
+      "docType": "3",
+      "master": "",
+      "thumb": "/images/thumb-default.png",
+      "components": {
+        "5905db98cde4487fbb177070aa85bbe1": 1,
+        "986ca71d43e94c6f946f952ade660c20": 2,
+        "f22f57806f1b484c9525ae585bd9e142": 1,
+        "ea82fbe34d7840de9fdcf3145ab199ef": 2,
+        "c2803222ad4b48fb94db0de548a6280a": 2,
+        "948e610cffd14df79f04c73832b1409b": 1,
+        "11bc5bbef8ce47b5b61f4f841133c5e6": 1,
+        "ce0ed154d45b41508e0debca8473ba07": 1,
+        "21473b495b6340c992965357d5701779": 3,
+        "af1bce44cacb47cda450f7e17ba302b4": 1,
+        "e86d43893d914130bd34765c00ed5f63": 2,
+        "f83673d09e13450d934ca6be4be5af8f": 1,
+        "702a2db3322c4e69ad20bf135b274bf3": 1
+      },
+      "BOM": [],
+      "updateTime": 1658899015,
+      "createTime": 1658346003,
+      "histories": [],
+      "created_at": "2022-07-21 02:40:03",
+      "updated_at": "2022-07-27 12:16:55"
+    }
+  ],
+  "sort": [
+    "0a00ad5ad06bae9e5ce91312ce73ff4e",
+    "b204b75b9da5101116dc8e85189663c1"
+  ],
+  "title": "physical-io",
+  "foldername": "physical-io",
+  "schfilename": "physical-io.json",
+  "schfilemtime": 1661280229163
+}
