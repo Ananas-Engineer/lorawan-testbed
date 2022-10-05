@@ -25,5 +25,5 @@ Now, your web application started. If your web application configuration file is
 }
 ```
 
-then you can access your web application in `http://localhost:80`.
+then you can access your web application by this URL: `http://localhost:80`.
 
