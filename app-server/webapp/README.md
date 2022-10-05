@@ -18,12 +18,12 @@ To start the web application, run: `npm start`.
 
 Now, your web application started. If your web application configuration file is:
 
-'''
+```
 {
     "SERVER_ADDR": "localhost",
     "SERVER_PORT": 80
 }
-'''
+```
 
 then you can access your web application in `http://localhost:80`.
 
