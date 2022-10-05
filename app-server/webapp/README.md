@@ -1,20 +1,29 @@
-//nodemon ./bin/www localhost 8080
+# Web Application
 
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Dashboard</title>
-    <link rel='stylesheet' href='/stylesheets/dashboard.css' />
-    <% include ../partials/libs%>
-</head>
+## Installation
 
-<body>
-    <% include ../partials/navbar%>
-    <% include ../partials/header%>
+- NodeJS
+- NPM
+- PostgreSQL
 
-    <% include ../partials/footer%>
-</body>
+## Implementation
 
-</html> -->
+In this directory, to install all node modules on web application, run: `npm install`.
 
-<%- include ('../partials/libs') %>
+Go to `lorawan-testbed/app-server/streaming-broker` directory, run `npm install` again to install all node modules supporting streaming broker.
+
+Make sure you did configure your web application in `lorawan-testbed/app-server/common/webapp.json` file.
+
+To start the web application, run: `npm start`.
+
+Now, your web application started. If your web application configuration file is:
+
+'''
+{
+    "SERVER_ADDR": "localhost",
+    "SERVER_PORT": 80
+}
+'''
+
+then you can access your web application in `http://localhost:80`.
+
