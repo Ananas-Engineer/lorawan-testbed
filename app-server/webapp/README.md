@@ -1,11 +1,5 @@
 # Web Application
 
-## Installation
-
-- NodeJS
-- NPM
-- PostgreSQL
-
 ## Implementation
 
 In this directory, to install all node modules on web application, run: `npm install`.
